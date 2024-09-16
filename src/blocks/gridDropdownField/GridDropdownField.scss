@@ -1,0 +1,34 @@
+@import '../../blocks/variables/Variable.scss';
+
+.grid-input-field {
+	flex-direction: column;
+
+	.input-label {
+		margin-bottom: 4px;
+		margin-top: 3px;
+	}
+	select {
+		width: 100%;
+		height: 42px !important;
+		border: 1px solid var(--search-input-border);
+		border-radius: 3px;
+		padding: 10px 14.5px;
+		font-family: 'Poppins', sans-serif;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 14px;
+		letter-spacing: -0.02em;
+		color: black;
+		outline: none;
+		margin-top: 7px;
+
+		&::placeholder {
+			font-family: 'Poppins', sans-serif;
+			font-weight: 500;
+			font-size: 12px;
+			line-height: 14px;
+			letter-spacing: -0.02em;
+			color: black;
+		}
+	}
+}

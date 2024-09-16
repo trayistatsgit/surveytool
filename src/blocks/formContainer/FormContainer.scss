@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import '../../mixins.scss';
+@import '../../blocks/variables/Variable.scss';
+
+.new-dropdown-mutiselect {
+	position: relative;
+}
+
+.new-dropdown-multiselect-button {
+	position: relative;
+	width: 100%;
+	min-height: 42px;
+	border-radius: 6px;
+	border: 1px solid var(--search-input-border);
+	background-color: var(--white-color);
+	cursor: pointer;
+	opacity: 1;
+	text-align: left;
+	color: var(--light-black);
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 14px;
+	margin-top: 1rem;
+	justify-content: space-between;
+	display: flex;
+	align-items: center;
+}
+
+.new-dropdown-button {
+	position: relative;
+	width: 100%;
+	min-height: 42px;
+	border-radius: 6px;
+	border: 1px solid var(--search-input-border);
+	background-color: var(--white-color);
+	cursor: pointer;
+	opacity: 1;
+	text-align: left;
+	color: var(--text-placeholder-color);
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 14px;
+	margin-top: 1rem;
+	justify-content: space-between;
+	display: flex;
+	align-items: center;
+}
+
+.new-dropdown-Typography {
+	margin-top: 1rem;
+	margin-bottom: 20px;
+}
+
+.new-dropdown-image {
+	position: absolute;
+	right: 31px;
+	top: 60%;
+	width: 20px;
+	height: 12px;
+}
+
+.new-dropdown-button:hover {
+	background-color: var(--white-color);
+}
+
+.new-dropdown-content-dropdown {
+	position: relative;
+	width: 100%;
+	display: block;
+	border-radius: 3px 0px 0px 0px;
+	margin-top: -13px;
+	z-index: 1;
+	margin-top: 0.2rem;
+}
+
+.new-dropdown-content-dropdown::-webkit-scrollbar {
+	width: 5px;
+}
+
+.new-dropdown-content-dropdown::-webkit-scrollbar-track {
+	background: var(--new-dropdown-content-multiselect-bg-secondary);
+	border-radius: 10px;
+}
+
+.new-dropdown-content-dropdown::-webkit-scrollbar-thumb {
+	background-color: var(--new-dropdown-content-multiselect-bg);
+	border-radius: 10px;
+}
+
+.new-dropdown-content-dropdown::-webkit-scrollbar-thumb:hover {
+	background-color: var(--new-dropdown-content-multiselect-bg);
+}
+
+.new-dropdown-content-multiselect {
+	position: relative;
+	width: 100%;
+	display: block;
+	overflow-x: hidden;
+	border-radius: 3px 0px 0px 0px;
+	margin-top: -2px;
+}
+
+.new-dropdown-content-multiselect::-webkit-scrollbar {
+	width: 5px;
+}
+
+.new-dropdown-content-multiselect::-webkit-scrollbar-track {
+	background: var(--new-dropdown-content-multiselect-bg-secondary);
+	border-radius: 10px;
+}
+
+.new-dropdown-content-multiselect::-webkit-scrollbar-thumb {
+	background-color: var(--new-dropdown-content-multiselect-bg);
+	border-radius: 10px;
+}
+
+.new-dropdown-content-multiselect::-webkit-scrollbar-thumb:hover {
+	background-color: var(--new-dropdown-content-multiselect-bg);
+}
+
+.no-option-found-container {
+	overflow-y: visible;
+	margin-top: 0.5rem;
+}
+
+.new-dropdown-option {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	padding: 0.75rem;
+}
+
+.new-multiselect-option {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	padding: 0.5rem;
+}
+
+.select-all-div {
+	display: flex;
+	align-items: center;
+	padding: 0.75rem;
+	margin-bottom: 1rem;
+}
+
+.select-all-text {
+	font-weight: 700;
+}
+
+.new-dropdown-option-active {
+	background-color: var(--myprofile-active);
+	color: var(--white-color);
+}
+
+.new-dropdown-option:hover {
+	background-color: var(--text-color-link);
+	color: var(--white-color);
+}
+
+.dropdown-image-arrow {
+	position: absolute;
+	right: 17px;
+	width: 20px;
+	height: 12px;
+	top: 13px;
+}
+
+.question-text {
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	border-radius: 6px;
+	padding: 16px;
+	background-image: linear-gradient(to right, var(--formcontainer-questiontext-bgimage), var(--formcontainer-myprofile-questiontext));
+}
+
+.question-hr {
+	width: 100%;
+	border: 1px solid var(--myaccount-avtar-bg);
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+
+.select-all-question-hr {
+	width: 100%;
+	border: 1px solid var(--myaccount-avtar-bg);
+}
+
+.inactive-question {
+	display: flex;
+	cursor: pointer;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.normalArrow-img {
+	margin-right: 16px;
+}
+
+.question-input-field {
+	margin-bottom: 12px;
+	margin-top: 12px;
+	align-items: flex-start;
+	border-radius: 3px;
+	height: 42px;
+	border: 1px solid var(--btn-gray);
+	padding: 0 0 0 1rem;
+	outline: none;
+	font-family: 'Poppins';
+}
+
+.seacrh-div-profile {
+	margin: 1rem 0.5rem 1rem 0;
+}
+
+.new-dropdown-multiselect {
+	position: relative;
+}
+
+.parent-multiselect {
+	z-index: 1;
+	position: absolute;
+	margin-top: 0.8rem;
+	padding: 1rem;
+	width: 98%;
+	background-color: var(--white-color);
+	overflow-x: hidden;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	@include bp('mobile') {
+		width: 90%;
+	}
+	@include bp('desktop') {
+		width: 95%;
+	}
+	@include bp('tablet') {
+		width: 94%;
+	}
+	@include bp('monitor') {
+		width: 97%;
+	}
+	@include bp('xl') {
+		width: 98%;
+	}
+}
+
+.dropdown-up-open {
+	z-index: 1;
+	position: absolute;
+	bottom: 125%;
+	margin-top: 0.8rem;
+	padding: 1rem;
+	width: 98%;
+	overflow-x: hidden;
+	background-color: var(--white-color);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	@include bp('mobile') {
+		width: 90%;
+	}
+	@include bp('desktop') {
+		width: 95%;
+	}
+	@include bp('tablet') {
+		width: 94%;
+	}
+	@include bp('monitor') {
+		width: 97%;
+	}
+	@include bp('xl') {
+		width: 98%;
+	}
+}
+
+.survey-parent-multiselect {
+	z-index: 1;
+	position: absolute;
+	top: 94%;
+	margin-top: 0.8rem;
+	padding: 1rem;
+	width: 97%;
+	background-color: var(--white-color);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+	@include bp('tablet') {
+		width: 93%;
+	}
+	@include bp('desktop') {
+		width: 96%;
+	}
+	@include bp('mobile') {
+		width: 93%;
+	}
+}
+
+.mutiselect-dropdown-div {
+	height: auto;
+	background-color: var(--white-color);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.selected-option {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
+.selected-option-item {
+	font-style: Poppins;
+	display: flex;
+	align-items: center;
+	background-color: var(--text-color-link);
+	color: var(--white-color);
+	margin-right: 5px;
+	padding: 8px;
+	border-radius: 22px;
+	gap: 6px;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.remove-option {
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.dropdown-search {
+	margin-top: 0.5rem;
+	width: 100%;
+	height: 36px;
+	margin-bottom: 0.5rem;
+	border: 1px solid var(--search-input-border);
+	border-radius: 4px;
+	outline: none;
+	font-size: 12px;
+}
+
+.isVisible-dropdown-search {
+	margin-top: 10px;
+	width: 99.5%;
+	height: 42px;
+	margin-bottom: 0.5rem;
+	border: 1px solid var(--search-input-border);
+	border-radius: 4px;
+	outline: none;
+}
+
+.checkbox-multiselect {
+	width: 24px;
+	height: 24px;
+	margin-right: 1rem;
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.select-all {
+	width: 24px;
+	height: 24px;
+	margin-right: 1rem;
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+
+.checkbox-multiselect + label {
+	position: relative;
+	padding-left: 35px;
+	cursor: pointer;
+	font-size: 12px;
+	line-height: 20px;
+	display: inline-block;
+	user-select: none;
+}
+
+.checkbox-multiselect + label:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 20px;
+	height: 20px;
+	border: 2px solid var(--search-input-border);
+	border-radius: 4px;
+	background-color: var(--white-color);
+}
+
+.checkbox-multiselect:checked + label:before {
+	background-color: var(--text-color-link);
+	border-color: var(--text-color-link);
+}
+
+.checkbox-multiselect:checked + label:after {
+	content: '';
+	position: absolute;
+	left: 8px;
+	top: 3px;
+	width: 4px;
+	height: 11px;
+	border: solid var(--white-color);
+	border-width: 0 3px 3px 0;
+	transform: rotate(45deg);
+}
+
+.dropdown-image-true {
+	position: absolute;
+	right: 15px;
+	width: 20px;
+	height: 12px;
+	top: 14px;
+}
+
+.new-dropdown-div {
+	position: relative;
+}
+
+.tick-image {
+	width: 1.2rem;
+}
+
+.new-multiselect-option.disabled {
+	color: gray;
+	pointer-events: none;
+}
+

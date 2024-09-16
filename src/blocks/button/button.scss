@@ -1,0 +1,229 @@
+/* button-styles.scss */
+@import '../variables/Variable.scss';
+
+
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	opacity: 1;
+	cursor: auto;
+	border-radius: 0.375rem;
+	box-shadow: var(--Secondary-black-shades-color);
+	font-weight: 500;
+	outline: none;
+	transition:
+		opacity 0.3s ease,
+		background-color 0.3s ease;
+}
+
+.button-label {
+	font-family: Poppins !important;
+	font-weight: 600 !important;
+	line-height: 17.4px;
+}
+
+.button-label-img {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	font-family: Poppins !important;
+	font-weight: 500 !important;
+}
+.button-label-img-two {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-family: Poppins !important;
+	font-weight: 500 !important;
+	font-size: 14px;
+	justify-content: center;
+}
+
+.button:disabled {
+	opacity: 0.7;
+	cursor: not-allowed;
+}
+
+.btn-color-blue {
+	background-color: var(--navyblue-color);
+	color: var(--white-color);
+}
+.button-blue {
+	background-color: var(--navyblue-color);
+	color: var(--white-color);
+}
+
+.btn-color-gray {
+	background-color: var(--btn-gray);
+}
+
+.button-orange {
+	background-color: var(--button-orange-bg);
+	color: var(--white-color);
+}
+
+.button-inverse {
+	background-color: var(--white-color);
+	color: var(--Secondary-black-color);
+	cursor: pointer;
+}
+
+.button-danger {
+	background-color: --button-danger;
+	color: --white-color;
+	box-shadow: var(--Secondary-black-shades-color);
+	cursor: pointer;
+}
+
+.button-sm {
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	cursor: pointer;
+}
+
+.button-md {
+	padding: 0.5rem 0.5rem;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.button-lg {
+	padding: 0.75rem 1rem;
+	font-size: 1.25rem;
+	cursor: pointer;
+}
+
+.button-icon {
+	margin-right: 0.5rem;
+	margin-left: 0.5rem;
+	cursor: pointer;
+}
+
+.button:focus {
+	box-shadow: 0 0 0 3px rgba(217, 94, 6, 0.5);
+}
+
+.button-sign {
+	background: var(--btn-primary);
+	border: 1px solid var(--border-level-2-color);
+}
+
+.button-transparent {
+	background-color: transparent;
+	border: none;
+}
+
+.refresh-button {
+	margin-top: 10px;
+	padding: 10px 20px;
+	background-color: var(--button-danger);
+	color: var(--white-color);
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.btn-color-white {
+	color: var(--white-color);
+}
+
+.btn-color-black {
+	color: var(--black-color);
+}
+.btn-color-navyblue {
+	color: var(--navyblue-color);
+}
+.btn-color-grey {
+	color: var(--text-grey-primary) !important;
+}
+
+.btn-color-yellow {
+	color: var(--Secondary-yellow-color);
+}
+
+.refresh-button:hover {
+	background-color: var(--button-danger);
+}
+
+.brandPrimary {
+	background-color: var(--btn-orange);
+	color: var(--white-color);
+	width: 100%;
+}
+
+.signupPrimary {
+	background-color: var(--navyblue-color);
+	color: var(--white-color);
+	width: 100%;
+}
+
+.surveyPrimary {
+	background-color: var(--btn-orange);
+	color: var(--white-color);
+	width: 100%;
+}
+
+.primaryQuestionary {
+	background: linear-gradient(to right, var(--text-color-link) 0%, var(--navyblue-color) 100%);
+	color: var(--white-color);
+	width: 140px;
+	height: 40px;
+	border: none;
+	outline: none;
+	// margin-top: 30px;
+	border-radius: 6px;
+	padding:
+		11.37px,
+		189.6px,
+		11.38px 189.9px;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 18px;
+}
+
+.brandSecondary {
+	background-color: var(--background-level-2-color);
+	color: var(--Secondary-black-color);
+}
+
+.brandSecondary:hover {
+	background-color: var(--background-level-2-color);
+}
+
+.button-spinner {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 2px solid var(--white-color);
+	border-radius: 100%;
+	border-top-color: transparent;
+	animation: spin 1s linear infinite;
+	margin: -2px;
+	align-items: center;
+	justify-content: center;
+
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+}
+
+.btn-color-theme {
+	color: var(--btn-primary);
+}
+
+.button-red {
+	background-color: var(--button-danger);
+}
+
+.label-text {
+	font-weight: 500;
+}

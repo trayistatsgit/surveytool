@@ -1,0 +1,49 @@
+@mixin bp($point) {
+	$mobile: '(max-width: 600px)';
+	$tablet: '(min-width: 601px) and (max-width: 900px)';
+	$desktop: '(min-width: 901px) and (max-width: 1200px)';
+	$monitor: '(min-width: 1201px) and (max-width: 1440px)';
+	$xl: '(min-width: 1441px) and (max-width: 2800px)';
+
+	@if $point ==mobile {
+		@media #{$mobile} {
+			@content;
+		}
+	} @else if $point ==tablet {
+		@media #{$tablet} {
+			@content;
+		}
+	} @else if $point ==desktop {
+		@media #{$desktop} {
+			@content;
+		}
+	} @else if $point ==monitor {
+		@media #{$monitor} {
+			@content;
+		}
+	} @else if $point ==xl {
+		@media #{$xl} {
+			@content;
+		}
+	}
+}
+
+@mixin bp-footer($point) {
+	$xl: '(min-width: 1441px) and (max-width: 1500px)';
+	$xl-max: '(min-width: 1501px) and (max-width: 1863px)';
+	$xl-max-another: '(min-width: 1863px) and (max-width: 2800px)';
+
+	@if $point ==xl {
+		@media #{$xl} {
+			@content;
+		}
+	} @else if $point ==xl-max {
+		@media #{$xl-max} {
+			@content;
+		}
+	} @else if $point ==xl-max-another {
+		@media #{$xl-max-another} {
+			@content;
+		}
+	}
+}

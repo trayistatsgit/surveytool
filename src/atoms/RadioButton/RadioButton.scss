@@ -1,0 +1,28 @@
+.custom-radio-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .custom-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #B02E7A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #fff;
+  }
+  
+  .custom-radio.checked {
+    background: #B02E7A;
+}
+  
+  .radio-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+  

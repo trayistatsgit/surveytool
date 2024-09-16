@@ -1,0 +1,137 @@
+@import url('../../blocks/variables/Variable.scss');
+@import '../../mixins.scss';
+
+.input-field {
+	border-radius: 8px;
+	align-items: flex-start;
+	// height: 42px;
+	padding: 10px 14px 10px 14px !important;
+	border: 1px solid #CED3D8;
+		outline: none;
+	font-family: 'Poppins';
+	&::placeholder {
+		padding-left: 1px;
+	}
+}
+
+.input-fieldsignup {
+	align-items: flex-start;
+	border-radius: 3px;
+	align-items: flex-start;
+	border-radius: 5px;
+	height: 42px;
+	border: 1px solid var(--btn-gray);
+	margin-top: 1rem;
+	outline: none;
+	padding-inline: 17px;
+}
+
+.input-icon-container {
+	position: relative;
+	display: flex;
+	gap: 0.2rem;
+	align-items: center;
+}
+
+.input-Typography {
+	margin-top: 1rem;
+}
+
+.toggle-password {
+	position: relative;
+	top: 59%;
+	right: 180px;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+.eye-icon {
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	right: -12rem;
+	top: -2.3rem;
+	background: none;
+	border: none;
+}
+
+.eye-icon-signup {
+	width: 1.3rem;
+	height: 1.3rem;
+	position: absolute;
+	right: -10rem;
+	top: -4.2rem;
+	background: none;
+	border: none;
+	@include bp('mobile') {
+		right: -11rem;
+	}
+}
+
+.eye-error {
+	width: 1.3rem;
+	height: 1.3rem;
+	position: absolute;
+	right: -11rem;
+	top: -2.3rem;
+	background: none;
+	border: none;
+}
+
+.input-image {
+	display: flex;
+	position: relative;
+	top: 59%;
+	right: 180px;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.image-icon {
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	right: -12rem;
+	top: -2.3rem;
+	background: none;
+	border: none;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	@include bp('tablet') {
+		right: -12rem;
+		width: 16px;
+		height: 16px;
+		top: -2rem;
+	}
+
+	@include bp('desktop') {
+		right: -12rem;
+		width: 16px;
+		height: 16px;
+		top: -2rem;
+	}
+}
+
+.image-container-input {
+	position: relative;
+}
+
+.search-image {
+	position: absolute;
+	right: 13px;
+	top: -31px;
+	height: 24px;
+	width: 24px;
+	@include bp('desktop') {
+		right: 0px;
+		margin-right: 8px;
+	}
+	@include bp('tablet') {
+		right: 0px;
+		margin-right: 8px;
+	}
+}
