@@ -4,6 +4,7 @@ import MasterLayout from '../layout/MasterLayout';
 import SignUp from '../pages/auth/SignUp';
 import LogIn from '../pages/auth/Login';
 import ForgotPassword from '../pages/auth/ForgotPassword/ForgotPassword';
+import CreateSurvey from '../pages/createSurvey/CreateSurvey';
 
 const router = createBrowserRouter([
 	{
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
 		element: <MasterLayout />,  
 		children: [
 		
+			{
+				path:'create-survey',
+				element:<CreateSurvey />
+			}
 			
 			
 			

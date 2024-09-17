@@ -26,6 +26,10 @@ const NavbarHome: React.FC<NavTestProps> = ({ isScrolled }) => {
     const handleLogin = () => {
         navigate('/login');
     };
+
+    const handleCreateSurvey = () => {
+        navigate('/create-survey');
+    };
  
     return (
         <><div className={isScrolled ? 'stickyParentNavDiv' : 'parentNavDiv'}>
@@ -50,13 +54,18 @@ const NavbarHome: React.FC<NavTestProps> = ({ isScrolled }) => {
                             Login
                         </li>
                         <Button label='Get Started' className='button' reverse={true} onClick={handleClick} />
+                        <Button label='Create Survey' className='button' reverse={true} onClick={handleCreateSurvey} />
                     </div>
                 </div>
             </nav>
-        </div><div className="App">
+        </div>
+        <div className="App">
                 <h1>Create a New Page</h1>
                 <TextEditorForm />
-            </div></>
+            </div>
+            
+
+            </>
     );
 };
  
