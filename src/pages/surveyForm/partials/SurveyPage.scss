@@ -1,136 +1,46 @@
-// /* SurveyPage.scss */
-
-// .container {
-//   max-width: 800px;
-//   margin: 0 auto;
-//   padding: 20px;
-// }
-
-// form {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 20px;
-// }
-
-// label {
-//   display: block;
-//   margin-bottom: 8px;
-//   font-weight: bold;
-// }
-
-// select,
-// input[type="text"] {
-//   width: 100%;
-//   padding: 8px;
-//   margin-top: 4px;
-//   border: 1px solid #ddd;
-//   border-radius: 4px;
-// }
-
-// button {
-//   padding: 10px 20px;
-//   border: none;
-//   border-radius: 4px;
-//   background-color: #007bff;
-//   color: white;
-//   font-size: 16px;
-//   cursor: pointer;
-//   margin-top: 10px;
-// }
-
-// button:hover {
-//   background-color: #0056b3;
-// }
-
-// .options-section {
-//   border: 1px solid #ddd;
-//   padding: 10px;
-//   border-radius: 4px;
-// }
-
-// .option-item {
-//   display: flex;
-//   align-items: center;
-//   gap: 10px;
-//   margin-bottom: 10px;
-// }
-
-// .option-input {
-//   flex-grow: 1;
-//   padding: 8px;
-//   border: 1px solid #ddd;
-//   border-radius: 4px;
-// }
-
-// .option-controls {
-//   display: flex;
-//   gap: 5px;
-// }
-
-// .add-option-icon,
-// .remove-option-icon {
-//   cursor: pointer;
-//   width: 24px;
-//   height: 24px;
-// }
-
-// .add-option-icon:hover,
-// .remove-option-icon:hover {
-//   opacity: 0.8;
-// }
-
-// .question-preview {
-//   border: 1px solid #ddd;
-//   padding: 10px;
-//   border-radius: 4px;
-//   margin-bottom: 10px;
-// }
-
-// .options-preview {
-//   margin-top: 10px;
-// }
-
-// .preview-option {
-//   display: flex;
-//   align-items: center;
-//   gap: 10px;
-//   margin-bottom: 5px;
-// }
-
-// .preview-checkbox {
-//   margin-right: 10px;
-// }
-
-// .preview-label {
-//   font-size: 16px;
-// }
-
-// .preview-option.radio input {
-//   margin-right: 0;
-// }
-
-// .preview-option.checkbox input {
-//   margin-right: 0;
-// }
-
-// @media (max-width: 768px) {
-//   .option-item {
-//     flex-direction: column;
-//   }
-
-//   .add-option-icon,
-//   .remove-option-icon {
-//     width: 20px;
-//     height: 20px;
-//   }
-// }
-
-
 /* Container for the whole form */
-.container {
+.survey-page-container {
   margin: 20px;
   max-width: 800px;
   padding: 20px;
+}
+
+/* Survey Page Title */
+.survey-page-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Responses Container */
+.responses-container {
+  margin-top: 20px;
+}
+
+/* Responses Title */
+.responses-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* Response Item */
+.response-item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+/* Response Question Text */
+.response-question-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Response Answer */
+.response-answer {
+  font-size: 1rem;
+  margin-top: 10px;
 }
 
 /* Form styling */
@@ -143,30 +53,30 @@ form {
 }
 
 /* Label styling */
-label {
+.label {
   font-weight: bold;
   display: block;
   margin-bottom: 10px;
 }
 
 /* Input and Textarea styling */
-input[type='text'],
-textarea {
+.input-text,
+.textarea {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
   border-radius: 4px;
   border: 1px solid #ccc;
-  box-sizing: border-box; /* Ensures padding is included in width */
+  box-sizing: border-box;
 }
 
-textarea {
+.textarea {
   height: 100px;
-  resize: vertical; /* Allows vertical resizing only */
+  resize: vertical;
 }
 
 /* Select dropdown styling */
-select {
+.select-dropdown {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
@@ -186,11 +96,12 @@ select {
   margin-bottom: 10px;
 }
 
-.option-item input[type='text'] {
+.option-input {
   flex: 1;
   margin-right: 10px;
 }
 
+/* Option control icons */
 .option-controls {
   display: flex;
   align-items: center;
@@ -205,15 +116,15 @@ select {
 }
 
 /* Radio and Checkbox inputs */
-input[type='radio'],
-input[type='checkbox'] {
+.radio-input,
+.checkbox-input {
   margin-right: 10px;
   cursor: pointer;
   transform: scale(1.2);
 }
 
 /* Buttons */
-button {
+.button-submit {
   background-color: #4caf50;
   color: white;
   padding: 10px 20px;
@@ -223,15 +134,15 @@ button {
   margin-right: 10px;
 }
 
-button:hover {
+.button-submit:hover {
   background-color: #45a049;
 }
 
-button[type='button'] {
+.button-cancel {
   background-color: #f44336;
 }
 
-button[type='button']:hover {
+.button-cancel:hover {
   background-color: #d32f2f;
 }
 

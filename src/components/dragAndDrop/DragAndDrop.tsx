@@ -5,7 +5,7 @@ const DragAndDrop = () => {
   const [dragOver, setDragOver] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState('');
-  const [isVisible, setIsVisible] = useState(true);
+  // const [isVisible, setIsVisible] = useState(true);
 
   const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
 
@@ -42,7 +42,7 @@ const DragAndDrop = () => {
     if (supportedFormats.includes(selectedFile.type)) {
       setFile(selectedFile);
       setError('');
-      setIsVisible(closePopup); // Close the entire popup when a valid file is selected
+      // setIsVisible(closePopup); // Close the entire popup when a valid file is selected
     } else {
       setFile(null);
       setError('Unsupported file format. Please upload a JPG, GIF, or PNG file.');
@@ -50,9 +50,9 @@ const DragAndDrop = () => {
   };
 
   // Return null if the component is not visible, effectively removing it from the DOM
-  if (!isVisible) {
-    return null;
-  }
+  // if (!isVisible) {
+  //   return null;
+  // }
 
   return (
     <div className='popupOverlay'>

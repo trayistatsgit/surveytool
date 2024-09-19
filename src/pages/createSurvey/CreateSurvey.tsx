@@ -16,13 +16,14 @@ interface SurveyFormProps {
 	onSubmit: (responses: Question[]) => void;
 }
 
-const CreateSurvey: React.FC<SurveyFormProps> = ({ onSubmit }) => {
+const CreateSurvey: React.FC<SurveyFormProps> = () => {
 	const [isPopUpVisible, setIsPopUpVisible] = useState(false);
 	const [questions, setQuestions] = useState<Question[]>([]);
-	const [questionType, setQuestionType] = useState<Question['questionType']>('text');
+	const [questionType, setQuestionType] = useState<Question['questionType']>('');
 	const [questionText, setQuestionText] = useState<string>('');
 	const [options, setOptions] = useState<string[]>(['']);
 	const [isFormVisible, setIsFormVisible] = useState<boolean>(true);
+	const [areButtonsVisible, setAreButtonsVisible] = useState(false);
 
 	// Popup functions
 	const showPopup = () => setIsPopUpVisible(true);
@@ -32,6 +33,7 @@ const CreateSurvey: React.FC<SurveyFormProps> = ({ onSubmit }) => {
 	const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const newType = e.target.value as Question['questionType'];
 		setQuestionType(newType);
+		setAreButtonsVisible(true);
 		setOptions(newType === 'dropdown' || newType === 'multipleChoice' || newType === 'radio' || newType === 'checkbox' ? ['', '', ''] : []);
 	};
 
@@ -68,7 +70,7 @@ const CreateSurvey: React.FC<SurveyFormProps> = ({ onSubmit }) => {
 		e.preventDefault();
 		if (!questionText) return;
 
-		const filteredOptions = options.filter(option => option.trim() !== '');
+		const filteredOptions = options.filter((option) => option.trim() !== '');
 
 		const newQuestion: Question = {
 			id: Date.now(),
@@ -80,6 +82,7 @@ const CreateSurvey: React.FC<SurveyFormProps> = ({ onSubmit }) => {
 		setQuestions([...questions, newQuestion]);
 		setIsFormVisible(false); // Hide the form after submitting
 		resetForm(); // Reset the form for the next question
+		setAreButtonsVisible(false);
 	};
 
 	// Reset form fields
@@ -91,26 +94,21 @@ const CreateSurvey: React.FC<SurveyFormProps> = ({ onSubmit }) => {
 	// Show form for adding a new question
 	const handleAddNewQuestion = () => {
 		setIsFormVisible(true);
+		setAreButtonsVisible(true);
 	};
 
 	// Cancel the question form
 	const handleCancel = () => {
 		resetForm();
-		setIsFormVisible(false);
-	};
-
-	// Submit all questions at once
-	const handleFinalSubmit = () => {
-		onSubmit(questions);
-		setQuestions([]);
+		setAreButtonsVisible(false);
 	};
 
 	return (
-		<section className="mainContainer">
-			<section className="containerCreateSurvey">
+		<section className='mainContainer'>
+			<section className='containerCreateSurvey'>
 				{/* Logo Popup Section */}
-				<div className="addLogoHere">
-					<button className="addLogoBtn" onClick={showPopup}>
+				<div className='addLogoHere'>
+					<button className='addLogoBtn' onClick={showPopup}>
 						Logo
 					</button>
 				</div>
@@ -122,65 +120,70 @@ const CreateSurvey: React.FC<SurveyFormProps> = ({ onSubmit }) => {
 				)}
 
 				{/* Survey Form Section */}
-				<section className="surveyPage">
-					<div className="surveyTitle">
+				<section className='surveyPage'>
+					<div className='surveyTitle'>
 						<h1>
 							<span>Untitled</span>
 						</h1>
-						<button className="editBtn">EDIT</button>
+						<button className='editBtn'>EDIT</button>
 					</div>
 
-					<div className="surveyPageTitle">
-						<button className="pageTitle">PAGE TITLE</button>
-						<button className="editPageBtn">EDIT</button>
+					<div className='surveyPageTitle'>
+						<button className='pageTitle'>PAGE TITLE</button>
+						<button className='editPageBtn'>EDIT</button>
 					</div>
 
 					{/* Question Form */}
 					{isFormVisible && (
 						<form onSubmit={handleSubmit}>
-							<label>
-								Select Question Type:
-								<select value={questionType} onChange={handleQuestionTypeChange}>
-									<option value="text">Text</option>
-									<option value="dropdown">Dropdown</option>
-									<option value="multipleChoice">Multiple Choice</option>
-									<option value="textarea">Text Area</option>
-									<option value="radio">Radio Buttons</option>
-									<option value="checkbox">Checkboxes</option>
-								</select>
-							</label>
-
-							<div>
-								<label>
-									Question Text:
-									<input type="text" value={questionText} onChange={handleQuestionTextChange} />
+							<div className='questionAndDropdown'>
+								<label className='question-type-label'>
+									Select Question Type:
+									<select value={questionType} required onChange={handleQuestionTypeChange} className='question-type-select'>
+										<option value='' selected>
+											Select a type
+										</option>
+										<option value='text'>Text</option>
+										<option value='dropdown'>Dropdown</option>
+										<option value='multipleChoice'>Multiple Choice</option>
+										<option value='textarea'>Text Area</option>
+										<option value='radio'>Radio Buttons</option>
+										<option value='checkbox'>Checkboxes</option>
+									</select>
 								</label>
+
+								<div className='question-text-container'>
+									<label className='question-text-label'>
+										Question Text:
+										<input type='text' value={questionText} onChange={handleQuestionTextChange} className='question-text-input' />
+									</label>
+								</div>
 							</div>
 
 							{/* Options Section for relevant question types */}
 							{(questionType === 'dropdown' || questionType === 'multipleChoice' || questionType === 'radio' || questionType === 'checkbox') && (
-								<div className="options-section">
-									<label>
+								<div className='question-options-section'>
+									<label className='question-options-label'>
 										Options:
 										{options.map((option, index) => (
-											<div key={index} className="option-item">
+											<div key={index} className='question-option-item'>
 												{questionType === 'radio' ? (
 													<>
-														<input type="radio" name={`radio-group-${index}`} checked={false} disabled />
-														<input type="text" value={option} onChange={(e) => handleOptionTextChange(e, index)} className="option-input" />
+														<input type='radio' name={`radio-group-${index}`} checked={false} disabled className='radio-input' />
+														<input type='text' value={option} onChange={(e) => handleOptionTextChange(e, index)} className='option-input-field' />
 													</>
 												) : questionType === 'checkbox' ? (
 													<>
-														<input type="checkbox" checked={false} disabled />
-														<input type="text" value={option} onChange={(e) => handleOptionTextChange(e, index)} className="option-input" />
+														<input type='checkbox' checked={false} disabled className='checkbox-input' />
+														<input type='text' value={option} onChange={(e) => handleOptionTextChange(e, index)} className='option-input-field' />
 													</>
 												) : (
-													<input type="text" value={option} onChange={(e) => handleOptionTextChange(e, index)} className="option-input" />
+													<input type='text' value={option} onChange={(e) => handleOptionTextChange(e, index)} className='option-input-field' />
 												)}
 
-												<div className="option-controls">
-													<img src={plus} alt="Add option" className="add-option-icon" onClick={handleAddOption} />
-													{options.length > 1 && <img src={minus} alt="Remove option" className="remove-option-icon" onClick={() => handleRemoveOption(index)} />}
+												<div className='option-control-icons'>
+													<img src={plus} alt='Add option' className='add-option-icon' onClick={handleAddOption} />
+													{options.length > 1 && <img src={minus} alt='Remove option' className='remove-option-icon' onClick={() => handleRemoveOption(index)} />}
 												</div>
 											</div>
 										))}
@@ -188,96 +191,118 @@ const CreateSurvey: React.FC<SurveyFormProps> = ({ onSubmit }) => {
 								</div>
 							)}
 
-							<div className="form-buttons">
-								<button type="submit">Save Question</button>
-								<button type="button" onClick={handleCancel}>Cancel</button>
-							</div>
+							{/* Show Save and Cancel buttons only when visible */}
+							{areButtonsVisible && (
+								<div className='form-buttons-container'>
+									<button type='submit' className='save-question-button'>
+										Save Question
+									</button>
+									<button type='button' className='cancel-question-button' onClick={handleCancel}>
+										Cancel
+									</button>
+								</div>
+							)}
 						</form>
 					)}
 
-					{/* Add and Submit buttons */}
-					<footer className="footer">
-						<button onClick={handleAddNewQuestion}>Add New Question</button>
-						<button onClick={handleFinalSubmit}>Submit All Questions</button>
-					</footer>
-
-					{/* Questions Preview */}
 					<div>
 						<h3>Questions Preview:</h3>
 						{questions.map((q) => (
-							<div key={q.id} className="question-preview">
+							<div key={q.id} className='question-preview'>
 								<strong>Question:</strong> {q.questionText || 'No question text provided'}
-								<div className="options-preview">
+								<div className='options-preview'>
 									{q.questionType === 'dropdown' && q.options && (
 										<select>
-											{q.options.filter(option => option.trim() !== '').map((option, idx) => (
-												<option key={idx} value={option}>
-													{option}
-												</option>
-											))}
+											{q.options
+												.filter((option) => option.trim() !== '')
+												.map((option, idx) => (
+													<option key={idx} value={option}>
+														{option}
+													</option>
+												))}
 										</select>
 									)}
 
-									{q.questionType === 'multipleChoice' && q.options && q.options.filter(option => option.trim() !== '').map((option, idx) => (
-										<div key={idx}>
-											<input type="checkbox" id={`mc-${q.id}-${idx}`} />
-											<label htmlFor={`mc-${q.id}-${idx}`}>{option}</label>
-										</div>
-									))}
+									{q.questionType === 'multipleChoice' &&
+										q.options &&
+										q.options
+											.filter((option) => option.trim() !== '')
+											.map((option, idx) => (
+												<div key={idx}>
+													<input type='checkbox' id={`mc-${q.id}-${idx}`} />
+													<label htmlFor={`mc-${q.id}-${idx}`}>{option}</label>
+												</div>
+											))}
 
-									{q.questionType === 'radio' && q.options && q.options.filter(option => option.trim() !== '').map((option, idx) => (
-										<div key={idx}>
-											<input type="radio" id={`radio-${q.id}-${idx}`} />
-											<label htmlFor={`radio-${q.id}-${idx}`}>{option}</label>
-										</div>
-									))}
+									{q.questionType === 'radio' &&
+										q.options &&
+										q.options
+											.filter((option) => option.trim() !== '')
+											.map((option, idx) => (
+												<div key={idx}>
+													<input type='radio' name={`radio-${q.id}`} id={`radio-${q.id}-${idx}`} />
+													<label htmlFor={`radio-${q.id}-${idx}`}>{option}</label>
+												</div>
+											))}
 
-									{q.questionType === 'checkbox' && q.options && q.options.filter(option => option.trim() !== '').map((option, idx) => (
-										<div key={idx}>
-											<input type="checkbox" id={`checkbox-${q.id}-${idx}`} />
-											<label htmlFor={`checkbox-${q.id}-${idx}`}>{option}</label>
-										</div>
-									))}
+									{q.questionType === 'checkbox' &&
+										q.options &&
+										q.options
+											.filter((option) => option.trim() !== '')
+											.map((option, idx) => (
+												<div key={idx}>
+													<input type='checkbox' id={`cb-${q.id}-${idx}`} />
+													<label htmlFor={`cb-${q.id}-${idx}`}>{option}</label>
+												</div>
+											))}
+
+									{q.questionType === 'text' && <input type='text' placeholder='Text input preview' />}
+									{q.questionType === 'textarea' && <textarea placeholder='Textarea input preview'></textarea>}
 								</div>
 							</div>
 						))}
 					</div>
 				</section>
 				<section className='surveyPage'>
+					<div className='addNewQuesContainer'>
+						{/* Add New Question button shown only if there are saved questions */}
+						{questions.length > 0 && (
+							<button onClick={handleAddNewQuestion} className='add-new-question-button'>
+								Add New Question
+							</button>
+						)}
+						<a className='demoText' href=''>
+							Copy and paste questions
+						</a>
+					</div>
+
+					<div className='createDoneContainer'>
+						<span>
+							<button className='createDoneButton'>Done</button>
+						</span>
+						<span>
+							<button className='createEditButton'>EDIT</button>
+						</span>
+					</div>
+
+					<div className='createFooterContainer'>
+						<div className='createFooterDivOne'>
+							<p className='createFooterParaOne'>Powered by</p>
+							<b className='createFooterBold'>Survey Programming Tool</b>
+							<p className='createFooterParaTwo'>
+								See how easy it is to <a href=''>create survey and forms</a>
+							</p>
+						</div>
 
 						<div>
-							<a className='demoText' href=''>
-								Copy and paste questions
-							</a>
+							<button className='createFooterDivTwo'>Hide Footer</button>
 						</div>
+					</div>
 
-						<div className='createDoneContainer'>
-							<span>
-								<button className='createDoneButton'>Done</button>
-							</span>
-							<span>
-								<button className='createEditButton'>EDIT</button>
-							</span>
-						</div>
-
-						<div className='createFooterContainer'>
-							<div className='createFooterDivOne'>
-								<p className='createFooterParaOne'>Powered by</p>
-								<b className='createFooterBold'>Survey Programming Tool</b>
-								<p className='createFooterParaTwo'>
-									See how easy it is to <a href=''>create survey and forms</a>
-								</p>
-							</div>
-
-							<div>
-								<button className='createFooterDivTwo'>Hide Footer</button>
-							</div>
-						</div>
-
-						<div className='createPreviewContainer'>
-							<button className='createPreviewButton'>Preview Survey</button>
-						</div>
-					</section>
+					<div className='createPreviewContainer'>
+						<button className='createPreviewButton'>Preview Survey</button>
+					</div>
+				</section>
 			</section>
 		</section>
 	);

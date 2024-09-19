@@ -1,9 +1,8 @@
-// In SurveyPage.tsx
 import React, { useState } from "react";
 import SurveyForm from '../SurveyForm';
 // Import the Question interface
 import { Question } from '../SurveyForm';
-import '../partials/SurveyPage.scss'
+import '../partials/SurveyPage.scss';
 
 const SurveyPage: React.FC = () => {
   const [responses, setResponses] = useState<Question[] | null>(null);
@@ -14,17 +13,17 @@ const SurveyPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Survey</h1>
+    <div className="survey-page-container">
+      <h1 className="survey-page-title">Survey</h1>
       {!responses ? (
         <SurveyForm onSubmit={handleSurveySubmit} />
       ) : (
-        <div>
-          <h2>Survey Responses</h2>
+        <div className="responses-container">
+          <h2 className="responses-title">Survey Responses</h2>
           {responses.map((question) => (
-            <div key={question.id}>
-              <strong>{question.questionText}</strong>
-              <p>
+            <div key={question.id} className="response-item">
+              <strong className="response-question-text">{question.questionText}</strong>
+              <p className="response-answer">
                 {question.questionType === "multipleChoice"
                   ? (question.answer as string[]).join(", ")
                   : question.answer}

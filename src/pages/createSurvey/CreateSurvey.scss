@@ -49,30 +49,40 @@
     background: #edeeee;
     .editBtn{
         position: relative;
-        top: 40%;
+        margin-right: 15px;
+        color: white;
+        border: 0px;
+        background: #6b787f;
+        top: 30px ;
         display: flex;
+        vertical-align: middle;
         text-align: center;
         align-items: center;
         vertical-align: middle;
-        align-items: center;
-        margin-right: 15px;
         width: 45px;
+        height: 20px;
     }
 }
 .editBtn{
     display: none;
-    height: 20px;
-    background: #6b787f;
-    color: white;
-    border: 0px;
-    vertical-align: middle;
-    text-align: center;
-        align-items: center;
-        line-height: 20px;
-    
 }
-.surveyTitle:hover + .editBtn{
-    display: block;
+.surveyTitle:hover {
+    background: #edeeee;
+    .editPageBtn{
+        position: relative;
+        margin-right: 15px;
+        color: white;
+        border: 0px;
+        background: #6b787f;
+        // top: 40%;
+        display: flex;
+        vertical-align: middle;
+        text-align: center;
+        align-items: center;
+        vertical-align: middle;
+        width: 45px;
+        height: 20px;
+    }
 }
 
 
@@ -89,7 +99,7 @@
 .editPageBtn{
     display: none;
 }
-.surveyPageTitle:hover{
+.surveyPageTitle:hover {
     background: #edeeee;
     .editPageBtn{
         position: relative;
@@ -167,7 +177,6 @@
 
 .demoText{
     background: #f4f5f5;
-    margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
@@ -177,6 +186,22 @@
     margin-bottom: 40px;
     padding: 3px 0;
     // cursor: pointer;
+}
+
+.addNewQuesContainer{
+    background: #f4f5f5;
+}
+.add-new-question-button{
+    background: #f4f5f5;
+    margin-top: 20px;
+    height: 45px;
+    width: 150px;
+    background-color: #008323;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    margin-left: 43.8%;
+    margin-bottom: 5px;
 }
 
 .createDoneContainer{
@@ -290,5 +315,139 @@
     border: 0;
     width: 120px;
     height: 25px;
-
 }
+
+.questionAndDropdown{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    // align-items: center;
+    justify-content: center;
+    // grid-gap: 20px;
+}
+
+
+
+// Adding survey form css
+.container {
+    margin: 20px;
+    max-width: 800px;
+    padding: 20px;
+  }
+  
+  /* Form styling */
+  form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  /* Label styling */
+  .question-type-label,
+  .question-text-label,
+  .question-options-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  /* Input and Textarea styling */
+  .question-text-input,
+  .option-input-field,
+  textarea {
+    width: 88%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    height: 100px;
+    resize: vertical;
+  }
+  
+  /* Select dropdown styling */
+  .question-type-select {
+    width: 88%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Options Section Styling */
+  .question-options-section {
+    margin-top: 20px;
+  }
+  
+  /* Option items styling */
+  .question-option-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .option-input-field {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  /* Option control icons */
+  .option-control-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .add-option-icon,
+  .remove-option-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  /* Radio and Checkbox inputs */
+  .radio-input,
+  .checkbox-input {
+    margin-right: 10px;
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+  
+  /* Buttons */
+  .save-question-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .save-question-button:hover {
+    background-color: #45a049;
+  }
+  
+  .cancel-button {
+    background-color: #f44336;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .cancel-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Form Buttons Container */
+  .form-buttons-container {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-right: 6%;
+  }
+  
