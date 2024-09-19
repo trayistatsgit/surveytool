@@ -1,7 +1,7 @@
 .popUpContainer{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     margin: 0 !important;
     border-radius: 0;
@@ -13,8 +13,10 @@
 .headSection{
     width: 420px !important;
     margin-left: 5%;
-    // margin: 0;
+    font-weight: 500;
     font-size:14px;    
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 .popup-content{
     padding: 0 !important;

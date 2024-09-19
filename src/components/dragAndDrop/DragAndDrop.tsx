@@ -5,15 +5,11 @@ const DragAndDrop = () => {
   const [dragOver, setDragOver] = useState(false);
   const [file, setFile] = useState<File | null>(null); // Correctly type file
   const [error, setError] = useState(''); // State for error handling
-  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
 
   const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
 
   // Handle Cancel Button Click (hides the drag-and-drop container)
-  const handleCancel = () => {
-    setIsVisible(false); // Hide the component when cancel is clicked
-  };
-
+ 
   // Handle Drag and Drop
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -48,15 +44,12 @@ const DragAndDrop = () => {
     }
   };
 
-  if (!isVisible) {
-    return null; // Return nothing if the component is hidden
-  }
 
   return (
     <>
       <div className='popUpContainer'>
         <section className='headSection'>
-          <b>FROM COMPUTER</b>
+          <span>FROM COMPUTER</span>
         </section>
         <section className='bodySection'>
           <div
@@ -103,12 +96,6 @@ const DragAndDrop = () => {
               </div>
             )}
           </div>
-        </section>
-
-        <section>
-          <button className='popupFooter' onClick={handleCancel}>
-            Cancel
-          </button>
         </section>
       </div>
     </>

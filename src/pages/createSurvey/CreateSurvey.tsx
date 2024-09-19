@@ -19,27 +19,16 @@ const CreateSurvey = () => {
 	return (
 		<>
 			<section className='mainContainer'>
-      <section className='container'>
+      <section className='containerCreateSurvey'>
 				<section>
 					<div className='addLogoHere'>
 						<button className='addLogoBtn' onClick={showPopup}>Logo</button>
 					</div>
 				</section>
 
-        {isPopUpVisible && <PopupComponent onClose={closePopup} width={500} height={410}>
+        {isPopUpVisible && <PopupComponent  showBottomCancel={true} onClose={closePopup} width={500} height={410}>
             <DragAndDrop />
           </PopupComponent>}
-
-
-        {/* {isPopUpVisible && (
-            <div className='popup'>
-              <div className='popupContent'>
-                <h2>Popup Title</h2>
-                <p>This is the popup content</p>
-                <button onClick={closePopup}>Close</button>
-              </div>
-            </div>
-          )} */}
 				<section className='surveyPage'>
 					<div>
 						<div className='surveyTitle'>
@@ -63,7 +52,7 @@ const CreateSurvey = () => {
 							<span>Q1</span>
 						</div>
 						<span className='createQuestionInputOne'>
-							<input className='createQuestionInput' type='text' placeholder='Enter Your Ques' />
+							<input className='createQuestionInputArea' type='text' placeholder='Enter Your Ques' />
 						</span>
 						<span>
 							<select className='createQuestionInputTwo' name='cars'>
@@ -98,9 +87,9 @@ const CreateSurvey = () => {
 					<div className='createFooterContainer'>
 						<div className='createFooterDivOne'>
 							<p className='createFooterParaOne'>Powered by</p>
-							<b className='createFooterBold'>Survey Sherpa</b>
+							<b className='createFooterBold'>Survey Programming Tool</b>
 							<p className='createFooterParaTwo'>
-								See hoe easy it is to <a href=''>create survey and forms</a>
+								See how easy it is to <a href=''>create survey and forms</a>
 							</p>
 						</div>
 

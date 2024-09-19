@@ -5,13 +5,14 @@
     justify-content: center;
 }
 
-.container{
+.containerCreateSurvey{
     position: relative;
     align-items: center;
     background: white;
     width: 55%;
     display: block;
     padding: 20px;
+    margin-top: 20px;
     // padding-left: 36px;
 }
 
@@ -136,6 +137,15 @@
     margin-bottom: 0 !important;
 }
 
+.createQuestionInputArea{
+    border-radius: 0 !important;
+    width: 90% !important;
+    margin-bottom: 0 !important;
+    height: 35px;
+    outline: none !important;
+    border-color: grey;
+}
+
 
 .createQuestionInputTwo{
     
@@ -235,21 +245,22 @@
  margin: 0;
  padding: 0;
  padding-top: 15px;
- left: 58%;
+ left: 50%;
  position: relative;
  font-size: 12px;
 }
 .createFooterBold{
     margin: 0;
     padding: 0;
-    left: 54%;
+    align-items: center;
+    left: 34%;
     position: relative;
     font-size: 12px;
 }
 .createFooterParaTwo{
     margin: 0;
     padding: 0;
-    left: 25%;
+    left: 16%;
     position: relative;
     padding-bottom: 25px;
     font-size: 12px;

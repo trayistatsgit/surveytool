@@ -5,12 +5,17 @@ import SignUp from '../pages/auth/SignUp';
 import LogIn from '../pages/auth/Login';
 import ForgotPassword from '../pages/auth/ForgotPassword/ForgotPassword';
 import CreateSurvey from '../pages/createSurvey/CreateSurvey';
+import StartingPage from '../pages/startingPage/StartingPage';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <MasterLayout />,  
 		children: [
+			{
+				path: '/start',
+				element: <StartingPage />,
+			},
 		
 			{
 				path:'create-survey',
