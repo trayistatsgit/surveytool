@@ -5,7 +5,6 @@ import '../navbar/navbar.scss';
 import '../publicHome/home.scss';
 import { Button } from '../../blocks';
 import { logo } from '../../assets/signup-img';
-// import TextEditorForm from '../../components/textEditorForm/TextEditorForm';
  
 interface NavTestProps {
     isScrolled: boolean;
@@ -64,14 +63,7 @@ const handleStartPage = () => {
                     </div>
                 </div>
             </nav>
-        </div>
-        {/* <div className="App">
-                <h1>Create a New Page</h1>
-                <TextEditorForm />
-            </div> */}
-            {/* <Button label='Create Survey' className='button' reverse={true} onClick={handleCreateSurvey} /> */}
-
-            </>
+        </div></>
     );
 };
  
