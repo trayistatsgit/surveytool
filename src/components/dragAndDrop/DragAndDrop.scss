@@ -11,7 +11,7 @@
 }
 
 .headSection{
-    width: 420px !important;
+    width: 550px !important;
     margin-left: 5%;
     font-weight: 500;
     font-size:14px;    
@@ -27,7 +27,7 @@
 
 
 .bodyContainer{
-    width: 450px;
+    width: 550px !important;
     height: 300px;
     background-color: #EAEAE8;
     border: 2px dashed #999999;
@@ -51,11 +51,8 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    // margin-top: 3%;
-    // top: 40px;
     height: 320px;
-    width: 400px;
-    // border: 1px solid black;
+    width: 520px;
 }
 
 .spanPopupButton{
@@ -64,7 +61,7 @@
     background-clip: border-box;
     margin-right: 5px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 11px;
     color: #fff;
     padding: 3px 8px;
 

@@ -3,12 +3,16 @@ import './DragAndDrop.scss';
 
 const DragAndDrop = () => {
   const [dragOver, setDragOver] = useState(false);
-  const [file, setFile] = useState<File | null>(null); // Correctly type file
-  const [error, setError] = useState(''); // State for error handling
+  const [file, setFile] = useState<File | null>(null);
+  const [error, setError] = useState('');
+  const [isVisible, setIsVisible] = useState(true);
 
   const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
 
-  // Handle Cancel Button Click (hides the drag-and-drop container)
+  // // Function to hide the entire popup
+  // const handleCancel = () => {
+  //   setIsVisible(false);
+  // };
  
   // Handle Drag and Drop
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -23,33 +27,38 @@ const DragAndDrop = () => {
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setDragOver(false);
-    const droppedFile = e.dataTransfer.files[0] as File; // Explicitly cast as File
+    const droppedFile = e.dataTransfer.files[0] as File;
     validateFile(droppedFile);
   };
 
   // Handle File Selection via Upload
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const uploadedFile = e.target.files?.[0] as File; // Explicitly cast as File
+    const uploadedFile = e.target.files?.[0] as File;
     validateFile(uploadedFile);
   };
 
-  // Validate the file format
+  // Validate the file format and close the popup on valid selection
   const validateFile = (selectedFile: File) => {
     if (supportedFormats.includes(selectedFile.type)) {
       setFile(selectedFile);
-      setError(''); // Clear any previous error
+      setError('');
+      setIsVisible(closePopup); // Close the entire popup when a valid file is selected
     } else {
       setFile(null);
       setError('Unsupported file format. Please upload a JPG, GIF, or PNG file.');
     }
   };
 
+  // Return null if the component is not visible, effectively removing it from the DOM
+  if (!isVisible) {
+    return null;
+  }
 
   return (
-    <>
+    <div className='popupOverlay'>
       <div className='popUpContainer'>
         <section className='headSection'>
-          <span>FROM COMPUTER</span>
+          <b>FROM COMPUTER</b>
         </section>
         <section className='bodySection'>
           <div
@@ -97,8 +106,10 @@ const DragAndDrop = () => {
             )}
           </div>
         </section>
+
+        
       </div>
-    </>
+    </div>
   );
 };
 
