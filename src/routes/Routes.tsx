@@ -4,16 +4,19 @@ import MasterLayout from '../layout/MasterLayout';
 import SignUp from '../pages/auth/SignUp';
 import LogIn from '../pages/auth/Login';
 import ForgotPassword from '../pages/auth/ForgotPassword/ForgotPassword';
+import StartingPage from '../pages/StartingPage/StartingPage';
+
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <MasterLayout />,  
 		children: [
-		
 			
-			
-			
+	{
+		path: '/start',
+		element: <StartingPage />,
+	},
 		],
 	},
 	{
@@ -28,6 +31,7 @@ const router = createBrowserRouter([
 		path: '/forgot-password',
 		element: <ForgotPassword />,
 	},
+
 ]);
 
 export default router;
