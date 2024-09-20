@@ -4,6 +4,7 @@ import '../surveyForm/partials/SurveyPage.scss';
 import PopupComponent from '../../atoms/popup/Popup';
 import DragAndDrop from '../../components/dragAndDrop/DragAndDrop';
 import { minus, plus } from '../../assets/common-img';
+import NewPage from './Partials/NewPage';
 
 export interface Question {
 	id: number;
@@ -19,7 +20,7 @@ interface SurveyFormProps {
 const CreateSurvey: React.FC<SurveyFormProps> = () => {
 	const [isPopUpVisible, setIsPopUpVisible] = useState(false);
 	const [questions, setQuestions] = useState<Question[]>([]);
-	const [questionType, setQuestionType] = useState<Question['questionType']>('');
+	const [questionType, setQuestionType] = useState<Question['questionType']>('text');
 	const [questionText, setQuestionText] = useState<string>('');
 	const [options, setOptions] = useState<string[]>(['']);
 	const [isFormVisible, setIsFormVisible] = useState<boolean>(true);
@@ -302,6 +303,7 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
 					<div className='createPreviewContainer'>
 						<button className='createPreviewButton'>Preview Survey</button>
 					</div>
+					<div><NewPage/></div>
 				</section>
 			</section>
 		</section>

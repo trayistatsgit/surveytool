@@ -1,0 +1,46 @@
+
+
+.container-newPage{
+  height: 4rem;
+  border: 1px dashed #D0D2D3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%; 
+
+}
+.newPage-text{
+  font-size: 15px;
+  font-weight: 500;
+  color:  #6B787F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+.logo{
+  width: 18px;          
+  height: 18px;           
+  // background-color: #6B787F; 
+  border-radius: 50%;  
+  border: 2px solid #6B787F;  /* Add circular border */
+  background-color: white;  
+  text-align: center; 
+
+}
+.logo-color{
+  color:#6B787F ;
+  font-weight: 500;
+}
+
+
+.page-number {
+  position: absolute; // Change to relative if needed
+  top: 10px; // Adjust as needed
+  left: 10px; // Adjust as needed
+  font-size: 16px; // Adjust as needed
+  color: #333; // Adjust as needed
+  z-index: 10; // Ensure it appears above other elements
+}
