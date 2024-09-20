@@ -1,0 +1,203 @@
+/* Container for the whole form */
+.survey-page-container {
+  margin: 20px;
+  max-width: 800px;
+  padding: 20px;
+}
+
+/* Survey Page Title */
+.survey-page-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Responses Container */
+.responses-container {
+  margin-top: 20px;
+}
+
+/* Responses Title */
+.responses-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* Response Item */
+.response-item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+/* Response Question Text */
+.response-question-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Response Answer */
+.response-answer {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Form styling */
+form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Label styling */
+.label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Input and Textarea styling */
+.input-text,
+.textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Select dropdown styling */
+.select-dropdown {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Options Section Styling */
+.options-section {
+  margin-top: 20px;
+}
+
+/* Option items styling */
+.option-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.option-input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Option control icons */
+.option-controls {
+  display: flex;
+  align-items: center;
+}
+
+.add-option-icon,
+.remove-option-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* Radio and Checkbox inputs */
+.radio-input,
+.checkbox-input {
+  margin-right: 10px;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+/* Buttons */
+.button-submit {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.button-submit:hover {
+  background-color: #45a049;
+}
+
+.button-cancel {
+  background-color: #f44336;
+}
+
+.button-cancel:hover {
+  background-color: #d32f2f;
+}
+
+/* Question Preview */
+.question-preview {
+  background-color: #e9e9e9;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 6px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.question-preview h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.question-preview div {
+  margin-bottom: 15px;
+}
+
+.question-preview strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.options-preview {
+  margin-top: 10px;
+}
+
+.options-preview div {
+  margin-bottom: 5px;
+}
+
+/* New Question and Submit Buttons */
+.new-question-button,
+.submit-all-button {
+  display: block;
+  background-color: #2196f3;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.new-question-button:hover,
+.submit-all-button:hover {
+  background-color: #1976d2;
+}

@@ -1,0 +1,43 @@
+.multiple-choice-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  
+  .multiple-choice-label {
+    font-size: var(--font-size, 14px);
+    font-weight: var(--font-weight, normal);
+    color: var(--typo-color, black);
+    margin-bottom: 8px;
+  }
+  
+  .multiple-choice-options {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .multiple-choice-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+  
+    &.selected {
+      background-color: #f0f0f0; // Highlight selection
+    }
+  
+    &.disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  
+    .multiple-choice-checkbox {
+      margin-right: 8px;
+    }
+  
+    .multiple-choice-option-label {
+      font-size: var(--font-size, 14px);
+      color: var(--typo-color, black);
+    }
+  }
+  
