@@ -4,6 +4,7 @@ import '../surveyForm/partials/SurveyPage.scss';
 import PopupComponent from '../../atoms/popup/Popup';
 import DragAndDrop from '../../components/dragAndDrop/DragAndDrop';
 import { minus, plus } from '../../assets/common-img';
+import { Button } from '../../blocks';
 
 export interface Question {
 	id: number;
@@ -19,15 +20,22 @@ interface SurveyFormProps {
 const CreateSurvey: React.FC<SurveyFormProps> = () => {
 	const [isPopUpVisible, setIsPopUpVisible] = useState(false);
 	const [questions, setQuestions] = useState<Question[]>([]);
-	const [questionType, setQuestionType] = useState<Question['questionType']>('');
+	const [questionType, setQuestionType] = useState<Question['questionType']>('text');
 	const [questionText, setQuestionText] = useState<string>('');
 	const [options, setOptions] = useState<string[]>(['']);
 	const [isFormVisible, setIsFormVisible] = useState<boolean>(true);
 	const [areButtonsVisible, setAreButtonsVisible] = useState(false);
+	const [uploadedLogo, setUploadedLogo] = useState(null );
+
 
 	// Popup functions
 	const showPopup = () => setIsPopUpVisible(true);
 	const closePopup = () => setIsPopUpVisible(false);
+
+	const handleFileUpload = (fileURL: any) => {
+		setUploadedLogo(fileURL);
+		closePopup(); // Close the popup after uploading
+	};
 
 	// Question type change handler
 	const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -103,19 +111,33 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
 		setAreButtonsVisible(false);
 	};
 
+	const deleteLogo = () => {
+		setUploadedLogo(null);
+	}
+
 	return (
 		<section className='mainContainer'>
 			<section className='containerCreateSurvey'>
 				{/* Logo Popup Section */}
 				<div className='addLogoHere'>
-					<button className='addLogoBtn' onClick={showPopup}>
-						Logo
-					</button>
+					{uploadedLogo ? (<>
+						<img src={uploadedLogo} alt='Uploaded Logo' className='uploadedLogo' />
+						<div className="logoEditDeleteButton">
+							<Button className='createEditLogo' onClick={showPopup} label='Edit'/>
+							<Button className='createRemoveLogo' onClick={deleteLogo} label='Delete' />
+						</div>
+						
+						</>
+					) : (
+						<button className='addLogoBtn' onClick={showPopup}>
+							Logo
+						</button>
+					)}
 				</div>
 
 				{isPopUpVisible && (
 					<PopupComponent showBottomCancel={true} onClose={closePopup} width={600} height={400}>
-						<DragAndDrop />
+						<DragAndDrop onFileUpload={handleFileUpload} /> {/* Pass the handler */}
 					</PopupComponent>
 				)}
 
@@ -309,3 +331,7 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
 };
 
 export default CreateSurvey;
+// function setUploadedLogo(fileURL: string) {
+// 	throw new Error('Function not implemented.');
+// }
+

@@ -5,6 +5,7 @@
     justify-content: center;
 }
 
+
 .containerCreateSurvey{
     position: relative;
     align-items: center;
@@ -27,6 +28,15 @@
 .addLogoHere:hover{
     background: #fef6d9;
 }
+.uploadedLogo{
+    background-image: url('../path/to/your/background-image.jpg'); // Update the path
+    background-size: cover; // Cover the entire area
+    background-position: center; // Center the image
+    background-repeat: no-repeat; // Prevent repeating
+    // min-height: 100vh; // Ensure it covers the full height
+    padding: 5px; // Add some padding
+    width: auto;
+}
 .addLogoBtn{
     background-color: #f9be00;
     border: 1px solid transparent !important;
@@ -35,6 +45,30 @@
     height: 30px;
     width: 60px;
 }
+
+
+.createEditLogo {
+    font-family: 'poppins';
+    font-size: 14px;
+    border: none;
+    margin-right: 10px;
+    margin-left: 5px;
+    background: rgb(170, 170, 170);
+    border-radius: 4px;
+    width: 5%;
+}
+
+.createRemoveLogo{
+    font-family: 'poppins';
+    font-size: 14px;
+    border: none;
+    margin-right: 10px;
+    margin-left: 5px;
+    background: rgb(170, 170, 170);
+    border-radius: 4px;
+    width: 7%;
+}
+
 
 .surveyTitle{
     display: flex;
