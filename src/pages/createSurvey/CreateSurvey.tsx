@@ -212,7 +212,7 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
 								<strong>Question:</strong> {q.questionText || 'No question text provided'}
 								<div className='options-preview'>
 									{q.questionType === 'dropdown' && q.options && (
-										<select>
+										<select className='preview-dropdown'>
 											{q.options
 												.filter((option) => option.trim() !== '')
 												.map((option, idx) => (
