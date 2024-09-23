@@ -7,17 +7,17 @@ interface CardAtomProps {
   imgScr?: string;
   Heading?: string;
   Description?: string;
-  linkTo?: string; // New prop for link
+  linkTo?: string;
 }
 
 const CardAtom: React.FC<CardAtomProps> = ({
   imgScr,
   Heading,
   Description,
-  linkTo = '/', // Default path if no link is provided
+  linkTo = '/',
 }) => {
   return (
-    <NavLink to={linkTo} className='Main_cardInfo'> {/* Wrap the card with NavLink */}
+    <NavLink to={linkTo} className='Main_cardInfo'>
       <div className='Card_info'>
         <div className='Card-img'>
           <img src={imgScr} alt='NotFound' className='Img-info' />

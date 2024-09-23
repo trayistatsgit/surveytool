@@ -22,8 +22,6 @@ const router = createBrowserRouter([
 				element:<CreateSurvey />
 			}
 			
-			
-			
 		],
 	},
 	{
