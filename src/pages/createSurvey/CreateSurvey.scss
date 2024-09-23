@@ -450,4 +450,28 @@
     justify-content: end;
     margin-right: 6%;
   }
+
+
+
+  //Property for SurveyTitle Component
+
+//   .surveyTitleComponent{
+//     opacity: 0;
+//     transition: opacity 1s ease-in-out; 
+//   }
+//   .surveyTitleComponent-active{
+//     opacity: 1;
+//   }
   
+
+.surveyTitleComponent {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+}
+
+.surveyTitleComponent-active {
+    max-height: 100px; // Set a max-height that accommodates the component
+    opacity: 1;
+}

@@ -1,0 +1,30 @@
+.main-title{
+    width: 600px;
+    height: auto;
+    display: grid;
+    background-color:#edeeee;
+    margin: auto;
+
+}
+
+.title-buttons{
+    display: flex;
+    gap:10px;
+    justify-self: end;
+    align-self: end;
+    margin:10px;
+    
+}
+.Cancel-button{
+ border: 1px solid #333e48;
+ color: #333e48;
+ padding:9px 15px;
+}
+
+.Save-button{
+    border-color: #00BF6F;
+    background-color: #00BF6F;
+    border:1px;
+    border-radius:2px;
+    padding:10px 15px;
+}

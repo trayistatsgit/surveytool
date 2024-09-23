@@ -4,8 +4,9 @@ import MasterLayout from '../layout/MasterLayout';
 import SignUp from '../pages/auth/SignUp';
 import LogIn from '../pages/auth/Login';
 import ForgotPassword from '../pages/auth/ForgotPassword/ForgotPassword';
-import CreateSurvey from '../pages/createSurvey/CreateSurvey';
+import CreateSurvey  from '../pages/createSurvey/CreateSurvey';
 import StartingPage from '../pages/startingPage/StartingPage';
+import SurveyTitle from '../pages/createSurvey/Partials/SurveyTitle';
 
 const router = createBrowserRouter([
 	{
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
 			{
 				path:'create-survey',
 				element:<CreateSurvey />
+			},
+			{
+				path:'SurveyTitle',
+				element:<SurveyTitle/>
 			}
 			
 			
