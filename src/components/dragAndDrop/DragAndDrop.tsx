@@ -1,20 +1,18 @@
+// DragAndDrop.tsx
 import React, { useState } from 'react';
 import './DragAndDrop.scss';
 
-const DragAndDrop = () => {
+interface DragAndDropProps {
+  onFileUpload: (fileURL: string) => void; // New prop
+}
+
+const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload }) => {
   const [dragOver, setDragOver] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
+  const [fileURL, setFileURL] = useState<string | null>(null); 
   const [error, setError] = useState('');
-  // const [isVisible, setIsVisible] = useState(true);
 
   const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
 
-  // // Function to hide the entire popup
-  // const handleCancel = () => {
-  //   setIsVisible(false);
-  // };
- 
-  // Handle Drag and Drop
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setDragOver(true);
@@ -31,28 +29,26 @@ const DragAndDrop = () => {
     validateFile(droppedFile);
   };
 
-  // Handle File Selection via Upload
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files?.[0] as File;
     validateFile(uploadedFile);
   };
 
-  // Validate the file format and close the popup on valid selection
   const validateFile = (selectedFile: File) => {
     if (supportedFormats.includes(selectedFile.type)) {
-      setFile(selectedFile);
-      setError('');
-      // setIsVisible(closePopup); // Close the entire popup when a valid file is selected
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        const uploadedFileURL = fileReader.result as string;
+        setFileURL(uploadedFileURL);
+        onFileUpload(uploadedFileURL); // Notify parent component
+        setError('');
+      };
+      fileReader.readAsDataURL(selectedFile);
     } else {
-      setFile(null);
+      setFileURL(null);
       setError('Unsupported file format. Please upload a JPG, GIF, or PNG file.');
     }
   };
-
-  // Return null if the component is not visible, effectively removing it from the DOM
-  // if (!isVisible) {
-  //   return null;
-  // }
 
   return (
     <div className='popupOverlay'>
@@ -67,9 +63,13 @@ const DragAndDrop = () => {
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
           >
-            <p className='bodyPopPara1'>
-              {file ? `File Selected: ${file.name}` : 'Drag and drop a file here'}
-            </p>
+            {fileURL ? (
+              <img src={fileURL} alt="Uploaded File" className="uploadedImage" />
+            ) : (
+              <p className='bodyPopPara1'>
+                Drag and drop a file here
+              </p>
+            )}
             <div className='buttonContainerPopUp'>
               <span className='spanPopupButton'>JPG</span>
               <span className='spanPopupButton'>GIF</span>
@@ -88,7 +88,6 @@ const DragAndDrop = () => {
               />
             </p>
 
-            {/* Error message with SVG icon */}
             {error && (
               <div className='errorMessage'>
                 <svg
@@ -106,8 +105,6 @@ const DragAndDrop = () => {
             )}
           </div>
         </section>
-
-        
       </div>
     </div>
   );
