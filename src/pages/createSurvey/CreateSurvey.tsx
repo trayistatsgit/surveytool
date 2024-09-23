@@ -4,7 +4,7 @@ import '../surveyForm/partials/SurveyPage.scss';
 import PopupComponent from '../../atoms/popup/Popup';
 import DragAndDrop from '../../components/dragAndDrop/DragAndDrop';
 import { minus, plus } from '../../assets/common-img';
-import { Button } from '../../blocks';
+import NewPage from './Partials/NewPage';
 
 export interface Question {
 	id: number;
@@ -324,6 +324,7 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
 					<div className='createPreviewContainer'>
 						<button className='createPreviewButton'>Preview Survey</button>
 					</div>
+					<div><NewPage/></div>
 				</section>
 			</section>
 		</section>
