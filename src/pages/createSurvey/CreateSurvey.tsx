@@ -5,18 +5,19 @@ import PopupComponent from '../../atoms/popup/Popup';
 import DragAndDrop from '../../components/dragAndDrop/DragAndDrop';
 import { minus, plus } from '../../assets/common-img';
 import SurveyTitle from './Partials/SurveyTitle';
- 
+import { flushSync } from 'react-dom';
+
 export interface Question {
     id: number;
     questionText: string;
     questionType: 'text' | 'dropdown' | 'multipleChoice' | 'textarea' | 'image' | 'video' | 'radio' | 'checkbox';
     options?: string[];
 }
- 
+
 interface SurveyFormProps {
     onSubmit: (responses: Question[]) => void;
 }
- 
+
 const CreateSurvey: React.FC<SurveyFormProps> = () => {
     const [isPopUpVisible, setIsPopUpVisible] = useState(false);
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -26,21 +27,37 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
     const [isFormVisible, setIsFormVisible] = useState<boolean>(true);
     const [areButtonsVisible, setAreButtonsVisible] = useState(false);
     // Correct way to declare state for uploadedLogo
-const [uploadedLogo, setUploadedLogo] = useState(null);
-const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
+    const [uploadedLogo, setUploadedLogo] = useState(null);
+    //SurveyTitle 
 
- 
- 
- 
+    const [savedValue, setSavedValue] = useState<string>('');
+    const [isEditing, setIsEditing] = useState<boolean>(true);
+    const [alignment, setAlignment] = useState<string>('Left-Alignment');
+
+   
+
+
+    const handleSave = (value: string, alignment: string) => {
+        setSavedValue(value);
+        setAlignment(alignment)// Toggle visibility
+        setIsEditing(true);
+
+    };
+    const handleEdit = () => {
+        setIsEditing(false)
+    };
+
+
+
     // Popup functions
     const showPopup = () => setIsPopUpVisible(true);
     const closePopup = () => setIsPopUpVisible(false);
- 
+
     const handleFileUpload = (fileURL: any) => {
         setUploadedLogo(fileURL);
         closePopup(); // Close the popup after uploading
     };
- 
+
     // Question type change handler
     const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newType = e.target.value as Question['questionType'];
@@ -48,73 +65,73 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
         setAreButtonsVisible(true);
         setOptions(newType === 'dropdown' || newType === 'multipleChoice' || newType === 'radio' || newType === 'checkbox' ? ['', '', ''] : []);
     };
- 
+
     // Question text input change handler
     const handleQuestionTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setQuestionText(e.target.value);
     };
- 
+
     // Option input change handler
     const handleOptionTextChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const newOptions = [...options];
         newOptions[index] = e.target.value;
         setOptions(newOptions);
- 
+
         // Add new option if the current option is filled
         if (index === options.length - 1 && e.target.value.trim() !== '') {
             handleAddOption();
         }
     };
- 
+
     // Add a new empty option
     const handleAddOption = () => {
         setOptions([...options, '']);
     };
- 
+
     // Remove an option
     const handleRemoveOption = (index: number) => {
         const newOptions = options.filter((_, i) => i !== index);
         setOptions(newOptions);
     };
- 
+
     // Submit a single question
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!questionText) return;
- 
+
         const filteredOptions = options.filter((option) => option.trim() !== '');
- 
+
         const newQuestion: Question = {
             id: Date.now(),
             questionText,
             questionType,
             options: questionType === 'dropdown' || questionType === 'multipleChoice' || questionType === 'radio' || questionType === 'checkbox' ? filteredOptions : undefined,
         };
- 
+
         setQuestions([...questions, newQuestion]);
         setIsFormVisible(false); // Hide the form after submitting
         resetForm(); // Reset the form for the next question
         setAreButtonsVisible(false);
     };
- 
+
     // Reset form fields
     const resetForm = () => {
         setQuestionText('');
         setOptions(questionType === 'dropdown' || questionType === 'multipleChoice' || questionType === 'radio' || questionType === 'checkbox' ? ['', '', ''] : []);
     };
- 
+
     // Show form for adding a new question
     const handleAddNewQuestion = () => {
         setIsFormVisible(true);
         setAreButtonsVisible(true);
     };
- 
+
     // Cancel the question form
     const handleCancel = () => {
         resetForm();
         setAreButtonsVisible(false);
     };
- 
+
     return (
         <section className='mainContainer'>
             <section className='containerCreateSurvey'>
@@ -128,35 +145,44 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                         </button>
                     )}
                 </div>
- 
+
                 {isPopUpVisible && (
                     <PopupComponent showBottomCancel={true} onClose={closePopup} width={600} height={400}>
                         <DragAndDrop onFileUpload={handleFileUpload} /> {/* Pass the handler */}
                     </PopupComponent>
                 )}
- 
+
                 {/* Survey Form Section */}
                 <section className='surveyPage'>
 
                     <div>
-                    <div className='surveyTitle'>
+                        <div className='surveyTitle'>
 
-                        <h1>
-                            <span onClick={()=> setIsSurveyTitleVisible(!isSurveyTitleVisible)} >Untitled</span>
-                          
-                        </h1>
+                            <h1>
+                                    {savedValue || 'Untitled'}
+                                {savedValue && <span className={`${alignment}`}>   </span> }
+
+                            </h1>
+                           
+                            {/* {!isEditing && <button onClick={handleEdit}>Edit</button>} */}
+                            <button onClick={handleEdit} className='editBtn'>Edit</button>
                     
-                        <button className='editBtn'  onClick={()=> setIsSurveyTitleVisible(!isSurveyTitleVisible)}>EDIT</button>
-                    </div>
-                    {isSurveyTitleVisible && <SurveyTitle />}
+                        </div>
+                       
+
+                        {!isEditing &&  <SurveyTitle
+                                onSave={handleSave}
+                                initialValue={savedValue}
+                                initialAlignment={alignment}
+                            />}
 
                     </div>
- 
+
                     <div className='surveyPageTitle'>
                         <button className='pageTitle'>PAGE TITLE</button>
                         <button className='editPageBtn'>EDIT</button>
                     </div>
- 
+
                     {/* Question Form */}
                     {isFormVisible && (
                         <form onSubmit={handleSubmit}>
@@ -175,7 +201,7 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                                         <option value='checkbox'>Checkboxes</option>
                                     </select>
                                 </label>
- 
+
                                 <div className='question-text-container'>
                                     <label className='question-text-label'>
                                         Question Text:
@@ -183,7 +209,7 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                                     </label>
                                 </div>
                             </div>
- 
+
                             {/* Options Section for relevant question types */}
                             {(questionType === 'dropdown' || questionType === 'multipleChoice' || questionType === 'radio' || questionType === 'checkbox') && (
                                 <div className='question-options-section'>
@@ -204,7 +230,7 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                                                 ) : (
                                                     <input type='text' value={option} onChange={(e) => handleOptionTextChange(e, index)} className='option-input-field' />
                                                 )}
- 
+
                                                 <div className='option-control-icons'>
                                                     <img src={plus} alt='Add option' className='add-option-icon' onClick={handleAddOption} />
                                                     {options.length > 1 && <img src={minus} alt='Remove option' className='remove-option-icon' onClick={() => handleRemoveOption(index)} />}
@@ -214,7 +240,7 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                                     </label>
                                 </div>
                             )}
- 
+
                             {/* Show Save and Cancel buttons only when visible */}
                             {areButtonsVisible && (
                                 <div className='form-buttons-container'>
@@ -228,7 +254,7 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                             )}
                         </form>
                     )}
- 
+
                     <div>
                         <h3>Questions Preview:</h3>
                         {questions.map((q) => (
@@ -246,7 +272,7 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                                                 ))}
                                         </select>
                                     )}
- 
+
                                     {q.questionType === 'multipleChoice' &&
                                         q.options &&
                                         q.options
@@ -257,7 +283,7 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                                                     <label htmlFor={`mc-${q.id}-${idx}`}>{option}</label>
                                                 </div>
                                             ))}
- 
+
                                     {q.questionType === 'radio' &&
                                         q.options &&
                                         q.options
@@ -268,7 +294,7 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                                                     <label htmlFor={`radio-${q.id}-${idx}`}>{option}</label>
                                                 </div>
                                             ))}
- 
+
                                     {q.questionType === 'checkbox' &&
                                         q.options &&
                                         q.options
@@ -279,7 +305,7 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                                                     <label htmlFor={`cb-${q.id}-${idx}`}>{option}</label>
                                                 </div>
                                             ))}
- 
+
                                     {q.questionType === 'text' && <input type='text' placeholder='Text input preview' />}
                                     {q.questionType === 'textarea' && <textarea placeholder='Textarea input preview'></textarea>}
                                 </div>
@@ -299,7 +325,7 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                             Copy and paste questions
                         </a>
                     </div>
- 
+
                     <div className='createDoneContainer'>
                         <span>
                             <button className='createDoneButton'>Done</button>
@@ -308,7 +334,7 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                             <button className='createEditButton'>EDIT</button>
                         </span>
                     </div>
- 
+
                     <div className='createFooterContainer'>
                         <div className='createFooterDivOne'>
                             <p className='createFooterParaOne'>Powered by</p>
@@ -317,12 +343,12 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                                 See how easy it is to <a href=''>create survey and forms</a>
                             </p>
                         </div>
- 
+
                         <div>
                             <button className='createFooterDivTwo'>Hide Footer</button>
                         </div>
                     </div>
- 
+
                     <div className='createPreviewContainer'>
                         <button className='createPreviewButton'>Preview Survey</button>
                     </div>
@@ -331,5 +357,5 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
         </section>
     );
 };
- 
+
 export default CreateSurvey;

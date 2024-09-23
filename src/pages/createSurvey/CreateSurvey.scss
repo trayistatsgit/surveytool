@@ -464,14 +464,11 @@
 //   }
   
 
-.surveyTitleComponent {
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-}
-
-.surveyTitleComponent-active {
-    max-height: 100px; // Set a max-height that accommodates the component
-    opacity: 1;
-}
+.Center-Alignment {
+    text-align: center;
+  }
+  
+  .Left-Alignment {
+    text-align: left;
+  }
+  
