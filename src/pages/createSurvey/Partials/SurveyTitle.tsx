@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 import TitleAtom from '../../../atoms/TitleAtom/TitleAtom';
 import { InputAtom, Typography } from '../../../blocks';
 import { DropdownInput } from '../../../atoms/DropdownInputAtom/DropdownInput';
@@ -8,12 +8,15 @@ interface SurveyTitleProps {
   onSave: (value: string, alignment: string) => void;
   initialValue?: string; // Prop for initial value
   initialAlignment?: string; // Prop for initial alignment
+  onCancel?:()=>void;
+ 
+ 
 }
 
-const SurveyTitle: React.FC<SurveyTitleProps> = ({ onSave, initialValue, initialAlignment }) => {
+const SurveyTitle: React.FC<SurveyTitleProps> = ({onSave, initialValue, initialAlignment,onCancel}) => {
   const [selectedValue, setSelectedValue] = useState<string>(initialAlignment || ''); // Dropdown value
   const [inputValue, setInputValue] = useState<string>(initialValue || ''); // Input field value
-  const [isComponentVisible, setIsComponentVisible] = useState<boolean>(true); // Show/hide component
+  //const [isComponentVisible, setIsComponentVisible] = useState<boolean>(true); // Show/hide component
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
@@ -24,7 +27,8 @@ const SurveyTitle: React.FC<SurveyTitleProps> = ({ onSave, initialValue, initial
   };
 
   const handleCancel = () => {
-    setIsComponentVisible(false); // Hide the component
+  onCancel();
+
   };
 
   const handleSave = () => {
@@ -36,9 +40,11 @@ const SurveyTitle: React.FC<SurveyTitleProps> = ({ onSave, initialValue, initial
     { value: 'Center-Alignment', label: 'Center-Alignment' },
   ];
 
-  if (!isComponentVisible) {
-    return null;
-  }
+  // if (!isComponentVisible) {
+  //   return null;
+  // }
+
+
 
   return (
     <div>

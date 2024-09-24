@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import './CreateSurvey.scss';
 import '../surveyForm/partials/SurveyPage.scss';
 import PopupComponent from '../../atoms/popup/Popup';
 import DragAndDrop from '../../components/dragAndDrop/DragAndDrop';
 import { minus, plus } from '../../assets/common-img';
 import SurveyTitle from './Partials/SurveyTitle';
-import { flushSync } from 'react-dom';
+// import { flushSync } from 'react-dom';
 
 export interface Question {
     id: number;
@@ -30,23 +30,39 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
     const [uploadedLogo, setUploadedLogo] = useState(null);
     //SurveyTitle 
 
-    const [savedValue, setSavedValue] = useState<string>('');
-    const [isEditing, setIsEditing] = useState<boolean>(true);
-    const [alignment, setAlignment] = useState<string>('Left-Alignment');
+    const [showSurveyTitle, setShowSurveyTitle] = useState(false);
 
-   
+    const [savedValue, setSavedValue] = useState<string>(()=>{
+        return localStorage.getItem('savedValue')||''
+    })
+    // const [isEditing, setIsEditing] = useState<boolean>(false);
+    const [alignment, setAlignment] = useState<string>(()=>{
+        return localStorage.getItem('alignment')||''
+    });
 
 
     const handleSave = (value: string, alignment: string) => {
         setSavedValue(value);
         setAlignment(alignment)// Toggle visibility
-        setIsEditing(true);
+        //setIsEditing(false);
+        setShowSurveyTitle(false);
+        localStorage.setItem('savedValue', value); // Persist the value
+        localStorage.setItem('alignment', alignment);
+
+      
 
     };
+
     const handleEdit = () => {
-        setIsEditing(false)
+       // setIsEditing(true);
+        setShowSurveyTitle(true);
     };
 
+    const handleCancelTitle =()=>{
+        setShowSurveyTitle(false);
+    }
+
+   
 
 
     // Popup functions
@@ -156,24 +172,29 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
                 <section className='surveyPage'>
 
                     <div>
-                        <div className='surveyTitle'>
+                        <div className='surveyTitle' onClick={handleEdit} >
 
-                            <h1>
-                                    {savedValue || 'Untitled'}
-                                {savedValue && <span className={`${alignment}`}>   </span> }
+                            <h1   >
+                                    {savedValue||'Untitled'}
+                                {savedValue && <span className={`${alignment}`}> </span> }
 
                             </h1>
                            
                             {/* {!isEditing && <button onClick={handleEdit}>Edit</button>} */}
                             <button onClick={handleEdit} className='editBtn'>Edit</button>
+                           
                     
                         </div>
                        
 
-                        {!isEditing &&  <SurveyTitle
+                        {showSurveyTitle &&  <SurveyTitle
                                 onSave={handleSave}
                                 initialValue={savedValue}
                                 initialAlignment={alignment}
+                                onCancel = {handleCancelTitle}
+                                
+                                
+                               
                             />}
 
                     </div>

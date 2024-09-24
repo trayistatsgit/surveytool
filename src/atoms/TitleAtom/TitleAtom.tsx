@@ -4,7 +4,7 @@ import './TitleAtom.scss';
 
 
 interface TitleAtomProps {
-  onCancel?: () => void;
+  onCancel?:()=>void;
   onSave?: () => void;
 }
 
