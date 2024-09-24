@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './CreateSurvey.scss';
-import '../surveyForm/partials/SurveyPage.scss';
 import { minus, plus } from '../../assets/common-img';
 import NewPage from './Partials/NewPage';
 import { Div } from '../../blocks';
 import LogoCreateSurvey from './Partials/LogoCreateSurvey';
+import { useNavigate } from 'react-router-dom';
 
 export interface Question {
 	id: number;
@@ -13,11 +13,13 @@ export interface Question {
 	options?: string[];
 }
 
-interface SurveyFormProps {
+interface CreateSurveyFormProps {
 	onSubmit?: (responses: Question[]) => void;
 }
 
-const CreateSurvey: React.FC<SurveyFormProps> = () => {
+const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
+	const navigate = useNavigate();
+
 	const [questions, setQuestions] = useState<Question[]>([]);
 	const [questionType, setQuestionType] = useState<Question['questionType']>('text');
 	const [questionText, setQuestionText] = useState<string>('');
@@ -36,6 +38,10 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
 	// Question text input change handler
 	const handleQuestionTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		setQuestionText(e.target.value);
+	};
+
+	const handlePreviewSurvey = () => {
+		navigate('/survey-preview', { state: { questions } });
 	};
 
 	// Option input change handler
@@ -244,6 +250,7 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
 							))}
 						</div>
 					</section>
+					{/* prievw div closed  */}
 					<section className='surveyPage'>
 						<div className='addNewQuesContainer'>
 							{/* Add New Question button shown only if there are saved questions */}
@@ -281,7 +288,9 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
 						</div>
 
 						<div className='createPreviewContainer'>
-							<button className='createPreviewButton'>Preview Survey</button>
+							<button className='createPreviewButton' onClick={handlePreviewSurvey}>
+								Preview Survey
+							</button>
 						</div>
 						<div className='newpage-container-copy'>
 							<NewPage />

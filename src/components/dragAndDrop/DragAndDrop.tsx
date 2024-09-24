@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './DragAndDrop.scss';
 
 interface DragAndDropProps {
-  onFileUpload: (fileURL: string) => void; // New prop
+  onFileUpload: (fileURL: string) => void;
 }
 
 const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload }) => {
@@ -40,7 +40,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload }) => {
       fileReader.onload = () => {
         const uploadedFileURL = fileReader.result as string;
         setFileURL(uploadedFileURL);
-        onFileUpload(uploadedFileURL); // Notify parent component
+        onFileUpload(uploadedFileURL);
         setError('');
       };
       fileReader.readAsDataURL(selectedFile);

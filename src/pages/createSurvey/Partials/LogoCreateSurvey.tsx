@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './LogoCreateSurvey.scss'; // Add styles if necessary
+import './LogoCreateSurvey.scss';
 import { Button } from '../../../blocks';
 import PopupComponent from '../../../atoms/popup/Popup';
 import DragAndDrop from '../../../components/dragAndDrop/DragAndDrop';
@@ -8,7 +8,6 @@ const LogoCreateSurvey: React.FC = () => {
   const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
   const [uploadedLogo, setUploadedLogo] = useState<string | null>(null);
 
-  // Popup functions
   const showPopup = () => setIsPopUpVisible(true);
   const closePopup = () => setIsPopUpVisible(false);
 
@@ -39,7 +38,7 @@ const LogoCreateSurvey: React.FC = () => {
 
       {isPopUpVisible && (
         <PopupComponent showBottomCancel={true} onClose={closePopup} width={600} height={400}>
-          <DragAndDrop onFileUpload={handleFileUpload} /> {/* Pass the handler */}
+          <DragAndDrop onFileUpload={handleFileUpload} />
         </PopupComponent>
       )}
     </div>
