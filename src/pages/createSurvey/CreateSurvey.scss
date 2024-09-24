@@ -14,12 +14,14 @@
     display: block;
     padding: 20px;
     margin-top: 20px;
+    position: relative;
     // padding-left: 36px;
 }
 
 
 .newpage-container-copy{
     width: 100% !important;
+    position: sticky;
 }
 
 .surveyTitle{
@@ -489,4 +491,9 @@
 
 .options-preview div {
   margin-bottom: 5px;
+}
+.pageUpdate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

@@ -107,9 +107,15 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 			<section className='mainContainer'>
 				<section className='containerCreateSurvey'>
 					{/* Logo Popup Section */}
+					<div className='pageUpdate'>
 					<div>
 						<LogoCreateSurvey />
 					</div>
+					<div>
+						{1}
+					</div>
+					</div>
+					
 					<section className='surveyPage'>
 						<div className='surveyTitle'>
 							<h1>
@@ -293,7 +299,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 							</button>
 						</div>
 						<div className='newpage-container-copy'>
-							<NewPage />
+							<NewPage  />
 						</div>
 					</section>
 				</section>

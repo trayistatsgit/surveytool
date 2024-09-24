@@ -8,9 +8,12 @@ interface SurveyResponse {
 
 const NewPage: React.FC = () => {
     const [clones, setClones] = useState<number[]>([]);
+    const [page,setPage]=useState(1)
 
     const addClone = () => {
         setClones([...clones, clones.length]);
+        setPage(page+1)
+
     };
 
     const handleSubmit = (responses: SurveyResponse) => {
@@ -25,12 +28,14 @@ const NewPage: React.FC = () => {
                 </div>
                 <p className='newPage-text'>NEW PAGE</p>
             </div>
-            <div>
+            <div className='container-newPage1' >
                 {clones.map((_, index) => (
                     <CreateSurvey key={index} onSubmit={handleSubmit} />
                 ))}
+                
             </div>
         </div>
+        
     );
 }
 
