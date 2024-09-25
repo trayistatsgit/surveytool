@@ -4,20 +4,29 @@ import CreateSurvey from '../CreateSurvey';
 
 interface SurveyResponse {
     [key: string]: any; // Adjust the type based on the expected structure of the survey response
+    page?:number;
 }
 
-const NewPage: React.FC = () => {
+const NewPage: React.FC<SurveyResponse> = () => {
     const [clones, setClones] = useState<number[]>([]);
-    const [page,setPage]=useState(1)
+    const [page, setPage]=useState<number>(0)
 
     const addClone = () => {
+      
         setClones([...clones, clones.length]);
-        setPage(page+1)
-
+        pageIncrese();
+        console.log(...clones)
+    };
+    const pageIncrese = () => { 
+        setPage((page: number) => {
+            return page + 1;
+        });
+        
     };
 
     const handleSubmit = (responses: SurveyResponse) => {
         console.log(responses);
+      
     };
 
     return (
@@ -28,12 +37,12 @@ const NewPage: React.FC = () => {
                 </div>
                 <p className='newPage-text'>NEW PAGE</p>
             </div>
-            <div className='container-newPage1' >
+            <div className='' >
                 {clones.map((_, index) => (
-                    <CreateSurvey key={index} onSubmit={handleSubmit} />
+                    <CreateSurvey key={index} onSubmit={handleSubmit } pageNumber={clones.length}  />
                 ))}
-                
-            </div>
+
+                </div>
         </div>
         
     );

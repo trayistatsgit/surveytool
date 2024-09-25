@@ -6,10 +6,11 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  width: 100% !important;
+  width: 55% !important;
+  margin-left: 465px;
 
  
-}
+}container-newPage
 .newPage-text{
   font-size: 15px;
   font-weight: 500;
@@ -19,9 +20,6 @@
   align-items: center;
  white-space: nowrap;
  
-}
-.container-newPage1{
-  width: 100%
 }
 .logo-newPage{
   width: 18px;          
@@ -46,4 +44,10 @@
   font-size: 16px;
   color: #333;
   z-index: 10;
+}
+
+.survey-list {
+  display: flex;
+  flex-direction: column; // Stack items vertically
+  gap: 16px; // Optional: Add space between surveys
 }
