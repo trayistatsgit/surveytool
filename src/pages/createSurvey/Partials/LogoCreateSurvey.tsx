@@ -3,25 +3,28 @@ import './LogoCreateSurvey.scss';
 import { Button } from '../../../blocks';
 import PopupComponent from '../../../atoms/popup/Popup';
 import DragAndDrop from '../../../components/dragAndDrop/DragAndDrop';
-
-const LogoCreateSurvey: React.FC = () => {
+ 
+const LogoCreateSurvey: React.FC<{ onLogoUpload: (url: string) => void }> = ({ onLogoUpload }) => {
   const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
   const [uploadedLogo, setUploadedLogo] = useState<string | null>(null);
-
+ 
   const showPopup = () => setIsPopUpVisible(true);
   const closePopup = () => setIsPopUpVisible(false);
-
+ 
   const handleFileUpload = (fileURL: string) => {
     setUploadedLogo(fileURL);
+    onLogoUpload(fileURL);
     closePopup();
   };
-
+ 
   const deleteLogo = () => {
     setUploadedLogo(null);
+    onLogoUpload('');
   };
-
+ 
   return (
     <div className='addLogoHere'>
+ 
       {uploadedLogo ? (
         <>
           <img src={uploadedLogo} alt='Uploaded Logo' className='uploadedLogo' />
@@ -35,7 +38,7 @@ const LogoCreateSurvey: React.FC = () => {
           Logo
         </button>
       )}
-
+ 
       {isPopUpVisible && (
         <PopupComponent showBottomCancel={true} onClose={closePopup} width={600} height={400}>
           <DragAndDrop onFileUpload={handleFileUpload} />
@@ -44,5 +47,5 @@ const LogoCreateSurvey: React.FC = () => {
     </div>
   );
 };
-
+ 
 export default LogoCreateSurvey;
