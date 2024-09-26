@@ -39,7 +39,7 @@ const NewPage: React.FC<SurveyResponse> = () => {
             </div>
             <div className='' >
                 {clones.map((_, index) => (
-                    <CreateSurvey key={index} onSubmit={handleSubmit } pageNumber={clones.length}  />
+                    <CreateSurvey key={index} onSubmit={handleSubmit } pageNumber={page}  />
                 ))}
 
                 </div>
