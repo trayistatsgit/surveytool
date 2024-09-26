@@ -40,16 +40,14 @@ const SurveyTitle: React.FC<SurveyTitleProps> = ({onSave, initialValue, initialA
     { value: 'Center-Alignment', label: 'Center-Alignment' },
   ];
 
-  // if (!isComponentVisible) {
-  //   return null;
-  // }
+ 
 
 
 
   return (
     <div>
       <div className='Survey-title'>
-        <Typography label="Survey Title" fontSize='fontSize14' fontWeight="bold" />
+        <Typography label="Survey Title" fontSize='fontSize14' fontWeightstest={500} />
         
         <InputAtom
           value={inputValue}
@@ -58,7 +56,7 @@ const SurveyTitle: React.FC<SurveyTitleProps> = ({onSave, initialValue, initialA
         />
         
         <Typography label="You are Good up to 250 characters" className='sub-text' fontWeight='bold' />
-        <Typography label="Alignment" fontSize='fontSize14' />
+        <Typography label="Alignment" fontSize='fontSize14' fontWeightstest={500} />
         
         <DropdownInput
           className='Alignment-section'

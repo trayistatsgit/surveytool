@@ -452,18 +452,6 @@
   }
 
 
-
-  //Property for SurveyTitle Component
-
-//   .surveyTitleComponent{
-//     opacity: 0;
-//     transition: opacity 1s ease-in-out; 
-//   }
-//   .surveyTitleComponent-active{
-//     opacity: 1;
-//   }
-  
-
 .Center-Alignment {
     text-align: center;
   }
@@ -472,3 +460,14 @@
     text-align: left;
   }
   
+
+  //PageTitle Style
+
+  .page-des{
+    width:100%;
+    height: auto;
+    font-size:20px;
+    text-align: center;
+    margin-bottom:10px;
+
+  }

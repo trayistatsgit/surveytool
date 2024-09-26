@@ -7,6 +7,7 @@ import ForgotPassword from '../pages/auth/ForgotPassword/ForgotPassword';
 import CreateSurvey  from '../pages/createSurvey/CreateSurvey';
 import StartingPage from '../pages/startingPage/StartingPage';
 import SurveyTitle from '../pages/createSurvey/Partials/SurveyTitle';
+import PageTitle from '../pages/createSurvey/Partials/PageTitle';
 
 const router = createBrowserRouter([
 	{
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
 			{
 				path:'SurveyTitle',
 				element:<SurveyTitle/>
+			},
+			{
+				path:'PageTitle',
+				element:<PageTitle/>
 			}
 			
 			

@@ -5,6 +5,7 @@ import PopupComponent from '../../atoms/popup/Popup';
 import DragAndDrop from '../../components/dragAndDrop/DragAndDrop';
 import { minus, plus } from '../../assets/common-img';
 import SurveyTitle from './Partials/SurveyTitle';
+import PageTitle from './Partials/PageTitle';
 // import { flushSync } from 'react-dom';
 
 export interface Question {
@@ -35,10 +36,35 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
     const [savedValue, setSavedValue] = useState<string>(()=>{
         return localStorage.getItem('savedValue')||''
     })
-    // const [isEditing, setIsEditing] = useState<boolean>(false);
     const [alignment, setAlignment] = useState<string>(()=>{
         return localStorage.getItem('alignment')||''
     });
+
+    //PageTitle
+
+    const [showPageTitle,setShowPageTitle] = useState<boolean>(false);
+    const [valueSave,setValueSave] = useState<string>('');
+    const [pageValue,setPageValue] = useState<string>('');
+
+
+
+
+     // function for PageTitle
+     
+
+     const handlePageTitle = ()=>{
+        setShowPageTitle(true);
+     }
+
+     const handlePageTitleCancel = ()=>{
+        setShowPageTitle(false);
+     }
+
+     const handlePageTitleSave = (title:string,description:string)=>{
+        setValueSave(description);
+        setShowPageTitle(false);
+        setPageValue(title);
+     }
 
 
     const handleSave = (value: string, alignment: string) => {
@@ -199,10 +225,19 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
 
                     </div>
 
-                    <div className='surveyPageTitle'>
-                        <button className='pageTitle'>PAGE TITLE</button>
+                    <div className='surveyPageTitle' onClick={handlePageTitle} >
+                        <button className='pageTitle'>{pageValue||'PAGE TITLE'}</button>
+                
                         <button className='editPageBtn'>EDIT</button>
                     </div>
+                    <div className="page-des">
+                            {valueSave}
+                         </div>
+                    {showPageTitle
+                     && <PageTitle
+                       onCancel={handlePageTitleCancel}
+                       onSave = {handlePageTitleSave}
+                    />}
 
                     {/* Question Form */}
                     {isFormVisible && (
