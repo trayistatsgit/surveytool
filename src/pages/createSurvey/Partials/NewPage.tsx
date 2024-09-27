@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './NewPage.scss';
 import CreateSurvey from '../CreateSurvey';
 
@@ -10,14 +10,17 @@ interface SurveyResponse {
 const NewPage: React.FC<SurveyResponse> = () => {
     const [clones, setClones] = useState<number[]>([]);
    
-
+    const ref = useRef(null); 
     const addClone = () => {
       
         setClones([...clones, clones.length]);
       
         console.log(...clones)
+        handleClick();
     };
-    
+    const handleClick = () => {
+        ref.current?.scrollIntoView({behavior: 'smooth'});
+      };
     const handleSubmit = (responses: SurveyResponse) => {
         console.log(responses);
       
