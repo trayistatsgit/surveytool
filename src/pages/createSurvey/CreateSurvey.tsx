@@ -5,19 +5,18 @@ import NewPage from './Partials/NewPage';
 import { Div } from '../../blocks';
 import LogoCreateSurvey from './Partials/LogoCreateSurvey';
 import { useNavigate } from 'react-router-dom';
-
+ 
 export interface Question {
-	id: number;
-	questionText: string;
-	questionType: 'text' | 'dropdown' | 'multipleChoice' | 'textarea' | 'image' | 'video' | 'radio' | 'checkbox';
-	options?: string[];
+    id: number;
+    questionText: string;
+    questionType: 'text' | 'dropdown' | 'multipleChoice' | 'textarea' | 'image' | 'video' | 'radio' | 'checkbox';
+    options?: string[];
 }
-
+ 
 interface CreateSurveyFormProps {
-	onSubmit?: (responses: Question[]) => void;
-	
+    onSubmit?: (responses: Question[]) => void;
 }
-
+ 
 const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	const navigate = useNavigate();
 
@@ -312,5 +311,5 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		</Div>
 	);
 };
-
+ 
 export default CreateSurvey;
