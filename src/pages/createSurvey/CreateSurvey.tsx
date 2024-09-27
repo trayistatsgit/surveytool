@@ -11,12 +11,11 @@ export interface Question {
 	questionText: string;
 	questionType: 'text' | 'dropdown' | 'multipleChoice' | 'textarea' | 'image' | 'video' | 'radio' | 'checkbox';
 	options?: string[];
-	
 }
 
 interface CreateSurveyFormProps {
 	onSubmit?: (responses: Question[]) => void;
-	pageNumber?:number;
+	
 }
 
 const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
@@ -28,6 +27,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	const [options, setOptions] = useState<string[]>(['']);
 	const [isFormVisible, setIsFormVisible] = useState<boolean>(true);
 	const [areButtonsVisible, setAreButtonsVisible] = useState(false);
+	const[uploadedLogo,setUploadedLogo]=useState<string|null>()
 
 	// Question type change handler
 	const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -43,7 +43,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	};
 
 	const handlePreviewSurvey = () => {
-		navigate('/survey-preview', { state: { questions } });
+		navigate('/survey-preview', { state: { questions,uploadedLogo } });
 	};
 
 	// Option input change handler
@@ -112,11 +112,10 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 					<section className='mainContainer'>
 						<section className='containerCreateSurvey'>
 							{/* Logo Popup Section */}
-							<div className='pageUpdate'>
 								<div>
-									<LogoCreateSurvey />
+									<LogoCreateSurvey onLogoUpload={setUploadedLogo}/>
 								</div>
-							</div>
+						
 
 							<section className='surveyPage'>
 								<div className='surveyTitle'>
