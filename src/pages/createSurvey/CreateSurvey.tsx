@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState,useRef, useEffect } from 'react';
 import './CreateSurvey.scss';
 import { minus, plus } from '../../assets/common-img';
 import NewPage from './Partials/NewPage';
@@ -11,15 +12,20 @@ export interface Question {
     questionText: string;
     questionType: 'text' | 'dropdown' | 'multipleChoice' | 'textarea' | 'image' | 'video' | 'radio' | 'checkbox';
     options?: string[];
+
 }
  
 interface CreateSurveyFormProps {
     onSubmit?: (responses: Question[]) => void;
+	pageNumber?:number;
 }
  
-const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
-	const navigate = useNavigate();
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const CreateSurvey: React.FC<CreateSurveyFormProps> = ({pageNumber}) => {
+	const navigate = useNavigate();
+	const endRef = useRef<HTMLDivElement>(null); // Ref for scrolling
+	
 	const [questions, setQuestions] = useState<Question[]>([]);
 	const [questionType, setQuestionType] = useState<Question['questionType']>('text');
 	const [questionText, setQuestionText] = useState<string>('');
@@ -35,6 +41,13 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		setAreButtonsVisible(true);
 		setOptions(newType === 'dropdown' || newType === 'multipleChoice' || newType === 'radio' || newType === 'checkbox' ? ['', '', ''] : []);
 	};
+
+	// Use effect to scroll to the bottom after questions change
+ useEffect(() => {
+        if (endRef.current) {
+            endRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [questions]); // Trigger when questions change
 
 	// Question text input change handler
 	const handleQuestionTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -109,13 +122,17 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 			{isFormVisible&&(
 				<><div className='containernew'>
 					<section className='mainContainer'>
+					<div ref={endRef}></div> {/* Scroll target */}
 						<section className='containerCreateSurvey'>
+							<div className='pagenumber'>
 							{/* Logo Popup Section */}
 								<div>
 									<LogoCreateSurvey onLogoUpload={setUploadedLogo}/>
 								</div>
-						
-
+								<span >
+								{pageNumber}
+								</span>
+							</div>
 							<section className='surveyPage'>
 								<div className='surveyTitle'>
 									<h1>
