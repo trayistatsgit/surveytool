@@ -3,6 +3,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import useStickyNavbar from '../customHooks/useStickyNavbar';
 import NavbarHome from '../components/navbar/NavbarHome';
+import SurveyBreadCrumb from '../atoms/surveybreadcrumb/SurveyBreadCrumb';
 
 const MasterLayout = () => {
 	const { scrollContainerRef, isScrolled } = useStickyNavbar(10);
@@ -14,7 +15,10 @@ const MasterLayout = () => {
 					flex: '1',
 					overflowY: 'auto',
 					overflowX: 'hidden',
-				}}><NavbarHome isScrolled={isScrolled} />
+				}}>
+					<NavbarHome isScrolled={isScrolled} />
+					<SurveyBreadCrumb/>
+
 				<main>
 					<Outlet />
 				</main>

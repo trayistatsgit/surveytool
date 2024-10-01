@@ -7,25 +7,62 @@ import ForgotPassword from '../pages/auth/ForgotPassword/ForgotPassword';
 import CreateSurvey from '../pages/createSurvey/CreateSurvey';
 import StartingPage from '../pages/startingPage/StartingPage';
 import SurveyPreview from '../pages/createSurvey/Partials/SurveyPreview';
+// import EditSurveyCard from '../atoms/editSurveyCards/EditSurveyCard'
+// import EditSurvey from '../pages/editSurvey/EditSurvey';
+// import SurveyBreadCrumb from '../atoms/surveybreadcrumb/SurveyBreadCrumb';
+import Summary from '../pages/summery/Summery';
+import DesignSurvey from '../pages/designsurvey/DesignSurvey';
+import CollectResponse from '../pages/collectresponse/CollectResponse';
+import AnalyzeResults from '../pages/analyzeresults/AnalyzerResult';
+import PresentResult from '../pages/presentresult/PresentResult';
+
+
+
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <MasterLayout />,  
+		element: <MasterLayout />,
 		children: [
 			{
 				path: '/start',
 				element: <StartingPage />,
 			},
 			{
-				path:'create-survey',
-				element:<CreateSurvey />
+				path: '/create-survey',
+				element: <CreateSurvey />
 			},
 			{
-				path:'survey-preview',
-				element:<SurveyPreview />
-			}
-			
+				path: '/survey-preview',
+				element: <SurveyPreview />
+			},
+			// {
+			// 	path: '/edit-survey',
+			// 	element: <EditSurvey />
+			// },
+		{
+			path:'/summary',
+			element:<Summary />
+		},{
+            path:'/design-survey',
+			element:<DesignSurvey/>
+		},{
+
+		},
+		{
+			path:'/collect-responses',
+			element:<CollectResponse />
+		},
+		{
+			path:'/analyze-results',
+			element:<AnalyzeResults />
+		},
+		{
+			path:'/present-results',
+			element:<PresentResult />
+		}
+
+
 		],
 	},
 	{
@@ -40,6 +77,9 @@ const router = createBrowserRouter([
 		path: '/forgot-password',
 		element: <ForgotPassword />,
 	},
+	
+	
+
 ]);
 
 export default router;
