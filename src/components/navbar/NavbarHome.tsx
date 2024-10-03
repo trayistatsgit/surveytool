@@ -35,9 +35,22 @@ const handleStartPage = () => {
     navigate('/start');
 };
 const handleSurveyEditCard = () => {
-    navigate('/edit-survey')
+    navigate('/my-surveys')
 }
- 
+const handleNavigation = () => {
+    localStorage.setItem('showBreadcrumb', JSON.stringify(false));
+    window.dispatchEvent(new Event('storage')); 
+    navigate('/')
+};
+const handleNavigationSurvey = () => {
+    localStorage.setItem('showBreadcrumb', JSON.stringify(false));
+    window.dispatchEvent(new Event('storage')); 
+
+};
+
+
+
+
     return (
         <><div className={isScrolled ? 'stickyParentNavDiv' : 'parentNavDiv'}>
             <nav className={isScrolled ? 'sticky-nav' : 'navbar'}>
@@ -45,15 +58,15 @@ const handleSurveyEditCard = () => {
                     <div className='navbar-logo'>
                         <img className='img' alt='logo' src={logo} onClick={handleLogoRedirect} />
                         <ul className='nav-menu'>
-                            <li className='nav-item' onClick={handleSurveyEditCard}>
-                                Services
+                            <li className='nav-item' onClick={()=>{handleSurveyEditCard();handleNavigationSurvey(); }}>
+                              My surveys
 
                             </li>
-                            <li className='nav-item' >
+                            <li className='nav-item' onClick={handleNavigation}>
                                 Company
 
                             </li>
-                            <li className='nav-item'>Contact Us</li>
+                            <li className='nav-item' onClick={handleNavigation}>Contact Us</li>
                         </ul>
                     </div>
                     <div className='nav-actions'>

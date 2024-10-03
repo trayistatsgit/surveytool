@@ -10,6 +10,7 @@ interface SurveyProps {
 }
 const EditSurveyCard: React.FC<SurveyProps> = ({ status, updatedDate, issue }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
   const dropdownRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -23,10 +24,13 @@ const EditSurveyCard: React.FC<SurveyProps> = ({ status, updatedDate, issue }) =
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
+  const showBreadcrumbData = () => {
+    localStorage.setItem('showBreadcrumb', JSON.stringify(true)); 
+    window.dispatchEvent(new Event('storage')); 
+};
   return (
     <>
-      <div className="card-survey-edit" ref={dropdownRef}>
+      <div className="card-survey-edit" ref={dropdownRef} onClick={showBreadcrumbData}>
         <div className="survey-draf">
           <span>{status}</span>
           <div className='dot-icon-container'>
