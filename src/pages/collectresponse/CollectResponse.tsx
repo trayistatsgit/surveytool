@@ -1,8 +1,8 @@
 import React from 'react'
-
+import './CollectResponse.scss'
 const CollectResponse :React.FC = ()=>{
     return(
-        <div>
+        <div className='main-collect-container'>
             <h1>CollectResponse</h1>
         </div>
     )
