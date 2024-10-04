@@ -25,18 +25,10 @@ const NavbarHome: React.FC<NavTestProps> = ({ isScrolled }) => {
     const handleLogin = () => {
         navigate('/login');
     };
-
-    // const handleCreateSurvey = () => {
-    //     navigate('/create-survey');
-    // };
-
     
 const handleStartPage = () => {
     navigate('/start');
 };
-const handleSurveyEditCard = () => {
-    navigate('/edit-survey')
-}
  
     return (
         <><div className={isScrolled ? 'stickyParentNavDiv' : 'parentNavDiv'}>
@@ -45,7 +37,7 @@ const handleSurveyEditCard = () => {
                     <div className='navbar-logo'>
                         <img className='img' alt='logo' src={logo} onClick={handleLogoRedirect} />
                         <ul className='nav-menu'>
-                            <li className='nav-item' onClick={handleSurveyEditCard}>
+                            <li className='nav-item'>
                                 Services
 
                             </li>
