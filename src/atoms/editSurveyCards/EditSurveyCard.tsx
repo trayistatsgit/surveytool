@@ -46,7 +46,6 @@ const EditSurveyCard: React.FC<SurveyProps> = ({ status, updatedDate, issue }) =
           <Typography label='survey' fontSize='fontSize24' fontWeightstest={500} fontWeight='bold' />
           </div>
           <div className='updated-date'>
-            {/* <img src={editimages} alt='NotFound' /> */}
             <Typography label={` 📅Updated: ${updatedDate}`} fontSize='fontSize14' fontWeight='regular'/>
             
         </div>

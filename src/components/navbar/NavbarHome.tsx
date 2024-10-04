@@ -26,11 +26,6 @@ const NavbarHome: React.FC<NavTestProps> = ({ isScrolled }) => {
         navigate('/login');
     };
 
-    // const handleCreateSurvey = () => {
-    //     navigate('/create-survey');
-    // };
-
-    
 const handleStartPage = () => {
     navigate('/start');
 };
