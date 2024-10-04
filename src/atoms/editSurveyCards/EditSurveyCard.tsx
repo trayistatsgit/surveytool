@@ -30,7 +30,7 @@ const EditSurveyCard: React.FC<SurveyProps> = ({ status, updatedDate, issue }) =
 };
   return (
     <>
-      <div className="card-survey-edit" ref={dropdownRef} onClick={showBreadcrumbData}>
+      <div className="card-survey-edit" ref={dropdownRef} >
         <div className="survey-draf">
           <span>{status}</span>
           <div className='dot-icon-container'>
@@ -41,7 +41,7 @@ const EditSurveyCard: React.FC<SurveyProps> = ({ status, updatedDate, issue }) =
 
           }
         </div>
-      <div className='survey-content'>
+      <div className='survey-content'onClick={showBreadcrumbData}>
       <div className="survey-title">
           <Typography label='survey' fontSize='fontSize24' fontWeightstest={500} fontWeight='bold' />
           </div>
@@ -50,7 +50,7 @@ const EditSurveyCard: React.FC<SurveyProps> = ({ status, updatedDate, issue }) =
             
         </div>
       </div>
-       <div className='survey-edit-container'>
+       <div className='survey-edit-container'onClick={showBreadcrumbData}>
        <div className="issue">
         <img src={editimages} alt='NotFound' />
         <Typography label={`${issue}`}fontSize='fontSize14' fontWeight='regular'/>
