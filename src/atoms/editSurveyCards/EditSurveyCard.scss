@@ -57,11 +57,13 @@ position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 18px;
+	cursor:default
 }
 .survey-edit-container{
 	display: flex;
 	flex-direction: column;
 	margin-top: 3rem;
+	cursor: default;
 }
 .survey-title {
 	color: black;
