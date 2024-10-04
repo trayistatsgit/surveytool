@@ -3,7 +3,7 @@ import './NewPage.scss';
 import CreateSurvey from '../CreateSurvey';
 
 interface SurveyResponse {
-    [key: string]: any; // Adjust the type based on the expected structure of the survey response
+    [key: string]: any; 
 
 }
 

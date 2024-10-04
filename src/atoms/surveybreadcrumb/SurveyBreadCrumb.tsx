@@ -14,7 +14,6 @@ const SurveyBreadCrumb: React.FC = ()=>{
     return (
       <div>
         <BreadCrumb tabs={tabs} />
-        
       </div>
     );
   };

@@ -25,27 +25,11 @@ const NavbarHome: React.FC<NavTestProps> = ({ isScrolled }) => {
     const handleLogin = () => {
         navigate('/login');
     };
-
+    
 const handleStartPage = () => {
     navigate('/start');
 };
-const handleSurveyEditCard = () => {
-    navigate('/my-surveys')
-}
-const handleNavigation = () => {
-    localStorage.setItem('showBreadcrumb', JSON.stringify(false));
-    window.dispatchEvent(new Event('storage')); 
-    navigate('/')
-};
-const handleNavigationSurvey = () => {
-    localStorage.setItem('showBreadcrumb', JSON.stringify(false));
-    window.dispatchEvent(new Event('storage')); 
-
-};
-
-
-
-
+ 
     return (
         <><div className={isScrolled ? 'stickyParentNavDiv' : 'parentNavDiv'}>
             <nav className={isScrolled ? 'sticky-nav' : 'navbar'}>
@@ -53,15 +37,15 @@ const handleNavigationSurvey = () => {
                     <div className='navbar-logo'>
                         <img className='img' alt='logo' src={logo} onClick={handleLogoRedirect} />
                         <ul className='nav-menu'>
-                            <li className='nav-item' onClick={()=>{handleSurveyEditCard();handleNavigationSurvey(); }}>
-                              My surveys
+                            <li className='nav-item'>
+                                Services
 
                             </li>
-                            <li className='nav-item' onClick={handleNavigation}>
+                            <li className='nav-item'>
                                 Company
 
                             </li>
-                            <li className='nav-item' onClick={handleNavigation}>Contact Us</li>
+                            <li className='nav-item'>Contact Us</li>
                         </ul>
                     </div>
                     <div className='nav-actions'>
