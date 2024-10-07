@@ -1,12 +1,15 @@
 .mainContainer{
-    margin-top: 20px;
+  
     background: #f4f5f5;
     display: flex;
     justify-content: center;
-    height:846px;
+
 }
 
-
+.pageNuberCross{
+  display: flex;
+  justify-content: space-between;
+}
 .containerCreateSurvey{
     position: relative;
     align-items: center;
@@ -15,15 +18,11 @@
     display: block;
     padding: 20px;
     margin-top: 20px;
-    position: relative;
-
     // padding-left: 36px;
 }
 
 .newContaner{
   background-color: #f4f5f5;
-  height: 100%;
-  margin: auto;
 }
 .newpage-container-copy{
   width: 100%;
@@ -502,3 +501,17 @@
   align-items: center;
   justify-content: space-between;
 }
+.scrollable-container {
+  max-height: 80vh; /* Adjust the height as necessary */
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding: 16px; /* Optional: Add some padding for aesthetics */
+ 
+ 
+  background-color: #fff; /* Optional: Background color */
+}
+.CrossIcon:hover {
+  
+    opacity: 0.6; 
+    transform: scale(1.1);
+    cursor: default;
+   }
