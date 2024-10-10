@@ -1,34 +1,41 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
 import './NewPage.scss';
 
 interface SurveyResponse {
-    clones: number[]; // Assuming clones are represented as an array of numbers
-    setClones: React.Dispatch<React.SetStateAction<number[]>>; // Function to update the clones state
+    [key: string]: any;
+    clones:any
 }
 
-const NewPage: React.FC<SurveyResponse> = ({ clones, setClones }) => {
-
-    const addClone = (index: number) => {
-        setClones((prevClones) => {
-            const newCloneId = prevClones.length; // Unique ID for the new clone
-            const newClones = [...prevClones];
-            newClones.splice(index + 1, 0, newCloneId); // Insert newCloneId at index + 1
-            return newClones; 
-        });
+const NewPage: React.FC<SurveyResponse >  = ({setClones, clones}) => {
+  
+ 
+    const addClone = () => {
+        const newIndex = clones.length; // Get the current number of clones
+       
+        setClones([...clones, newIndex]); // Add the new clone index
+       
     };
 
-    
+  
+    const handleSubmit = (responses: SurveyResponse) => {
+        console.log(responses);
+    };
+console.log(clones); 
 
-    return (
-        <div>
-            <div className='container-newPage' onClick={() => addClone(clones.length - 1)}>
-                <div className='logo-newPage'>
-                    <span className='logo-color'>+</span>
+
+return (
+        <div >
+            <div>
+                <div className='container-newPage' onClick={addClone}>
+                    <div className='logo-newPage'>
+                        <span className='logo-color'>+</span>
+                    </div>
+                    <p className='newPage-text'>NEW PAGE</p>
                 </div>
-                <p className='newPage-text'>NEW PAGE</p>
             </div>
         </div>
     );
-}
 
+}
 export default NewPage;

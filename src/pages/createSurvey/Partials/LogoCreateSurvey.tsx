@@ -24,7 +24,6 @@ const LogoCreateSurvey: React.FC<{ onLogoUpload: (url: string) => void }> = ({ o
  
   return (
     <div className='addLogoHere'>
- 
       {uploadedLogo ? (
         <>
           <img src={uploadedLogo} alt='Uploaded Logo' className='uploadedLogo' />
