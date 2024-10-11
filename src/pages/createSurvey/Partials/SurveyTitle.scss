@@ -1,3 +1,14 @@
+.survetTitleContainer{
+    position: absolute;
+    top: 0px;
+    width: 96.5%;
+    transition-duration: 3s;
+    -webkit-animation-name: slideIn; /* Fade in the background */
+    -webkit-animation-duration: 4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
+}
+
 .Survey-title{
     background-color:#edeeee;
     padding: 20px;
@@ -18,4 +29,14 @@
 
 .Center-Alignment{
     text-align: center;
+}
+
+@-webkit-keyframes slideIn {
+    from {top: -300px; opacity: 0} 
+    to {top: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
 }

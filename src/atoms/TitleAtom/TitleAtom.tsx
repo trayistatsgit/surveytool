@@ -1,21 +1,23 @@
 import { Button } from '../../blocks/button/ButtonAtom'
 import React from 'react'
 import './TitleAtom.scss';
-
-interface Props {
-    child?:any;
+ 
+ 
+interface TitleAtomProps {
+  onCancel?: () => void;
+  onSave?: () => void;
 }
-
-const TitleAtom:React.FC<Props> = ({child}) => {
+ 
+ 
+const TitleAtom:React.FC<TitleAtomProps> = ({onCancel,onSave}) => {
   return (
     <div className='main-title'>
-        {child}
       <div className='title-buttons'>
-        <Button label='Cancel' className='Cancel-button'   color='black' />
-        <Button label='Save' className='Save-button' />
+        <Button label='Cancel' className='Cancel-button'   color='black' onClick={onCancel}  />
+        <Button label='Save' className='Save-button' onClick={onSave} />
       </div>
     </div>
   )
 }
-
+ 
 export default TitleAtom;

@@ -5,7 +5,7 @@ import PopupComponent from '../../atoms/popup/Popup';
 import DragAndDrop from '../../components/dragAndDrop/DragAndDrop';
 import { minus, plus } from '../../assets/common-img';
 import SurveyTitle from './Partials/SurveyTitle';
- 
+
 export interface Question {
     id: number;
     questionText: string;
@@ -29,8 +29,15 @@ const CreateSurvey: React.FC<SurveyFormProps> = () => {
 const [uploadedLogo, setUploadedLogo] = useState(null);
 const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
 
+const [surveyTitle, setSurveyTitle] = useState<string>(''); // State for survey title
+
  
- 
+     // Function to handle saving the survey title
+     const handleSurveyTitleSave = (title: string) => {
+        setSurveyTitle(title); // Update the survey title state
+        console.log('Saved Survey Title:', title); // Print the title to console
+    };
+
  
     // Popup functions
     const showPopup = () => setIsPopUpVisible(true);
@@ -141,10 +148,11 @@ const [isSurveyTitleVisible, setIsSurveyTitleVisible] = useState(false);
                     <div>
                     <div className='surveyTitle'>
 
-                        <h1>
-                            <span onClick={()=> setIsSurveyTitleVisible(!isSurveyTitleVisible)} >Untitled</span>
-                          
-                        </h1>
+                    <h1>
+                        <span onClick={() => setIsSurveyTitleVisible(!isSurveyTitleVisible)}>
+                            <span>{surveyTitle || 'Click to set title'}</span>
+                        </span>
+                    </h1>
                     
                         <button className='editBtn'  onClick={()=> setIsSurveyTitleVisible(!isSurveyTitleVisible)}>EDIT</button>
                     </div>
