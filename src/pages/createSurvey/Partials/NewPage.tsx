@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 import './NewPage.scss';
 
 interface SurveyResponse {
@@ -7,15 +7,16 @@ interface SurveyResponse {
     clones:any
 }
 
-const NewPage: React.FC<SurveyResponse >  = ({setClones, clones}) => {
+const NewPage: React.FC<SurveyResponse >  = ({setClones, clones,formIndex}) => {
   
  
     const addClone = () => {
-        const newIndex = clones.length; // Get the current number of clones
-       
-        setClones([...clones, newIndex]); // Add the new clone index
-       
+        const newIndex = clones.length; 
+        const newClones = [...clones]; 
+        newClones.splice(newIndex, 0, formIndex+1); 
+        setClones(newClones); 
     };
+    
 
   
     const handleSubmit = (responses: SurveyResponse) => {

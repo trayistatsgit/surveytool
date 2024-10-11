@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-mixed-spaces-and-tabs */
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './CreateSurvey.scss';
 import { minus, plus } from '../../assets/common-img';
 import NewPage from './Partials/NewPage';
 import { Div } from '../../blocks';
 import LogoCreateSurvey from './Partials/LogoCreateSurvey';
 import { useNavigate } from 'react-router-dom';
-import { Value } from 'sass';
+
+
  
 export interface Question {
     id: number;
@@ -24,7 +25,9 @@ interface CreateSurveyFormProps {
  
 const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
     const navigate = useNavigate();
- 
+	const  endRef  = useRef<(HTMLDivElement | null)[]>([]);
+
+
     const [questions, setQuestions] = useState<Question[]>([]);
     const [questionType, setQuestionType] = useState<Question['questionType']>('text');
     const [questionText, setQuestionText] = useState<string[]>([""]);
@@ -32,10 +35,24 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
     const [isFormVisible, setIsFormVisible] = useState<boolean>(true);
     const [areButtonsVisible, setAreButtonsVisible] = useState(false);
     const [uploadedLogo, setUploadedLogo] = useState<string | null>(null);
-	
+	const [num,Setnum]=useState<number>(0)
 	const [clones, setClones] = useState<any[]>([0]);
 	
- 
+	const handleDeletePage = (index: number) => {
+		setClones((prevClones) => prevClones.filter((_, i) => i !== index));
+	};
+	useEffect(() => {
+		scroller();
+		Setnum(clones.length)
+	}, [clones]);
+	
+   const scroller=()=>{
+	const lastCloneRef = endRef.current[clones[num]];
+	
+		if (clones.length > 1 && lastCloneRef) {
+			lastCloneRef.scrollIntoView({ behavior: 'smooth' });
+		}
+   }
     // Question type change handler
     // const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>,formIndex:number) => {
     //     const newType[formIndex] = e.target.value as Question['questionType'];
@@ -43,22 +60,28 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
     //     setAreButtonsVisible(true);
     //     setOptions(newType === 'dropdown' || newType === 'multipleChoice' || newType === 'radio' || newType === 'checkbox' ? ['', '', ''] : []);
     // };
-	const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>, formIndex: number) => {
+	const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const newType = e.target.value as Question['questionType'];
-		setQuestionType((prevTypes) => {
-			const updatedTypes = [...prevTypes];
-			updatedTypes[formIndex] = newType;
-			return updatedTypes;
-		});
-	
+		setQuestionType(newType);
 		setAreButtonsVisible(true);
-		const optionsToSet =
-			newType === 'dropdown' || newType === 'multipleChoice' || newType === 'radio' || newType === 'checkbox'
-				? ['', '', '']
-				: [];
-	
-		setOptions(optionsToSet);
+		setOptions(newType === 'dropdown' || newType === 'multipleChoice' || newType === 'radio' || newType === 'checkbox' ? ['', '', ''] : []);
 	};
+	// const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>, formIndex: number) => {
+	// 	const newType = e.target.value as Question['questionType'];
+	// 	setQuestionType((prevTypes) => {
+	// 		const updatedTypes = [...prevTypes];
+	// 		updatedTypes[formIndex] = newType;
+	// 		return updatedTypes;
+	// 	});
+	
+	// 	setAreButtonsVisible(true);
+	// 	const optionsToSet =
+	// 		newType === 'dropdown' || newType === 'multipleChoice' || newType === 'radio' || newType === 'checkbox'
+	// 			? ['', '', '']
+	// 			: [];
+	
+	// 	setOptions(optionsToSet);
+	// };
  
 	const handleQuestionTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, formIndex: number) => {
 		const value = e.target.value;
@@ -136,18 +159,22 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	
     return (
         <><Div>
-			{clones.map((item,formIndex) => (
-                 <><section className='mainContainer'>
+			{clones.map((_,formIndex) => (
+                 <><section className='mainContainer' ref={el => (endRef.current[formIndex] = el)}>
+					
 					<section className='containerCreateSurvey'>
 					
+                    <h1 className='deleteBtn' onClick={() => handleDeletePage(formIndex)}>X</h1>
+                
 						<div>
 							<LogoCreateSurvey onLogoUpload={setUploadedLogo} /> 
 						</div>
+						
 						<section className='surveyPage'>
 							<div className='surveyTitle'>
 								<h1>
 									<span>Untitled--</span>
-									<span>{item}</span>
+									<span>{formIndex}</span>
 								</h1>
 								<button className='editBtn'>EDIT</button>
 							</div>
@@ -161,7 +188,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 								<form onSubmit={handleSubmit}>
 
 									<div className='questionAndDropdown' key={formIndex}>
-										<label className='question-type-label'>
+										{/* <label className='question-type-label'>
 											Select Question Type:
 											<select value={questionType[formIndex]} required onChange={(e)=>handleQuestionTypeChange(e,formIndex)} className='question-type-select'>
 												<option value='' selected>
@@ -174,7 +201,22 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 												<option value='radio'>Radio Buttons</option>
 												<option value='checkbox'>Checkboxes</option>
 											</select>
-										</label>
+										</label> */}
+
+                                           <label className='question-type-label'>
+												Select Question Type:
+												<select value={questionType} required onChange={handleQuestionTypeChange} className='question-type-select'>
+													<option value='' selected>
+														Select a type
+													</option>
+													<option value='text'>Text</option>
+													<option value='dropdown'>Dropdown</option>
+													<option value='multipleChoice'>Multiple Choice</option>
+													<option value='textarea'>Text Area</option>
+													<option value='radio'>Radio Buttons</option>
+													<option value='checkbox'>Checkboxes</option>
+												</select>
+											</label>
 
 										<div className='question-text-container'>
 										<label className='question-text-label'>
@@ -336,7 +378,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 						</section>
 					</section>
 				</section><div className='newpage-container-copy'>
-						<NewPage  setClones={setClones} clones={clones} />
+						<NewPage  setClones={setClones} clones={clones} formIndex={formIndex}  />
 					</div></> 
                 ))}
 			
