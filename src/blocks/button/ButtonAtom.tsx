@@ -45,41 +45,42 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	reverse?: boolean;
 };
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, reverse = false, variant = '', size = 'md', color = 'white', label, img = '', onClick, isLoading, isDisable, ...props }, ref) => {
-	return (
-		<button
-			ref={ref}
-			className={clsx(variants[variant], sizes[size], colors[color], className, { loading: isLoading })}
-			{...props}
-			onClick={onClick}
-			
-			style={{ color }}
-			disabled={isDisable}>
-			{isLoading ? (
-				<span className='button-spinner' /> 
-			) : (
-				<>
-					{img && img !== '' ? (
-						<>
-							{reverse ? (
-								<span className='button-label-img-two'>
-									{label}
-									<img src={img} alt='img' className='media-img' />
-								</span>
-							) : (
-								<span className='button-label-img'>
-									<img src={img} alt='img' className='media-img' />
-									<span className='label-text'>{label}</span>
-								</span>
-							)}
-						</>
-					) : (
-						<span className='button-label'>{label}</span>
-					)}
-				</>
-			)}
-		</button>
-	);
-});
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, reverse = false, variant = '', size = 'md', color = 'white', label, img = '', onClick, isLoading, isDisable, ...props }, ref) => {
+		return (
+			<button
+				ref={ref}
+				className={clsx(variants[variant], sizes[size], colors[color], className, { loading: isLoading })}
+				{...props}
+				onClick={onClick}
+				style={{ color }}
+				disabled={isDisable}>
+				{isLoading ? (
+					<span className='button-spinner' />
+				) : (
+					<>
+						{img && img !== '' ? (
+							<>
+								{reverse ? (
+									<span className='button-label-img-two'>
+										{label}
+										<img src={img} alt='img' className='media-img' />
+									</span>
+								) : (
+									<span className='button-label-img'>
+										<img src={img} alt='img' className='media-img' />
+										<span className='label-text'>{label}</span>
+									</span>
+								)}
+							</>
+						) : (
+							<span className='button-label'>{label}</span>
+						)}
+					</>
+				)}
+			</button>
+		);
+	}
+);
 
 Button.displayName = 'Button';
