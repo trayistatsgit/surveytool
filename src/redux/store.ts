@@ -2,8 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch as useReduxDispatch, useSelector as useReduxSelector, TypedUseSelectorHook } from 'react-redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import { rootPersistConfig, rootReducer } from './rootReducer';
-
-
 // Configuring the store
 const store = configureStore({
 	reducer: persistReducer(rootPersistConfig, rootReducer),

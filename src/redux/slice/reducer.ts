@@ -1,7 +1,9 @@
-import clearStoreReducer from "./common/clearStore.slice";
+import { getQuestionTypesApi } from '../../services/questionType/questionType.service';
+import clearStoreReducer from './common/clearStore.slice';
 
 const reducer = {
-    clearStoreReducer
+	clearStoreReducer,
+	getQuestionTypesApi,
 };
 
 export default reducer;

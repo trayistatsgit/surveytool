@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CreateSurvey.scss';
 import { minus, plus } from '../../assets/common-img';
 import NewPage from './Partials/NewPage';
@@ -6,6 +6,10 @@ import { Button, Div } from '../../blocks';
 import LogoCreateSurvey from './Partials/LogoCreateSurvey';
 import { useNavigate } from 'react-router-dom';
 import NewTextEditor from '../../components/textEditorForm/NewTextEditor';
+import { createQuestionType } from '../../redux/slice/questionType/questionType';
+
+import { useAppDispatch } from '../../redux/store';
+//import { useSelector } from 'react-redux';
 
 export interface Question {
 	questionId: number;
@@ -14,13 +18,21 @@ export interface Question {
 	options?: IQuestionName[];
 }
 interface IQuestionName {
-	id: string | number;
-	optionName: string;
+	id?: string | number;
+	optionName?: string;
 }
 interface CreateSurveyFormProps {
 	onSubmit?: (responses: Question[]) => void;
 }
+interface QuestionType {
+	id: number;
+	name: string;
+}
 
+// Define the structure for the response of the getQuestionTypesApi function
+interface QuestionTypesResponse {
+	questionTypes: QuestionType[];
+}
 const surveyInitialData = {
 	surveyName: 'Untitle',
 	description: 'Untitle',
@@ -43,7 +55,7 @@ const surveyInitialData = {
 };
 const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	const navigate = useNavigate();
-
+	const dispatch = useAppDispatch();
 	const [questions, setQuestions] = useState<Question[]>([]);
 	const [newQuestions, setNewQuestions] = useState<Question[]>([]);
 	const [questionType, setQuestionType] = useState<Question['questionType']>('text');
@@ -55,8 +67,11 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	const [isTitle, setIsTitle] = useState<boolean>(false);
 	const [isDescription, setIsDescription] = useState<boolean>(false);
 	const [surveyForm, setSurveyForm] = useState(surveyInitialData);
-
+	const [questionTypes, setQuestionTypes] = useState<QuestionTypesResponse[]>([]);
 	// Question type change handler
+	// const questionTypes = useSelector((state: any) => state.questionTypes.questionTypes);
+	//console.log(questionTypes);
+	console.log(questionTypes);
 	const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const newType = e.target.value as Question['questionType'];
 		setQuestionType(newType);
@@ -118,7 +133,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		};
 
 		setQuestions([...questions, newQuestion]);
-		setSurveyForm((prev: any) => ({
+		setSurveyForm((prev: unknown) => ({
 			...prev,
 			question: [...questions, newQuestion],
 		}));
@@ -127,7 +142,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		// resetForm();
 		// setAreButtonsVisible(false);
 	};
-	console.log('questions', questions);
+	//console.log('questions', questions);
 	// const resetForm = () => {
 	// 	setQuestionText('');
 	// 	setOptions(
@@ -171,7 +186,16 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	const onCanclePageTitle = () => {
 		setIsDescription((prev) => !prev);
 	};
-	console.log('surveyForm', surveyForm);
+	//console.log('surveyForm', surveyForm);
+	const getQuestions = async () => {
+		const res = await dispatch(createQuestionType());
+		//	console.log(res);
+		setQuestionTypes(res.payload.data);
+	};
+	useEffect(() => {
+		getQuestions();
+	}, []);
+
 	return (
 		<Div>
 			<div className='newContaner'>
@@ -272,16 +296,12 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 											<div className='questionAndDropdown'>
 												<label className='question-type-label'>
 													Select Question Type:
-													<select value={questionType} required onChange={handleQuestionTypeChange} className='question-type-select'>
-														<option value='' selected>
-															Select a type
-														</option>
-														<option value='text'>Text</option>
-														<option value='dropdown'>Dropdown</option>
-														<option value='multipleChoice'>Multiple Choice</option>
-														<option value='textarea'>Text Area</option>
-														<option value='radio'>Radio Buttons</option>
-														<option value='checkbox'>Checkboxes</option>
+													<select value={questionType} onChange={handleQuestionTypeChange} className='question-type-select'>
+														{questionTypes.map((type) => (
+															<option key={type.id} value={type.name}>
+																{type.name}
+															</option>
+														))}
 													</select>
 												</label>
 
