@@ -4,7 +4,7 @@ import MasterLayout from '../layout/MasterLayout';
 import SignUp from '../pages/auth/SignUp';
 import LogIn from '../pages/auth/Login';
 import ForgotPassword from '../pages/auth/ForgotPassword/ForgotPassword';
-import CreateSurvey from '../pages/createSurvey/CreateSurvey';
+import NewPage from '../pages/createSurvey/Partials/NewPage';
 import StartingPage from '../pages/startingPage/StartingPage';
 import SurveyPreview from '../pages/createSurvey/Partials/SurveyPreview';
 
@@ -17,9 +17,10 @@ const router = createBrowserRouter([
 				path: '/start',
 				element: <StartingPage />,
 			},
+	
 			{
-				path:'create-survey',
-				element:<CreateSurvey />
+				path:'new-page',
+				element:<NewPage clones={undefined}  />
 			},
 			{
 				path:'survey-preview',

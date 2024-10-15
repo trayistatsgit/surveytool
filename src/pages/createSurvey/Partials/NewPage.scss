@@ -8,15 +8,15 @@
   gap: 10px;
   cursor: pointer;
   margin: auto;
-  background-color: white;
+ background-color: white;
 
   @include bp('xl'){
   
-   width: 56.9% ;
+   width: 57% ;
 }
 @include bp('tablet'){
   
-  width: 60%;
+  width: 60.2%;
 }
 @include bp('desktop'){
   
@@ -24,11 +24,11 @@
 }
 @include bp('mobile'){
   
-  width: 65% ;
+  width: 65.7% ;
 }
 @include bp('monitor'){
   
-  width: 57.6% ;
+  width: 57.8% ;
 }
 }
 .newPage-text{
@@ -42,12 +42,12 @@
  
 }
 .logo-newPage{
-  width: 18px;          
-  height: 18px;          
+  width: 18px;                   
   border-radius: 50%;  
   border: 2px solid #6B787F;
   background-color: white;  
   text-align: center;
+ 
  
 }
  
@@ -70,4 +70,7 @@
   display: flex;
   flex-direction: column; // Stack items vertically
   gap: 16px; // Optional: Add space between surveys
+}
+.pageClonebtn{
+  background: #f4f5f5;
 }
