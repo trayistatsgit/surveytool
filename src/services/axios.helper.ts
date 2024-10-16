@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 // Create an Axios instance
-const baseURL = 'http://localhost:5002/';
+const baseURL = 'http://localhost:4002/api/v1';
 const clientTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const axiosInstance: AxiosInstance = axios.create({
 	baseURL: baseURL,

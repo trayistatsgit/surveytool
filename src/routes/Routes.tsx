@@ -14,9 +14,6 @@ import CollectResponse from '../pages/collectresponse/CollectResponse';
 import AnalyzeResults from '../pages/analyzeresults/AnalyzerResult';
 import PresentResult from '../pages/presentresult/PresentResult';
 
-
-
-
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -28,39 +25,37 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/create-survey',
-				element: <CreateSurvey />
+				element: <CreateSurvey />,
 			},
 			{
 				path: '/survey-preview',
-				element: <SurveyPreview />
+				element: <SurveyPreview />,
 			},
 			{
 				path: '/my-surveys',
-				element: <EditSurvey />
+				element: <EditSurvey />,
 			},
-		{
-			path:'/summary',
-			element:<Summary />
-		},{
-            path:'/design-survey',
-			element:<DesignSurvey/>
-		},{
-
-		},
-		{
-			path:'/collect-responses',
-			element:<CollectResponse />
-		},
-		{
-			path:'/analyze-results',
-			element:<AnalyzeResults />
-		},
-		{
-			path:'/present-results',
-			element:<PresentResult />
-		}
-
-
+			{
+				path: '/summary',
+				element: <Summary />,
+			},
+			{
+				path: '/design-survey',
+				element: <DesignSurvey />,
+			},
+			{},
+			{
+				path: '/collect-responses',
+				element: <CollectResponse />,
+			},
+			{
+				path: '/analyze-results',
+				element: <AnalyzeResults />,
+			},
+			{
+				path: '/present-results',
+				element: <PresentResult />,
+			},
 		],
 	},
 	{
@@ -75,9 +70,6 @@ const router = createBrowserRouter([
 		path: '/forgot-password',
 		element: <ForgotPassword />,
 	},
-	
-	
-
 ]);
 
 export default router;

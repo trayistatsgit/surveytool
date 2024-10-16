@@ -1,6 +1,6 @@
 import axiosInstance from '../axios.helper';
 
-export const createSurveyApi = async () => {
+export const createSurveyIdApi = async () => {
 	const response = await axiosInstance.post(`survey/create-survey-id`, {});
 	return response.data;
 };

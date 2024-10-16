@@ -302,7 +302,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 												<label className='question-type-label'>
 													Select Question Type:
 													<select value={questionType} onChange={handleQuestionTypeChange} className='question-type-select'>
-														{questionTypes.map((type) => (
+														{questionTypes?.map((type) => (
 															<option key={type.id} value={type.name}>
 																{type.name}
 															</option>
