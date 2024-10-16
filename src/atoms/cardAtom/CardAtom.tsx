@@ -11,9 +11,9 @@ interface CardAtomProps {
 	onClick?: () => void; // Add onClick prop
 }
 
-const CardAtom: React.FC<CardAtomProps> = ({ imgScr, Heading, Description, linkTo = '/', onClick }) => {
+const CardAtom: React.FC<CardAtomProps> = ({ imgScr, Heading, Description, onClick }) => {
 	return (
-		<NavLink to={linkTo} className='Main_cardInfo' onClick={onClick}>
+		<div className='Main_cardInfo' onClick={onClick}>
 			<div className='Card_info'>
 				<div className='Card-img'>
 					<img src={imgScr} alt='NotFound' className='Img-info' />
@@ -25,7 +25,7 @@ const CardAtom: React.FC<CardAtomProps> = ({ imgScr, Heading, Description, linkT
 					<Typography fontSize='fontSize14' fontWeight='bold' fontWeightstest={300} lineHeight='lineHeight22' label={Description} />
 				</div>
 			</div>
-		</NavLink>
+		</div>
 	);
 };
 

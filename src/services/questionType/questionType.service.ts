@@ -8,6 +8,6 @@ export interface QuestionType {
 	name: string;
 }
 export const getQuestionTypesApi = async () => {
-	const response = await axiosInstance.get('question-type');
+	const response = await axiosInstance.get('question/question-type');
 	return response.data;
 };
