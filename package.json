@@ -16,7 +16,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@reduxjs/toolkit": "^2.2.8",
+		"@reduxjs/toolkit": "^2.3.0",
 		"@types/react-toastify": "^4.1.0",
 		"axios": "^1.7.7",
 		"clsx": "^2.1.1",

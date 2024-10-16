@@ -1,7 +1,7 @@
-import clearStoreReducer from "./common/clearStore.slice";
+import clearStoreReducer from './common/clearStore.slice';
 
 const reducer = {
-    clearStoreReducer
+	clearStoreReducer,
 };
 
 export default reducer;

@@ -50,7 +50,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	const [questionText, setQuestionText] = useState<string>('');
 	const [options, setOptions] = useState<string[]>(['']);
 	const [isFormVisible, setIsFormVisible] = useState<boolean>(true);
-	const [areButtonsVisible, setAreButtonsVisible] = useState(false);
+	const [areButtonsVisible, setAreButtonsVisible] = useState(true);
 	const [uploadedLogo, setUploadedLogo] = useState<string | null>();
 	const [isTitle, setIsTitle] = useState<boolean>(false);
 	const [isDescription, setIsDescription] = useState<boolean>(false);
@@ -116,12 +116,14 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 					? filteredOptions
 					: [],
 		};
-
-		setQuestions([...questions, newQuestion]);
 		setSurveyForm((prev: any) => ({
 			...prev,
-			question: [...questions, newQuestion],
+			question: [...prev.question, newQuestion],
 		}));
+		setOptions([]);
+		setQuestions([]);
+		setQuestionText('');
+		setQuestionType('text');
 		setNewQuestions([]);
 		setIsFormVisible(false);
 		// resetForm();
@@ -137,6 +139,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	// };
 
 	const handleAddNewQuestion = () => {
+		setQuestions([]);
 		setIsFormVisible(true);
 		setAreButtonsVisible(true);
 	};
@@ -210,6 +213,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 									</div>
 
 									{/*  priview question div add a new routes i am not created a routes  */}
+
 									<div>
 										<h3>Questions Preview:</h3>
 										{surveyForm.question.map((q) => (
@@ -267,8 +271,9 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 											</div>
 										))}
 									</div>
+									{/* )} */}
 									{isFormVisible && (
-										<form>
+										<form onSubmit={handleSubmit}>
 											<div className='questionAndDropdown'>
 												<label className='question-type-label'>
 													Select Question Type:
@@ -345,7 +350,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 
 											{areButtonsVisible && (
 												<div className='form-buttons-container'>
-													<button type='submit' className='save-question-button' onClick={handleSubmit}>
+													<button type='submit' className='save-question-button'>
 														Save Question
 													</button>
 													<button type='button' className='cancel-question-button' onClick={handleCancel}>
@@ -360,11 +365,11 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 								<section className='surveyPage'>
 									<div className='addNewQuesContainer'>
 										{/* Add New Question button shown only if there are saved questions */}
-										{questions.length > 0 && (
-											<button onClick={handleAddNewQuestion} className='add-new-question-button'>
-												Add New Question
-											</button>
-										)}
+										{/* {questions.length > 0 && ( */}
+										<button onClick={handleAddNewQuestion} className='add-new-question-button'>
+											Add New Question
+										</button>
+										{/* )} */}
 										<a className='demoText' href=''>
 											Copy and paste questions
 										</a>
@@ -387,7 +392,6 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 												See how easy it is to <a href=''>create survey and forms</a>
 											</p>
 										</div>
-
 										<div>
 											<button className='createFooterDivTwo'>Hide Footer</button>
 										</div>
