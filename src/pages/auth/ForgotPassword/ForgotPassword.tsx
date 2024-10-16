@@ -10,11 +10,11 @@ import Slider from '../../../blocks/slider/Slider';
 import { useNavigate } from 'react-router-dom';
 
 const ForgotPassword = () => {
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
-    const handleBackClick = () => {
-      navigate(-1); 
-    };
+	const handleBackClick = () => {
+		navigate(-1);
+	};
 
 	const images = [
 		{

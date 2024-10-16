@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {};
 const clearStoreSlice = createSlice({
-  name: 'clear-store',
-  initialState,
-  reducers: {
-    clearStore: () => {
-      return initialState; 
-    },
-  },
+	name: 'clear-store',
+	initialState,
+	reducers: {
+		clearStore: () => {
+			return initialState;
+		},
+	},
 });
 
 // Export the action
