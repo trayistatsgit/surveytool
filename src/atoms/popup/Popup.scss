@@ -1,6 +1,6 @@
 /* PopupComponent.scss */
-@import '../../mixins.scss';
-@import '../../blocks//variables/Variable.scss';
+@use '../../mixins.scss';
+@use '../../blocks//variables/Variable.scss';
 
 .popup-overlay {
 	position: fixed;
@@ -68,7 +68,7 @@
 	box-sizing: border-box;
 	display: flex;
 	justify-content: center;
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		width: 70%;
 		display: block;
 		padding-left: 4%;
@@ -101,7 +101,7 @@
 	box-sizing: border-box;
 	display: flex;
 	justify-content: center;
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		width: 90% !important;
 		display: block;
 		padding-left: 4%;
@@ -129,7 +129,7 @@
 	right: 0;
 	margin-right: 2.3rem;
 	cursor: pointer;
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		margin-right: 1.5rem;
 	}
 }
@@ -140,7 +140,7 @@
 	right: 0;
 	margin-right: 2.3rem;
 	cursor: pointer;
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		margin-right: 1.5rem;
 	}
 }

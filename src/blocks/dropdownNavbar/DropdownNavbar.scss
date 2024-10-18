@@ -1,5 +1,5 @@
-@import url('../../blocks/variables/Variable.scss');
-@import '../../mixins.scss';
+@use '../../blocks/variables/Variable.scss';
+@use '../../mixins.scss';
 
 .nav-item {
 	position: relative;

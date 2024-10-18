@@ -1,5 +1,5 @@
-@import '../../mixins.scss';
-@import '../../blocks/variables/Variable.scss';
+@use '../../mixins.scss';
+@use '../../blocks/variables/Variable.scss';
 .content-block {
   position: relative;
   z-index: 100;
@@ -13,15 +13,15 @@
       color: #333333;
       width: 52%;
       margin: 0 auto;
-      @include bp('mobile') {
+      @include mixins.bp('mobile') {
         width: 100%;
 
       }
-      @include bp('tablet') {
+      @include mixins.bp('tablet') {
         width: 90%;
       }
       
-      @include bp('desktop') {
+      @include mixins.bp('desktop') {
         width: 60%;
 
       }

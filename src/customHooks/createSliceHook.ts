@@ -24,12 +24,10 @@ export const createSliceHook = <T, Args = void>(name: string, asyncThunk: AsyncT
 					state.error = null;
 				})
 				.addCase(asyncThunk.fulfilled, (state, action: PayloadAction<T>) => {
-					console.log('fulfilled', action);
 					state.loading = false;
 					state.data = action.payload as Draft<T>;
 				})
 				.addCase(asyncThunk.rejected, (state, action: PayloadAction<any>) => {
-					console.log('action', action);
 					state.loading = false;
 					state.error = action.payload;
 				});

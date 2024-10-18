@@ -1,5 +1,5 @@
-@import '../../blocks//variables/Variable.scss';
-@import '../../mixins.scss';
+@use '../../mixins.scss';
+@use '../../blocks//variables/Variable.scss';
 .master-container-login {
 	display: grid;
 	grid-template-columns: 1.6fr 10.4fr; 
@@ -7,22 +7,22 @@
 	height: 100vh;
 	transition: all 0.4s;
 
-	@include bp('xl') {
+	@include mixins.bp('xl') {
 		grid-template-columns: 14% 86%;
 	}
 
-	@include bp('monitor') {
+	@include mixins.bp('monitor') {
 		grid-template-columns: 17% 83%;
 	}
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		grid-template-columns: 20% 80%;
 	}
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		grid-template-columns: 26% 74%;
 	}
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		grid-template-columns: 0% 100%;
 	}
 }
@@ -34,19 +34,19 @@
 	height: 100vh;
 	transition: all 0.4s;
 
-	@include bp('xl') {
+	@include mixins.bp('xl') {
 		grid-template-columns: 4% 96%;
 	}
-	@include bp('monitor') {
+	@include mixins.bp('monitor') {
 		grid-template-columns: 5% 95%;
 	}
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		grid-template-columns: 6% 94%;
 	}
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		grid-template-columns: 8% 92%;
 	}
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		grid-template-columns: 12% 88%;
 	}
 }
@@ -57,19 +57,19 @@
 	height: 100vh;
 	transition: all 0.4s;
 	z-index: 2;
-	@include bp('xl') {
+	@include mixins.bp('xl') {
 		width: 14%;
 	}
-	@include bp('monitor') {
+	@include mixins.bp('monitor') {
 		width: 17%;
 	}
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		width: 20%;
 	}
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		width: 26%;
 	}
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		width: 0%;
 	}
 }
@@ -81,20 +81,20 @@
 	transition: all 0.4s;
 	z-index: 2;
 
-	@include bp('xl') {
+	@include mixins.bp('xl') {
 		width: 4%;
 	}
 
-	@include bp('monitor') {
+	@include mixins.bp('monitor') {
 		width: 5%;
 	}
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		width: 6%;
 	}
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		width: 8%;
 	}
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		width: 60%;
 	}
 }
@@ -103,7 +103,7 @@
 	background-image: linear-gradient(var(--main-content-loginlayout), var(--white-color));
 	grid-column: 2 / 3;
 	grid-row: 1 / 4;
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		grid-column: 1 /3;
 	}
 }

@@ -1,27 +1,23 @@
-@import '../../mixins.scss';
+@use '../../mixins.scss' as mixins;
 
 @mixin grid($columns) {
 	column-gap: 1rem;
 	display: grid;
 	grid-template-columns: repeat(#{$columns}, 1fr);
 
-	@include bp('monitor') {
-		display: grid;
+	@include mixins.bp('monitor') {
 		grid-template-columns: repeat(#{$columns}, 1fr);
 	}
 
-	@include bp('desktop') {
-		display: grid;
+	@include mixins.bp('desktop') {
 		grid-template-columns: repeat(#{$columns}, 1fr);
 	}
 
-	@include bp('tablet') {
-		display: grid;
+	@include mixins.bp('tablet') {
 		grid-template-columns: repeat(#{$columns}, 1fr);
 	}
 
-	@include bp('mobile') {
-		display: grid;
+	@include mixins.bp('mobile') {
 		grid-template-columns: repeat(#{$columns}, 1fr);
 	}
 }

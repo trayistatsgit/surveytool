@@ -1,4 +1,4 @@
-@import '../../mixins.scss';
+@use '../../mixins.scss';
 
 .container-signup {
 	display: flex;
@@ -26,13 +26,13 @@
 	background-position: 50% 9%; 
 	background-size: auto; 
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		background: 
     
 			linear-gradient(111.38deg, #1f057d -1.52%, #822cb0 49.51%, #b02e7a 88.53%);
 		
 	}
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		background: 
 			linear-gradient(111.38deg, #1f057d -1.52%, #822cb0 49.51%, #b02e7a 88.53%);
 	}
@@ -44,11 +44,11 @@
 	left: 50%;
 	text-align: left;
 	transform: translate(-50%, -50%);
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		width: 390px;
 	}
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		top: 45%;
 		width: 300px;
 	}
@@ -73,7 +73,7 @@
 	line-height: 21px;
 	padding: 0;
 	margin: 0;
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 margin-bottom: 10px;
 	}
 }
@@ -103,7 +103,7 @@ margin-bottom: 10px;
 	margin-bottom: 15px;
 	gap: 4px;
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		width: 420px;
 		text-align: left;
 		display: inline-block;
@@ -113,7 +113,7 @@ margin-bottom: 10px;
 		margin-bottom: 10px;
 	}
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		width: 400px;
 		text-align: left;
 		display: inline-block;
@@ -135,7 +135,7 @@ margin-bottom: 10px;
 		margin-right: 5px;
 		margin-bottom: 3px;
 
-		@include bp('desktop') {
+		@include mixins.bp('desktop') {
 			display: inline-block;
 			width: 15px;
 			height: 15px;
@@ -143,7 +143,7 @@ margin-bottom: 10px;
 			margin-bottom: -3px;
 		}
 
-		@include bp('tablet') {
+		@include mixins.bp('tablet') {
 			display: inline-block;
 			// width: 15px;
 			height: 12px;
@@ -159,7 +159,7 @@ margin-bottom: 10px;
 		font-size: 14px;
 		display: inline-block;
 		align-items: center;
-		@include bp('desktop') {
+		@include mixins.bp('desktop') {
 			height: 24px;
 			display: inline-block;
 			margin: 0;
@@ -169,7 +169,7 @@ margin-bottom: 10px;
 			align-items: center;
 		}
 
-		@include bp('tablet') {
+		@include mixins.bp('tablet') {
 			// height: 24px;
 			display: inline-block;
 			margin: 0;
@@ -184,7 +184,7 @@ margin-bottom: 10px;
 		display: inline-block;
 		margin-right: 4px;
 		margin-left: 4px;
-		@include bp('desktop') {
+		@include mixins.bp('desktop') {
 			height: 24px;
 			color: rgba(176, 46, 122, 1) !important;
 			display: inline-block;
@@ -193,7 +193,7 @@ margin-bottom: 10px;
 			font-size: 13px;
 		}
 
-		@include bp('tablet') {
+		@include mixins.bp('tablet') {
 			// width: 300px;
 			color: rgba(176, 46, 122, 1) !important;
 			display: inline-block;
@@ -223,12 +223,12 @@ margin-bottom: 10px;
 	margin-top: 5px;
 	margin-bottom: 10px;
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		height: 40px;
 		width: 390px;
 	}
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		width: 300px;
 		height: 38px;
 		line-height: 22px;
@@ -256,11 +256,11 @@ margin-bottom: 10px;
 		height: 0.00001px;
 		margin-top: 8px;
 
-		@include bp('desktop') {
+		@include mixins.bp('desktop') {
 			width: 130px;
 		}
 
-		@include bp('tablet') {
+		@include mixins.bp('tablet') {
 			width: 90px;
 		}
 	}
@@ -270,7 +270,7 @@ margin-bottom: 10px;
 	margin-left: 10px;
 	font-size: 14px;
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		font-size: 12px;
 	}
 }
@@ -280,12 +280,12 @@ margin-bottom: 10px;
 	justify-content: center;
 	gap: 25px;
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		width: 390px;
 		gap: 18px;
 	}
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		width: 300px;
 		gap: 15px;
 	}
@@ -305,13 +305,13 @@ margin-bottom: 10px;
 	margin-top: 18px;
 	color: rgba(4, 26, 47, 1) !important;
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		width: 170px;
 		height: 40px;
 		font-size: 13px;
 	}
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		width: 150px;
 		height: 35px;
 		font-size: 10px;
@@ -334,12 +334,12 @@ margin-bottom: 10px;
 	display: flex;
 	justify-content: center;
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		width: 390px;
 		height: 16px;
 	}
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		width: 300px;
 		height: 14px;
 	}
@@ -354,10 +354,10 @@ margin-bottom: 10px;
 	text-decoration: underline;
 	font-weight: bold;
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 	}
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		font-size: 12px;
 	}
 }
@@ -367,10 +367,10 @@ margin-bottom: 10px;
 	line-height: 21px;
 	text-align: center;
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 	}
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		height: 14px;
 		font-size: 12px;
 	}
@@ -389,13 +389,13 @@ margin-bottom: 10px;
 	padding: 0;
 	margin-bottom: 10px;
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		height: 14px;
 		font-size: 18px;
 		margin-bottom: 20px;
 	}
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		height: 14px;
 		font-size: 24px;
 		margin-bottom: 20px;
@@ -406,7 +406,7 @@ margin-bottom: 10px;
 	width: 45.57px;
 	height: 30px;
 	margin-left: 10px;
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		width: 35px;
 		height: 25px;
 		margin-top: 5px;
@@ -434,18 +434,18 @@ margin-bottom: 10px;
 	gap: 12px;
 	width: 100%;
 	text-align: left;
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		width: 80%;
 		gap: 6px;
 	}
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		width: 100%;
 		gap: 6px;
 	}
 }
 
 .checkbox-label-signup {
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		font-size: 12px;
 	}
 }
@@ -488,13 +488,13 @@ margin-bottom: 10px;
 	justify-content: start;
 	padding: 0;
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		height: 14px;
 		font-size: 18px;
 		margin-bottom: 20px;
 	}
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		height: 14px;
 		font-size: 24px;
 		margin-bottom: 20px;
@@ -527,11 +527,11 @@ margin-bottom: 10px;
 	color: #c2185b; 
 	background: none;
 	border: none;
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		margin-left: 12%;  
 
 	}
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		margin-left: 8%;  
 
 	}
@@ -561,12 +561,12 @@ margin-bottom: 10px;
 	cursor: pointer;
 	margin-top: 2rem;
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		height: 40px;
 		width: 390px;
 	}
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		width: 300px;
 		height: 38px;
 		line-height: 22px;
@@ -578,10 +578,10 @@ margin-bottom: 10px;
 
 .label-forgot{
 	margin-top: 13px;
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		margin-top: 25px;
 	}
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		margin-top: 25px;
 	}
 }

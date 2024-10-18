@@ -1,12 +1,12 @@
-@import '../../mixins.scss';
-@import '../../blocks/variables/Variable.scss';
+@use '../../mixins.scss';
+@use '../../blocks/variables/Variable.scss';
 .navbar-background {
 	background-image: linear-gradient(var(--navbar-background-home), var(--navbar-background-home-grey));
 	height: 600px;
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		height: 1000px;
 	}
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		height: 1000px;
 	}
 }

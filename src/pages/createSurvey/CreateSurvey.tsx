@@ -7,12 +7,13 @@ import LogoCreateSurvey from './Partials/LogoCreateSurvey';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import NewTextEditor from '../../components/textEditorForm/NewTextEditor';
 import { createQuestionType } from '../../redux/slice/questionType/questionType';
-
 import { useAppDispatch } from '../../redux/store';
+import { upsertSurveyQuestionThunk } from '../../redux/slice/survey/upsertSurveyQuestion';
+import { updateSurveyThunk } from '../../redux/slice/survey/updateSurvey';
 //import { useSelector } from 'react-redux';
 
 export interface Question {
-	questionId: number;
+	questionId: number | null;
 	questionText: string;
 	questionType: number;
 	options?: IQuestionName[];
@@ -113,23 +114,19 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		setOptions(newOptions);
 	};
 
-	// Submit a single question
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!questionText) {
 			return;
 		}
-		console.log('options>>><><>', options);
-		const filteredOptions = options
-			.filter((option) => option.trim() !== '') // Filter out empty or whitespace-only options
-			.map((option) => ({ optionId: '', optionName: option })); // Map each option to the desired format
-
+		const filteredOptions = options.filter((option) => option.trim() !== '').map((option) => ({ optionId: '', optionName: option }));
 		const newQuestion: Question = {
-			questionId: 1,
+			questionId: null,
 			questionText,
 			questionType,
 			options: questionType === 2 || questionType === 3 || questionType === 5 || questionType === 6 ? filteredOptions : [],
 		};
+		dispatch(upsertSurveyQuestionThunk({ surveyId: '29f9d348-3f91-4188-a61d-86b3b58e98c0', ...newQuestion }));
 		setSurveyForm((prev: any) => ({
 			...prev,
 			question: [...prev.question, newQuestion],
@@ -173,6 +170,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 			...prev,
 			surveyName: lavel,
 		}));
+		dispatch(updateSurveyThunk({ surveyId, surveyName: lavel, surveyDescription: surveyForm.description }));
 		setIsTitle((prev) => !prev);
 	};
 	const onCanclePageHeading = () => {
@@ -183,6 +181,8 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 			...prev,
 			description: lavel,
 		}));
+		dispatch(updateSurveyThunk({ surveyId, surveyName: surveyForm.surveyName, surveyDescription: lavel }));
+
 		setIsDescription((prev) => !prev);
 	};
 	const onCanclePageTitle = () => {
@@ -197,7 +197,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	useEffect(() => {
 		getQuestions();
 	}, []);
-
+	const handleQuestionSave = (): void => {};
 	return (
 		<Div>
 			<div className='newContaner'>
@@ -366,7 +366,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 
 											{areButtonsVisible && (
 												<div className='form-buttons-container'>
-													<button type='submit' className='save-question-button'>
+													<button type='submit' className='save-question-button' onClick={handleQuestionSave}>
 														Save Question
 													</button>
 													<button type='button' className='cancel-question-button' onClick={handleCancel}>

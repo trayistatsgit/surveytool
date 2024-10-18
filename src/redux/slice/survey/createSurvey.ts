@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createSliceHook } from '../../../customHooks/createSliceHook';
-import { createSurveyIdApi } from '../../../services/survey/createSurvey.service';
+import { createSurveyIdApi } from '../../../services/survey/survey.service';
 export const createSurveyId = createAsyncThunk('create-survey-id', async (_, { rejectWithValue }) => {
 	try {
 		const response = await createSurveyIdApi();

@@ -1,12 +1,11 @@
-@import '../../mixins.scss';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@use '../../mixins.scss';
 
 .parentNavDiv {
 	position: sticky;
 	top: 0;
 	z-index: 20 !important;
 
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		position: sticky;
 		top: 0;
 		z-index: 1;
@@ -29,28 +28,28 @@
 	font-size: 1.2rem;
 	height: 104px;
 	transition: top 0.3s;
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		display: flex;
 		justify-content: space-between;
 		font-size: 1rem;
 		height: 90px;
 	}
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		font-size: 1rem;
 		height: 90px;
 	}
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		font-size: 1.2rem;
 		height: 90px;
 	}
 
-	@include bp('monitor') {
+	@include mixins.bp('monitor') {
 		font-size: 1.2rem;
 		height: 90px;
 	}
 
-	@include bp('xl') {
+	@include mixins.bp('xl') {
 		width: 100%;
 		height: 90px;
 	}
@@ -68,34 +67,34 @@
 	border-radius: 40px;
 	height: 104px;
 	transition: top 0.3s;
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		margin-top: 0rem;
 		padding-top: 0px;
 		font-size: 1rem;
 		margin-inline: 1rem;
 		height: 90px;
 	}
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		font-size: 1rem;
 		margin-inline: 1rem;
 		padding-inline: 10px;
 		height: 90px;
 	}
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		font-size: 1.2rem;
 		margin-inline: 2rem;
 		padding-inline: 15px;
 		height: 90px;
 	}
 
-	@include bp('monitor') {
+	@include mixins.bp('monitor') {
 		font-size: 1.2rem;
 		margin-inline: 5rem;
 		height: 90px;
 	}
 
-	@include bp('xl') {
+	@include mixins.bp('xl') {
 		width: 90%;
 		margin-inline: auto;
 		height: 90px;
@@ -118,22 +117,22 @@
 	height: 90px;
 	z-index: 1;
 	width: 90%;
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		width: 98%;
 	}
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		width: 98%;
 	}
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		width: 90%;
 	}
 
-	@include bp('monitor') {
+	@include mixins.bp('monitor') {
 		width: 90%;
 	}
 
-	@include bp('xl') {
+	@include mixins.bp('xl') {
 		width: 90%;
 	}
 }
@@ -160,7 +159,7 @@
 	text-decoration: none;
 	margin-left: 25px;
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		margin-left: 20px;
 	}
 }
@@ -176,7 +175,7 @@
 	list-style: none;
 	text-align: center;
 
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		display: none;
 		height: 70%;
 	}
@@ -185,11 +184,11 @@
 		width: 100% !important;
 	}
 
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		grid-gap: 10px;
 	}
 
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		display: flex;
 		grid-gap: 68px;
 		list-style: none;
@@ -198,11 +197,11 @@
 		font-size: 15px;
 	}
 
-	@include bp('monitor') {
+	@include mixins.bp('monitor') {
 		grid-gap: 40px;
 	}
 
-	@include bp('xl') {
+	@include mixins.bp('xl') {
 		grid-gap: 40px;
 	}
 }
@@ -217,13 +216,13 @@
 	font-size: 16px;
 	line-height: 19.2px;
 	font-weight: 600;
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		height: 20px;
 	}
-	@include bp('desktop') {
+	@include mixins.bp('desktop') {
 		
 	}
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 	}
 }
 
@@ -255,11 +254,11 @@
 	transition: background-color 0.3s ease;
 	margin: 25px;
 	gap: 10px;
-	@include bp('mobile') {
+	@include mixins.bp('mobile') {
 		width: auto;
 		padding: 1.3rem;
 	}
-	@include bp('tablet') {
+	@include mixins.bp('tablet') {
 		margin-left: 0;
 	}
 }

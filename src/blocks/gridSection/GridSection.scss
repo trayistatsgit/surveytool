@@ -1,21 +1,21 @@
-@import '../../mixins.scss';
-@import '../../blocks/variables/Variable.scss';
+@use '../../mixins.scss';
+@use '../../blocks/variables/Variable.scss';
 
 .profile-grid-section-block {
   padding: 32px;
   border-radius: 8px;
 
-  @include bp('mobile') {
+  @include mixins.bp('mobile') {
     padding: 16px; 
     border-radius: 4px; 
   }
 
-  @include bp('tablet') {
+  @include mixins.bp('tablet') {
     padding: 24px; 
     border-radius: 6px;
   }
 
-  @include bp('desktop') {
+  @include mixins.bp('desktop') {
     padding: 24px; 
     border-radius: 8px; 
   }

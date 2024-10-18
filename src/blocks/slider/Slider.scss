@@ -1,7 +1,6 @@
 /* ImageSlider-signup.css */
 
-@import '../../mixins.scss';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@use '../../mixins.scss';
 
 
 
@@ -16,12 +15,12 @@
     text-align: center;
     align-items: center;
     
-    @include bp('desktop') {
+    @include mixins.bp('desktop') {
       width: 380px;
       height: 345px;
     }
   
-    @include bp('tablet') {
+    @include mixins.bp('tablet') {
       width: 300px;
     }
   }
@@ -31,13 +30,13 @@
     height: 396px;
     border-radius: 63px;
 
-    @include bp('desktop') {
+    @include mixins.bp('desktop') {
       width: 380px;
       height: 346px;
       border-radius: 54px;
     }
   
-    @include bp('tablet') {
+    @include mixins.bp('tablet') {
       width: 320px;
     }
   }
@@ -51,12 +50,12 @@
     line-height: 27px;
     text-align: center;
 
-    @include bp('desktop') {
+    @include mixins.bp('desktop') {
       font-size: 16px;
       line-height: 2px;
     }
   
-    @include bp('tablet') {
+    @include mixins.bp('tablet') {
       font-size: 14px;
       line-height: 2px;
     }
@@ -75,7 +74,7 @@
     color: rgba(255, 255, 255, 1);
     margin-bottom: -15px;
 
-    @include bp('desktop') {
+    @include mixins.bp('desktop') {
       width: 390px;
       height: 28px;
       font-size: 30px;
@@ -84,7 +83,7 @@
       margin-top: 35px;
     }
   
-    @include bp('tablet') {
+    @include mixins.bp('tablet') {
       width: 300px;
       height: 22px;
       font-size: 24px;
@@ -99,12 +98,12 @@
     justify-content: center;
     align-items: center;
     margin-top: -5px;
-    @include bp('desktop') {
+    @include mixins.bp('desktop') {
       width: 390px;
       margin-top: 5px;
     }
   
-    @include bp('tablet') {
+    @include mixins.bp('tablet') {
       width: 300px;
       margin-top: 5px;
     }
@@ -119,13 +118,13 @@
     display: inline-block;
     cursor: pointer;
 
-    @include bp('desktop') {
+    @include mixins.bp('desktop') {
       width: 390px;
       height: 10px;
       width: 10px;
     }
   
-    @include bp('tablet') {
+    @include mixins.bp('tablet') {
       width: 300px;
       height: 8px;
       width: 8px;
@@ -138,11 +137,11 @@
     border-radius: 6px;
     background: #fff;
 
-    @include bp('desktop') {
+    @include mixins.bp('desktop') {
       width: 40px;
     }
   
-    @include bp('tablet') {
+    @include mixins.bp('tablet') {
       width: 30px;
     }
   }

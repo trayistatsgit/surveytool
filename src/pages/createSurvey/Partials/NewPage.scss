@@ -1,4 +1,4 @@
-@import '../../../mixins.scss';
+@use '../../../mixins.scss';
 .container-newPage{
   height: 4rem;
   border: 1px dashed #D0D2D3;
@@ -10,23 +10,23 @@
   margin: auto;
   background-color: white;
 
-  @include bp('xl'){
+  @include mixins.bp('xl'){
   
    width: 56.9% ;
 }
-@include bp('tablet'){
+@include mixins.bp('tablet'){
   
   width: 60%;
 }
-@include bp('desktop'){
+@include mixins.bp('desktop'){
   
   width: 59% ;
 }
-@include bp('mobile'){
+@include mixins.bp('mobile'){
   
   width: 65% ;
 }
-@include bp('monitor'){
+@include mixins.bp('monitor'){
   
   width: 57.6% ;
 }

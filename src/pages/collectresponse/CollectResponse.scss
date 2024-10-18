@@ -1,4 +1,4 @@
-@import'../../mixins.scss';
+@use '../../mixins.scss';
 .main-collect-container{
     display: grid;
     grid-template-columns: repeat( 1fr); 
@@ -7,11 +7,11 @@
     margin: 0px auto;
     width: 65%;
     height: 100%;
-    @include bp('tablet') {
+    @include mixins.bp('tablet') {
         width: 85%;
     }
     
-    @include bp('mobile') {
+    @include mixins.bp('mobile') {
         width: 100%;
         padding: 5px;
         margin: 0;
@@ -27,7 +27,7 @@
     justify-content: space-between;
     margin-top: 20px;
 
-    @include bp('mobile') {
+    @include mixins.bp('mobile') {
         width: 100%;
         margin-left: 0;
         flex-direction: column;
@@ -38,11 +38,11 @@
     display: flex;
     gap: 10px;
    width: 530px;
-   @include bp('tablet') {
+   @include mixins.bp('tablet') {
     width: 100%;
 }
 
-@include bp('mobile') {
+@include mixins.bp('mobile') {
     flex-direction: column;
     gap: 5px;
     width: 100%;
@@ -59,7 +59,7 @@
 background-color: rgb(49, 155, 49);
 border: none;
 width: 100%;
-@include bp('mobile') {
+@include mixins.bp('mobile') {
     font-size: 12px; // Adjust font size for mobile
 }
 }
@@ -70,7 +70,7 @@ width: 100%;
     margin-left: 20px;
     margin-top: 20px;
     position: relative;
-    @include bp('mobile') {
+    @include mixins.bp('mobile') {
         width: 80%;
         margin-left: 0;
     }
@@ -78,7 +78,7 @@ width: 100%;
 .total-response-container{
     display: flex;
     width: 100%;
-    @include bp('mobile') {
+    @include mixins.bp('mobile') {
         flex-direction: column; // Stack items vertically on mobile
     }
 
@@ -99,7 +99,7 @@ width: 100%;
     margin: 0 10px;
     margin-top:25px;
     padding-left: 20px;
-    @include bp('mobile') {
+    @include mixins.bp('mobile') {
         width: 100%;
         margin: 0;
         padding-left: 10px;
@@ -114,7 +114,7 @@ width: 100%;
    
     border-top: 60px solid #f1c40f; 
     border-left: 65px solid transparent;
-    @include bp('mobile') {
+    @include mixins.bp('mobile') {
         border-top-width: 40px; // Adjust size for smaller screens
         border-left-width: 45px;
     }
@@ -134,7 +134,7 @@ width: 100%;
     // margin-top: 10px;
     width: 92%;
     margin-left: 20px;
-    @include bp('mobile') {
+    @include mixins.bp('mobile') {
         width: 100%;
         margin-left: 0;
     }
@@ -144,21 +144,21 @@ width: 100%;
     height: 50px;
     background-color:white;
     border-bottom: solid 1px gray;
-    @include bp('mobile') {
+    @include mixins.bp('mobile') {
         height: 40px;
     }
 
 }
 .total-response-count{
     margin-top: 8px;
-    @include bp('mobile') {
+    @include mixins.bp('mobile') {
         margin-top: 5px;
     }
 }
 .manage-notification{
     padding-top: 10px;
     color: rgb(164, 207, 248);
-    @include bp('mobile') {
+    @include mixins.bp('mobile') {
         padding-top: 5px;
     }
 
@@ -179,7 +179,7 @@ width: 100%;
     top: 10px;
     right: 10px;
     position: absolute;
-    @include bp('mobile') {
+    @include mixins.bp('mobile') {
         top: 5px;
         right: 5px;
     }
