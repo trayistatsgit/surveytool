@@ -10,8 +10,6 @@ import { createQuestionType } from '../../redux/slice/questionType/questionType'
 import { useAppDispatch } from '../../redux/store';
 import { upsertSurveyQuestionThunk } from '../../redux/slice/survey/upsertSurveyQuestion';
 import { updateSurveyThunk } from '../../redux/slice/survey/updateSurvey';
-//import { useSelector } from 'react-redux';
-
 export interface Question {
 	questionId: number | null;
 	questionText: string;
@@ -48,7 +46,6 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	const [questionTypes, setQuestionTypes] = useState<QuestionTypesResponse[]>([]);
 	const [searchParams] = useSearchParams();
 	const surveyId = searchParams.get('si') || '';
-	console.log('>>>>>>si', surveyId);
 	interface QuestionTypesResponse {
 		questionTypes: QuestionType[];
 	}
@@ -73,9 +70,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		],
 	};
 	const [surveyForm, setSurveyForm] = useState(surveyInitialData);
-	console.log(questionTypes);
 	const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		console.log('>>>>>>>>>e', e.target.value);
 		const newType = parseInt(e.target.value, 10);
 		setQuestionType(newType);
 		setAreButtonsVisible(true);
@@ -154,7 +149,6 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		setIsFormVisible(true);
 		setAreButtonsVisible(true);
 	};
-	console.log('surveyFormDAta', surveyForm);
 	const handleCancel = () => {
 		// resetForm();
 		setAreButtonsVisible(false);
