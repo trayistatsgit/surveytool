@@ -4,9 +4,16 @@ export const createSurveyIdApi = async <T>(): Promise<T> => {
 	const response = await axiosInstance.post(`survey/create-survey-id`, {});
 	return response.data as T;
 };
+export interface ISurveyDetail {
+	currentPage: number;
+}
 
-export const surveyDetailApi = async <T>(): Promise<T> => {
-	const response = await axiosInstance.get(`survey/survey-detail`, {});
+export const surveyDetailApi = async <T>(details: ISurveyDetail): Promise<T> => {
+	const { currentPage } = details;
+	const response = await axiosInstance.get(`survey/survey-detail`, {
+		params: { currentPage }, // Pass it correctly as query params
+	});
+
 	return response.data as T;
 };
 export interface IUpdateSurvey {
