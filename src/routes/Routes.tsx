@@ -13,6 +13,7 @@ import DesignSurvey from '../pages/designsurvey/DesignSurvey';
 import CollectResponse from '../pages/collectresponse/CollectResponse';
 import AnalyzeResults from '../pages/analyzeresults/AnalyzerResult';
 import PresentResult from '../pages/presentresult/PresentResult';
+import NewPreview from '../pages/createSurvey/Partials/NewPreview';
 
 const router = createBrowserRouter([
 	{
@@ -24,12 +25,8 @@ const router = createBrowserRouter([
 				element: <StartingPage />,
 			},
 			{
-				path: '/create-survey',
+				path: '/create-survey/:surveyId',
 				element: <CreateSurvey />,
-			},
-			{
-				path: '/survey-preview',
-				element: <SurveyPreview />,
 			},
 			{
 				path: '/my-surveys',
@@ -57,6 +54,10 @@ const router = createBrowserRouter([
 				element: <PresentResult />,
 			},
 		],
+	},
+	{
+		path: '/survey-preview/:surveyId',
+		element: <NewPreview />,
 	},
 	{
 		path: '/sign-up',

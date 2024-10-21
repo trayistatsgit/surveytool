@@ -23,3 +23,7 @@ export const upsertSurveyQuestionApi = async <T>(bodyData: IUpsertSurveyQuestion
 	const response = await axiosInstance.post(`survey/upsert-survey-question`, { ...bodyData });
 	return response.data as T;
 };
+export const getSurveyByIdApi = async <T>(surveyId: string): Promise<T> => {
+	const response = await axiosInstance.get(`survey/get-survey/${surveyId}`);
+	return response.data as T;
+};

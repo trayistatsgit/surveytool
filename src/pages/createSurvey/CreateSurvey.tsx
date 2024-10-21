@@ -4,23 +4,24 @@ import { minus, plus } from '../../assets/common-img';
 import NewPage from './Partials/NewPage';
 import { Button, Div } from '../../blocks';
 import LogoCreateSurvey from './Partials/LogoCreateSurvey';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import NewTextEditor from '../../components/textEditorForm/NewTextEditor';
 import { createQuestionType } from '../../redux/slice/questionType/questionType';
-import { useAppDispatch } from '../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { upsertSurveyQuestionThunk } from '../../redux/slice/survey/upsertSurveyQuestion';
 import { updateSurveyThunk } from '../../redux/slice/survey/updateSurvey';
+import { getSurveyByIdThunk } from '../../redux/slice/survey/getSurveyById';
 //import { useSelector } from 'react-redux';
 
 export interface Question {
 	questionId: number | null;
-	questionText: string;
+	questionName: string;
 	questionType: number;
 	options?: IQuestionName[];
 }
 interface IQuestionName {
 	id?: string | number;
-	optionName?: string;
+	optionText?: string;
 }
 interface CreateSurveyFormProps {
 	onSubmit?: (responses: Question[]) => void;
@@ -38,57 +39,55 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	const [questions, setQuestions] = useState<Question[]>([]);
 	const [newQuestions, setNewQuestions] = useState<Question[]>([]);
 	const [questionType, setQuestionType] = useState<Question['questionType']>(1);
-	const [questionText, setQuestionText] = useState<string>('');
+	const [questionName, setQuestionText] = useState<string>('');
 	const [options, setOptions] = useState<string[]>(['']);
 	const [isFormVisible, setIsFormVisible] = useState<boolean>(true);
 	const [areButtonsVisible, setAreButtonsVisible] = useState(true);
 	const [uploadedLogo, setUploadedLogo] = useState<string | null>();
 	const [isTitle, setIsTitle] = useState<boolean>(false);
-	const [isDescription, setIsDescription] = useState<boolean>(false);
+	const [isSurveyDescription, setIsSurveyDescription] = useState<boolean>(false);
 	const [questionTypes, setQuestionTypes] = useState<QuestionTypesResponse[]>([]);
 	const [searchParams] = useSearchParams();
-	const surveyId = searchParams.get('si') || '';
+	const { surveyId } = useParams();
 	console.log('>>>>>>si', surveyId);
 	interface QuestionTypesResponse {
 		questionTypes: QuestionType[];
 	}
 	const surveyInitialData = {
 		surveyName: 'Untitle',
-		description: 'Untitle',
+		surveyDescription: 'Untitle',
 		logo: '',
 		pageNo: 1,
 		surveyId: surveyId,
-		question: [
+		surveyQuestions: [
 			{
 				questionType: 4,
 				questionId: 1,
-				questionText: '',
+				questionName: '',
 				options: [
 					{
 						optionId: 1,
-						optionName: '',
+						optionText: '',
 					},
 				],
 			},
 		],
 	};
 	const [surveyForm, setSurveyForm] = useState(surveyInitialData);
-	console.log(questionTypes);
 	const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		console.log('>>>>>>>>>e', e.target.value);
 		const newType = parseInt(e.target.value, 10);
 		setQuestionType(newType);
 		setAreButtonsVisible(true);
 		setOptions(newType === 2 || newType === 3 || newType === 5 || newType === 6 ? ['', '', ''] : []);
 	};
-
 	// Question text input change handler
 	const handleQuestionTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		setQuestionText(e.target.value);
 	};
-
+	const { data } = useAppSelector((state) => state.getSurveyByIdSlice);
 	const handlePreviewSurvey = () => {
-		navigate('/survey-preview', { state: { questions, uploadedLogo } });
+		window.open(`/survey-preview/${surveyId}`, '_blank');
+		// navigate('/survey-preview', { state: { questions, uploadedLogo } });
 	};
 
 	// Option input change handler
@@ -116,20 +115,22 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!questionText) {
+		if (!questionName) {
 			return;
 		}
-		const filteredOptions = options.filter((option) => option.trim() !== '').map((option) => ({ optionId: '', optionName: option }));
+		const filteredOptions = options.filter((option) => option.trim() !== '').map((option) => ({ optionId: '', optionText: option }));
 		const newQuestion: Question = {
 			questionId: null,
-			questionText,
+			questionName,
 			questionType,
 			options: questionType === 2 || questionType === 3 || questionType === 5 || questionType === 6 ? filteredOptions : [],
 		};
-		dispatch(upsertSurveyQuestionThunk({ surveyId: '29f9d348-3f91-4188-a61d-86b3b58e98c0', ...newQuestion }));
+		if (surveyId) {
+			dispatch(upsertSurveyQuestionThunk({ surveyId: surveyId, ...newQuestion }));
+		}
 		setSurveyForm((prev: any) => ({
 			...prev,
-			question: [...prev.question, newQuestion],
+			surveyQuestions: [...prev.surveyQuestions, newQuestion],
 		}));
 		setOptions([]);
 		setQuestions([]);
@@ -140,37 +141,29 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		// resetForm();
 		// setAreButtonsVisible(false);
 	};
-	//console.log('questions', questions);
-	// const resetForm = () => {
-	// 	setQuestionText('');
-	// 	setOptions(
-	// 		questionType === 'dropdown' || questionType === 'multipleChoice' || questionType === 'radio' || questionType === 'checkbox'
-	// ? ['', '', ''] : []
-	// 	);
-	// };
 
 	const handleAddNewQuestion = () => {
 		setQuestions([]);
 		setIsFormVisible(true);
 		setAreButtonsVisible(true);
 	};
-	console.log('surveyFormDAta', surveyForm);
 	const handleCancel = () => {
-		// resetForm();
 		setAreButtonsVisible(false);
 	};
 	const handleSurveyEditButton = () => {
 		setIsTitle((prev) => !prev);
 	};
 	const handlePageTitleEdit = () => {
-		setIsDescription((prev) => !prev);
+		setIsSurveyDescription((prev) => !prev);
 	};
 	const onSavePageHeading = (lavel: string) => {
 		setSurveyForm((prev) => ({
 			...prev,
 			surveyName: lavel,
 		}));
-		dispatch(updateSurveyThunk({ surveyId, surveyName: lavel, surveyDescription: surveyForm.description }));
+		if (surveyId) {
+			dispatch(updateSurveyThunk({ surveyId: surveyId || '', surveyName: lavel, surveyDescription: surveyForm.surveyDescription }));
+		}
 		setIsTitle((prev) => !prev);
 	};
 	const onCanclePageHeading = () => {
@@ -179,24 +172,35 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	const onSavePageTitle = (lavel: string) => {
 		setSurveyForm((prev) => ({
 			...prev,
-			description: lavel,
+			surveyDescription: lavel,
 		}));
-		dispatch(updateSurveyThunk({ surveyId, surveyName: surveyForm.surveyName, surveyDescription: lavel }));
+		if (surveyId) {
+			dispatch(updateSurveyThunk({ surveyId: surveyId || '', surveyName: surveyForm.surveyName, surveyDescription: lavel }));
+		}
 
-		setIsDescription((prev) => !prev);
+		setIsSurveyDescription((prev) => !prev);
 	};
 	const onCanclePageTitle = () => {
-		setIsDescription((prev) => !prev);
+		setIsSurveyDescription((prev) => !prev);
 	};
-	//console.log('surveyForm', surveyForm);
 	const getQuestions = async () => {
 		const res = await dispatch(createQuestionType());
-		//	console.log(res);
 		setQuestionTypes(res.payload.data);
 	};
 	useEffect(() => {
 		getQuestions();
 	}, []);
+	useEffect(() => {
+		if (surveyId) {
+			dispatch(getSurveyByIdThunk(surveyId || ''));
+		}
+	}, []);
+	useEffect(() => {
+		const surveyData = data?.data?.[0];
+		const cloneData = JSON.stringify(surveyData);
+		const parseData = JSON.parse(cloneData);
+		setSurveyForm(parseData);
+	}, [data]);
 	const handleQuestionSave = (): void => {};
 	return (
 		<Div>
@@ -223,12 +227,16 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 									)}
 
 									<div className='surveyPage'>
-										{isDescription ? (
-											<NewTextEditor label={surveyForm.description} onSave={onSavePageTitle} onCancel={onCanclePageTitle} />
+										{isSurveyDescription ? (
+											<NewTextEditor
+												label={surveyForm.surveyDescription}
+												onSave={onSavePageTitle}
+												onCancel={onCanclePageTitle}
+											/>
 										) : (
 											<div className='surveyTitle'>
 												<h1>
-													<span>{surveyForm.description}</span>
+													<span>{surveyForm.surveyDescription}</span>
 												</h1>
 												<Button className='editBtn' label='Edit' onClick={handlePageTitleEdit} />
 											</div>
@@ -239,17 +247,17 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 
 									<div>
 										<h3>Questions Preview:</h3>
-										{surveyForm.question.map((q) => (
+										{surveyForm.surveyQuestions.map((q) => (
 											<div key={q.questionId} className='question-preview'>
-												<strong>Question: {q.questionId}</strong> {q.questionText || 'No question text provided'}
+												<strong>Question: {q.questionId}</strong> {q.questionName || 'No question text provided'}
 												<div className='options-preview'>
 													{q.questionType === 2 && q.options && (
 														<select className='preview-dropdown'>
 															{q.options
-																.filter((option) => option.optionName.trim() !== '')
+																.filter((option) => option.optionText.trim() !== '')
 																.map((option, idx) => (
-																	<option key={idx} value={option.optionName}>
-																		{option.optionName}
+																	<option key={idx} value={option.optionText}>
+																		{option.optionText}
 																	</option>
 																))}
 														</select>
@@ -258,33 +266,37 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 													{q.questionType === 3 &&
 														q.options &&
 														q.options
-															.filter((option) => option.optionName.trim() !== '')
+															.filter((option) => option.optionText.trim() !== '')
 															.map((option, idx) => (
 																<div key={idx}>
 																	<input type='checkbox' id={`mc-${q.questionId}-${idx}`} />
-																	<label htmlFor={`mc-${q.questionId}-${idx}`}>{option.optionName}</label>
+																	<label htmlFor={`mc-${q.questionId}-${idx}`}>{option.optionText}</label>
 																</div>
 															))}
 
 													{q.questionType === 5 &&
 														q.options &&
 														q.options
-															.filter((option) => option.optionName.trim() !== '')
+															.filter((option) => option.optionText.trim() !== '')
 															.map((option, idx) => (
 																<div key={idx}>
-																	<input type='radio' name={`radio-${q.questionId}`} id={`radio-${q.questionId}-${idx}`} />
-																	<label htmlFor={`radio-${q.questionId}-${idx}`}>{option.optionName}</label>
+																	<input
+																		type='radio'
+																		name={`radio-${q.questionId}`}
+																		id={`radio-${q.questionId}-${idx}`}
+																	/>
+																	<label htmlFor={`radio-${q.questionId}-${idx}`}>{option.optionText}</label>
 																</div>
 															))}
 
 													{q.questionType === 6 &&
 														q.options &&
 														q.options
-															.filter((option) => option.optionName.trim() !== '')
+															.filter((option) => option.optionText.trim() !== '')
 															.map((option, idx) => (
 																<div key={idx}>
 																	<input type='checkbox' id={`cb-${q.questionId}-${idx}`} />
-																	<label htmlFor={`cb-${q.questionId}-${idx}`}>{option.optionName}</label>
+																	<label htmlFor={`cb-${q.questionId}-${idx}`}>{option.optionText}</label>
 																</div>
 															))}
 
@@ -312,7 +324,12 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 												<div className='question-text-container'>
 													<label className='question-text-label'>
 														Question Text:
-														<input type='text' value={questionText} onChange={handleQuestionTextChange} className='question-text-input' />
+														<input
+															type='text'
+															value={questionName}
+															onChange={handleQuestionTextChange}
+															className='question-text-input'
+														/>
 													</label>
 												</div>
 											</div>
@@ -325,7 +342,13 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 															<div key={index} className='question-option-item'>
 																{questionType === 5 ? (
 																	<>
-																		<input type='radio' name={`radio-group-${index}`} checked={false} disabled className='radio-input' />
+																		<input
+																			type='radio'
+																			name={`radio-group-${index}`}
+																			checked={false}
+																			disabled
+																			className='radio-input'
+																		/>
 																		<input
 																			type='text'
 																			value={option}
@@ -353,9 +376,19 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 																)}
 
 																<div className='option-control-icons'>
-																	<img src={plus} alt='Add option' className='add-option-icon' onClick={handleAddOption} />
+																	<img
+																		src={plus}
+																		alt='Add option'
+																		className='add-option-icon'
+																		onClick={handleAddOption}
+																	/>
 																	{options.length > 1 && (
-																		<img src={minus} alt='Remove option' className='remove-option-icon' onClick={() => handleRemoveOption(index)} />
+																		<img
+																			src={minus}
+																			alt='Remove option'
+																			className='remove-option-icon'
+																			onClick={() => handleRemoveOption(index)}
+																		/>
 																	)}
 																</div>
 															</div>
