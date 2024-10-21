@@ -14,6 +14,7 @@ import CollectResponse from '../pages/collectresponse/CollectResponse';
 import AnalyzeResults from '../pages/analyzeresults/AnalyzerResult';
 import PresentResult from '../pages/presentresult/PresentResult';
 import NewPreview from '../pages/createSurvey/Partials/NewPreview';
+import AttemptSurvey from '../pages/createSurvey/Partials/AttemptSurvey';
 
 const router = createBrowserRouter([
 	{
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
 	{
 		path: '/survey-preview/:surveyId',
 		element: <NewPreview />,
+	},
+	{
+		path: '/survey-attempt/:surveyId',
+		element: <AttemptSurvey />,
 	},
 	{
 		path: '/sign-up',

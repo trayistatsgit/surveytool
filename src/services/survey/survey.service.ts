@@ -10,7 +10,7 @@ export interface IUpdateSurvey {
 	surveyDescription: string;
 }
 export const updateSurveyApi = async <T>(bodyData: IUpdateSurvey): Promise<T> => {
-	const response = await axiosInstance.patch(`survey/update-survey`, { ...bodyData, surveyId: '29f9d348-3f91-4188-a61d-86b3b58e98c0' });
+	const response = await axiosInstance.patch(`survey/update-survey`, { ...bodyData });
 	return response.data as T;
 };
 export interface IUpsertSurveyQuestion {

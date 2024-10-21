@@ -432,7 +432,6 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 											<button className='createEditButton'>EDIT</button>
 										</span>
 									</div>
-
 									<div className='createFooterContainer'>
 										<div className='createFooterDivOne'>
 											<p className='createFooterParaOne'>Powered by</p>

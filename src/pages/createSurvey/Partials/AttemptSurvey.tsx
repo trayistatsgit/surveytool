@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { upsertSurveyQuestionThunk } from '../../../redux/slice/survey/upsertSurveyQuestion';
 import { updateSurveyThunk } from '../../../redux/slice/survey/updateSurvey';
 import { getSurveyByIdThunk } from '../../../redux/slice/survey/getSurveyById';
+import QuestionPreview from './QuestionPreview';
 //import { useSelector } from 'react-redux';
 
 export interface Question {
@@ -30,10 +31,7 @@ interface QuestionType {
 	id: number;
 	name: string;
 }
-
-// Define the structure for the response of the getQuestionTypesApi function
-
-const NewPreview: React.FC<CreateSurveyFormProps> = () => {
+const AttemptSurvey = () => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const { surveyId } = useParams();
@@ -58,6 +56,12 @@ const NewPreview: React.FC<CreateSurveyFormProps> = () => {
 		],
 	};
 	const [surveyForm, setSurveyForm] = useState(surveyInitialData);
+	const [selectedValue, setSelectedValue] = useState<string>('');
+
+	const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		console.log(event.target.value);
+		setSelectedValue(event.target.value); // Update state with the selected value
+	};
 	// Question text input change handle
 	const { data } = useAppSelector((state) => state.getSurveyByIdSlice);
 	const handlePreviewSurvey = () => {
@@ -99,6 +103,9 @@ const NewPreview: React.FC<CreateSurveyFormProps> = () => {
 		const parseData = JSON.parse(cloneData);
 		setSurveyForm(parseData);
 	}, [data]);
+	useEffect(() => {
+		console.log('attemptsurvey');
+	});
 	return (
 		<Div>
 			<div className='newContaner'>
@@ -125,73 +132,18 @@ const NewPreview: React.FC<CreateSurveyFormProps> = () => {
 									</div>
 									<div>
 										<h3>Questions Preview:</h3>
-										{surveyForm.surveyQuestions.map((q, i) => (
-											<div key={q.questionId} className='question-preview'>
-												<strong>Q: {i + 1}</strong> {q.questionName || 'No question text provided'}
-												<div className='options-preview'>
-													{q.questionType === 2 && q.options && (
-														<select className='preview-dropdown'>
-															{q.options
-																.filter((option) => option.optionText.trim() !== '')
-																.map((option, idx) => (
-																	<option key={idx} value={option.optionText}>
-																		{option.optionText}
-																	</option>
-																))}
-														</select>
-													)}
-
-													{q.questionType === 3 &&
-														q.options &&
-														q.options
-															.filter((option) => option.optionText.trim() !== '')
-															.map((option, idx) => (
-																<div key={idx}>
-																	<input type='checkbox' id={`mc-${q.questionId}-${idx}`} />
-																	<label htmlFor={`mc-${q.questionId}-${idx}`}>{option.optionText}</label>
-																</div>
-															))}
-
-													{q.questionType === 5 &&
-														q.options &&
-														q.options
-															.filter((option) => option.optionText.trim() !== '')
-															.map((option, idx) => (
-																<div key={idx}>
-																	<input
-																		type='radio'
-																		name={`radio-${q.questionId}`}
-																		id={`radio-${q.questionId}-${idx}`}
-																	/>
-																	<label htmlFor={`radio-${q.questionId}-${idx}`}>{option.optionText}</label>
-																</div>
-															))}
-
-													{q.questionType === 6 &&
-														q.options &&
-														q.options
-															.filter((option) => option.optionText.trim() !== '')
-															.map((option, idx) => (
-																<div key={idx}>
-																	<input type='checkbox' id={`cb-${q.questionId}-${idx}`} />
-																	<label htmlFor={`cb-${q.questionId}-${idx}`}>{option.optionText}</label>
-																</div>
-															))}
-
-													{q.questionType === 1 && <input type='text' placeholder='Text input preview' />}
-													{q.questionType === 4 && <textarea placeholder='Textarea input preview'></textarea>}
-												</div>
-											</div>
+										{surveyForm.surveyQuestions.map((q) => (
+											<QuestionPreview questions={q} />
 										))}
 									</div>
 								</section>
 								{/* prievw div closed  */}
 								<section className='surveyPage'>
 									{/* <div className='createDoneContainer'>
-										<span>
-											<button className='createEditButton'>EDIT</button>
-										</span>
-									</div> */}
+                                            <span>
+                                                <button className='createEditButton'>EDIT</button>
+                                            </span>
+                                        </div> */}
 
 									<div className='createFooterContainer'>
 										<div className='createFooterDivOne'>
@@ -202,8 +154,8 @@ const NewPreview: React.FC<CreateSurveyFormProps> = () => {
 											</p>
 										</div>
 										{/* <div>
-											<button className='createFooterDivTwo'>Hide Footer</button>
-										</div> */}
+                                                <button className='createFooterDivTwo'>Hide Footer</button>
+                                            </div> */}
 									</div>
 
 									<div className='createPreviewContainer'>
@@ -221,4 +173,4 @@ const NewPreview: React.FC<CreateSurveyFormProps> = () => {
 	);
 };
 
-export default NewPreview;
+export default AttemptSurvey;
