@@ -4,6 +4,11 @@ export const createSurveyIdApi = async <T>(): Promise<T> => {
 	const response = await axiosInstance.post(`survey/create-survey-id`, {});
 	return response.data as T;
 };
+
+export const surveyDetailApi = async <T>(): Promise<T> => {
+	const response = await axiosInstance.get(`survey/survey-detail`, {});
+	return response.data as T;
+};
 export interface IUpdateSurvey {
 	surveyId: string;
 	surveyName: string;
@@ -21,11 +26,5 @@ export interface IUpsertSurveyQuestion {
 }
 export const upsertSurveyQuestionApi = async <T>(bodyData: IUpsertSurveyQuestion): Promise<T> => {
 	const response = await axiosInstance.post(`survey/upsert-survey-question`, { ...bodyData });
-	return response.data as T;
-};
-
-export const detailSurveyApi = async <T>(): Promise<T> => {
-	const response = await axiosInstance.post(`survey/survey-detail`, {});
-	console.log('ram', response);
 	return response.data as T;
 };
