@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { useEffect, useState } from 'react';
 import './CreateSurvey.scss';
 import { minus, plus } from '../../assets/common-img';
@@ -49,7 +50,6 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 	const [questionTypes, setQuestionTypes] = useState<QuestionTypesResponse[]>([]);
 	const [searchParams] = useSearchParams();
 	const { surveyId } = useParams();
-	console.log('>>>>>>si', surveyId);
 	interface QuestionTypesResponse {
 		questionTypes: QuestionType[];
 	}

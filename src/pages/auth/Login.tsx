@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import React, { useState, useEffect } from 'react';
 import './SignUp.scss';
 import { InputAtom } from '../../blocks/input/Input';
 import '../../assets/signup-img';
@@ -12,11 +13,15 @@ import { Button } from '../../blocks/button/ButtonAtom';
 import Slider from '../../blocks/slider/Slider';
 import { logo } from '../../assets/signup-img';
 import { useNavigate } from 'react-router-dom';
+import { loginThunk } from '../../redux/slice/auth/login';
 import RadioButton from '../../atoms/RadioButton/RadioButton';
+import { useDispatch } from 'react-redux';
 
-const LogIn = () => {
+const LogIn: React.FC = () => {
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
-
+	const [formData, setFormData] = useState({ email: '', password: '' });
+	const [rememberMe, setRememberMe] = useState(false);
 	const images = [
 		{
 			src: Slide1,
@@ -35,14 +40,27 @@ const LogIn = () => {
 		},
 	];
 
-	const handleSignInClick = () => {
-		navigate('/sign-up');
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value, type, checked } = e.target;
+		if (type === 'checkbox') {
+			setRememberMe(checked);
+		} else {
+			setFormData((prev) => ({ ...prev, [name]: value }));
+		}
 	};
 
-	const handleForgotClick = () => {
-		navigate('/forgot-password');
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		navigate('/dashboard');
 	};
-
+	const getQuestions = async () => {
+		const querydata = { formData };
+		// eslint-disable-next-line no-unused-vars
+		dispatch(loginThunk(querydata));
+	};
+	useEffect(() => {
+		getQuestions();
+	}, [formData]);
 
 	return (
 		<div className='container-signup'>
@@ -51,37 +69,52 @@ const LogIn = () => {
 					<div className='headText'>
 						<div className='head-login'>
 							<Typography className='head-login' label='Welcome Survey Tools' fontSize='fontSize36' />
-							<img src={logo} className='logo-login' alt='' />
+							<img src={logo} className='logo-login' alt='Logo' />
 						</div>
-						<div className='text-signup'>
-							<Typography label='Market Research Operations Experts' className='text-signup' />
-						</div>
+						<Typography label='Market Research Operations Experts' className='text-signup' />
 					</div>
 
-					<div className='inputForm'>
-						<div>
-							<Typography label='Email' className='label-login' fontWeightstest={500} fontSize='fontSize14' />
-						</div>
-						<InputAtom className='input-signup' imageUrlInput={Mail} placeholder='Email Address' />
+					<form className='inputForm' onSubmit={handleSubmit}>
+						<label htmlFor='email' className='label-login'>
+							<Typography label='Email' fontWeightstest={500} fontSize='fontSize14' />
+						</label>
+						<InputAtom
+							className='input-signup'
+							imageUrlInput={Mail}
+							placeholder='Email Address'
+							name='email'
+							value={formData.email}
+							onChange={handleChange}
+						/>
 
-						<div>
-							<Typography label='Password' fontWeightstest={500} className='label-login' fontSize='fontSize14' />
-						</div>
-						<div className='input-signup'>
-							<InputAtom placeholder='Password' type='password' />
-						</div>
+						<label htmlFor='password' className='label-login'>
+							<Typography label='Password' fontWeightstest={500} fontSize='fontSize14' />
+						</label>
+						<InputAtom
+							className='input-signup'
+							type='password'
+							placeholder='Password'
+							name='password'
+							value={formData.password}
+							onChange={handleChange}
+						/>
 
 						<div className='justify__space_between'>
 							<div className='container-radio'>
-								<RadioButton name='group1' />
-								<Typography className='remember_me' label='Remember me' fontWeightstest={500} lineHeight='16.8px' fontSize='fontSize14' />
+								<RadioButton name='rememberMe' checked={rememberMe} onChange={handleChange} />
+								<Typography label='Remember me' fontWeightstest={500} fontSize='fontSize14' />
 							</div>
-							<Typography className='forgot__password' label='Forgot Password?' onClick={handleForgotClick} fontWeightstest={500} lineHeight='16.8px' fontSize='fontSize14' />
+							<Typography
+								className='forgot__password'
+								label='Forgot Password?'
+								onClick={() => navigate('/forgot-password')}
+								fontWeightstest={500}
+								fontSize='fontSize14'
+							/>
 						</div>
-						<div>
-							<Button className='signup-signup' label='Sign In' />
-						</div>
-					</div>
+
+						<Button className='signup-signup' label='Sign In' type='submit' />
+					</form>
 
 					<div className='line-signup'>
 						<hr className='linehalf' />
@@ -95,11 +128,12 @@ const LogIn = () => {
 					</div>
 
 					<div className='bottom'>
-						<Typography className='bottomtext' label='Don’t have a account?' />
-						<Typography className='highlight-check' label='Sign In' onClick={handleSignInClick} />
+						<Typography className='bottomtext' label='Don’t have an account?' />
+						<Typography className='highlight-check' label='Sign Up' onClick={() => navigate('/sign-up')} />
 					</div>
 				</div>
 			</div>
+
 			<div className='split-signup right-signup'>
 				<div className='centre-signup'>
 					<div className='vectorimg'>

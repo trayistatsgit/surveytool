@@ -45,7 +45,13 @@ const ForgotPassword = () => {
 				<div className='centre-signup'>
 					<div className='headText'>
 						<div className='head-forgot'>
-							<Typography className='head-forgot' fontWeightstest={600} lineHeight='24px' label='Forgot your password?' fontSize='fontSize30' />
+							<Typography
+								className='head-forgot'
+								fontWeightstest={600}
+								lineHeight='24px'
+								label='Forgot your password?'
+								fontSize='fontSize30'
+							/>
 						</div>
 						<div className='text-forgot'>
 							<Typography label='Please enter your email id we will send you the link to your email id.' className='text-forgot' />
