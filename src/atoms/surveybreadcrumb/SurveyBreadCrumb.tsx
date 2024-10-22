@@ -3,7 +3,7 @@ import BreadCrumb from '../breadcrumb/BreadCrumb';
 interface ISurveyBreadCrumb {
 	surveyId: string;
 }
-const SurveyBreadCrumb: React.FC<ISurveyBreadCrumb> = ({ surveyId }) => {
+const SurveyBreadCrumb: React.FC<ISurveyBreadCrumb> = () => {
 	const tabs = [
 		{ label: 'SUMMARY', path: '/summary' },
 		{ label: 'DESIGN SURVEY', path: `/create-survey/29f9d348-3f91-4188-a61d-86b3b58e98c0` },

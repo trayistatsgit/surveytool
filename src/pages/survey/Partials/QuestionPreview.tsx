@@ -1,26 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-// Define the type for options
 interface Option {
-	optionId: number; // Assuming optionId is a string
+	optionId: number;
 	optionText: string;
 }
 
-// Define the type for the question
-interface Question {
-	questionId: string; // Assuming questionId is a string
+export interface Question {
+	questionId: number;
 	questionName?: string;
-	questionType: number; // Type of question (1, 2, 3, 4, 5, or 6)
+	questionType: number;
 	options: Option[];
 }
 
-// Props type for the component
-interface QuestionPreviewProps {
-	questions: Question;
+interface AggregateData {
+	questionId: number;
+	questionType: number;
+	options: number | string | number[];
 }
 
-const QuestionPreview: React.FC<QuestionPreviewProps> = ({ questions }) => {
-	const { questionId, questionName, questionType, options } = questions;
+interface QuestionPreviewProps {
+	questions: Question;
+	setAggrigateData: React.Dispatch<React.SetStateAction<AggregateData[]>>;
+	qNumber: number;
+}
+
+const QuestionPreview: React.FC<QuestionPreviewProps> = ({ questions, setAggrigateData, qNumber }) => {
+	const { questionId, questionName, questionType, options = [] } = questions;
 
 	// State to hold selected values
 	const [selectedValue, setSelectedValue] = useState<string | null>(null); // For dropdown
@@ -28,68 +33,73 @@ const QuestionPreview: React.FC<QuestionPreviewProps> = ({ questions }) => {
 	const [selectedRadio, setSelectedRadio] = useState<number | null>(null); // For radio buttons
 	const [textInputValue, setTextInputValue] = useState<string>(''); // For text input
 	const [textareaValue, setTextareaValue] = useState<string>(''); // For textarea
-	const [aggrigateData, setAggrigateData] = useState<any[]>([]);
+
+	// Create the data object for submission
+	const createDataObject = (updatedValue: number | string | number[]): AggregateData => ({
+		questionId,
+		questionType,
+		options: updatedValue,
+	});
+
+	// Handle form submission
+	const handleSubmit = (updatedValue: number | string | number[]) => {
+		const data = createDataObject(updatedValue);
+
+		setAggrigateData((prevData) => {
+			const existingEntryIndex = prevData.findIndex((entry) => entry.questionId === questionId);
+
+			if (existingEntryIndex !== -1) {
+				const updatedData = prevData.map((entry, index) => (index === existingEntryIndex ? data : entry));
+				return updatedData;
+			} else {
+				// Add new entry if it doesn't exist
+				return [...prevData, data];
+			}
+		});
+	};
+
 	// Handle dropdown change
 	const handleDropdownChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-		console.log('SelectedValue', event.target.value);
-		setSelectedValue(event.target.value);
+		const value = event.target.value;
+		setSelectedValue(value);
+		handleSubmit(value);
 	};
 
 	// Handle checkbox change
 	const handleCheckboxChange = (optionId: number) => {
-		console.log('SelectedCheckboxes', optionId);
 		setSelectedCheckboxes((prev) => {
-			const newSelection = prev.includes(optionId)
-				? prev.filter((id) => id !== optionId) // Remove the option if it's already selected
-				: [...prev, optionId]; // Add the option if it's not selected
-			return newSelection; // Return the updated array
+			const newSelection = prev.includes(optionId) ? prev.filter((id) => id !== optionId) : [...prev, optionId];
+			handleSubmit(newSelection);
+			return newSelection;
 		});
 	};
+
 	// Handle text input change
 	const handleTextInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setTextInputValue(event.target.value);
+		const value = event.target.value;
+		setTextInputValue(value);
+		handleSubmit(value);
 	};
 
 	// Handle textarea change
 	const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-		setTextareaValue(event.target.value);
-	};
-	const createDataObject = () => {
-		// Define the type of the options mapping
-		const optionsMapping: Record<number, number | string | null | number[]> = {
-			2: selectedValue,
-			3: Array.from(selectedCheckboxes),
-			5: selectedRadio,
-			1: textInputValue,
-			4: textareaValue,
-		};
-
-		const dataObject = {
-			questionId,
-			questionType,
-			options: optionsMapping[questionType] || [], // Default to an empty array if questionType is not found
-		};
-
-		console.log(aggrigateData, 'Data to be sent to server:', dataObject);
-		// You can now send dataObject to your server using fetch or axios
+		const value = event.target.value;
+		setTextareaValue(value);
+		handleSubmit(value);
 	};
 
-	// Handle form submission
-	const handleSubmit = () => {
-		// event.preventDefault();
-		const data = createDataObject(); // Call function to create data object
-		// setAggrigateData([...aggrigateData, data]);
-	};
-	console.log(handleSubmit());
 	// Handle radio change
 	const handleRadioChange = (optionId: number) => {
-		console.log('SelectedRadio', optionId);
 		setSelectedRadio(optionId);
+		handleSubmit(optionId);
 	};
-	console.log('SelectedCheckboxes', selectedCheckboxes);
+
 	// Render function for dropdown
 	const renderDropdown = () => (
 		<select className='preview-dropdown' value={selectedValue || ''} onChange={handleDropdownChange}>
+			<option value='' disabled>
+				Select an option
+			</option>
 			{options
 				.filter((option) => option.optionText.trim() !== '')
 				.map((option, idx) => (
@@ -110,7 +120,7 @@ const QuestionPreview: React.FC<QuestionPreviewProps> = ({ questions }) => {
 						<input
 							type='checkbox'
 							id={`mc-${questionId}-${idx}`}
-							checked={selectedCheckboxes.includes(option.optionId)} // Determine if checked
+							checked={selectedCheckboxes.includes(option.optionId)}
 							onChange={() => handleCheckboxChange(option.optionId)}
 						/>
 						<label htmlFor={`mc-${questionId}-${idx}`}>{option.optionText}</label>
@@ -130,7 +140,7 @@ const QuestionPreview: React.FC<QuestionPreviewProps> = ({ questions }) => {
 							type='radio'
 							name={`radio-${questionId}`}
 							id={`radio-${questionId}-${idx}`}
-							checked={selectedRadio === option.optionId} // Determine if checked
+							checked={selectedRadio === option.optionId}
 							onChange={() => handleRadioChange(option.optionId)}
 						/>
 						<label htmlFor={`radio-${questionId}-${idx}`}>{option.optionText}</label>
@@ -140,23 +150,10 @@ const QuestionPreview: React.FC<QuestionPreviewProps> = ({ questions }) => {
 	);
 
 	// Render function for text inputs
-	const renderTextInput = () => (
-		<input
-			type='text'
-			placeholder='Text input preview'
-			value={textInputValue} // Controlled input
-			onChange={handleTextInputChange} // Update state on change
-		/>
-	);
+	const renderTextInput = () => <input type='text' placeholder='Text input preview' value={textInputValue} onChange={handleTextInputChange} />;
 
 	// Render function for textarea
-	const renderTextarea = () => (
-		<textarea
-			placeholder='Textarea input preview'
-			value={textareaValue} // Controlled textarea
-			onChange={handleTextareaChange} // Update state on change
-		/>
-	);
+	const renderTextarea = () => <textarea placeholder='Textarea input preview' value={textareaValue} onChange={handleTextareaChange} />;
 
 	// Function to render the appropriate question type
 	const renderQuestionType = () => {
@@ -172,7 +169,7 @@ const QuestionPreview: React.FC<QuestionPreviewProps> = ({ questions }) => {
 			case 5:
 				return renderRadios();
 			case 6:
-				return renderCheckboxes(); // Assuming type 6 uses checkboxes
+				return renderCheckboxes();
 			default:
 				return null;
 		}
@@ -180,7 +177,7 @@ const QuestionPreview: React.FC<QuestionPreviewProps> = ({ questions }) => {
 
 	return (
 		<div key={questionId} className='question-preview'>
-			<strong>Question: {questionId}</strong> {questionName || 'No question text provided'}
+			<strong>Question: {qNumber}</strong> {questionName || 'No question text provided'}
 			<div className='options-preview'>{renderQuestionType()}</div>
 		</div>
 	);

@@ -14,7 +14,7 @@ import { logo } from '../../assets/signup-img';
 import { useNavigate } from 'react-router-dom';
 import RadioButton from '../../atoms/RadioButton/RadioButton';
 
-const LogIn = () => {
+const LogIn: React.FC = () => {
 	const navigate = useNavigate();
 
 	const images = [
@@ -42,7 +42,6 @@ const LogIn = () => {
 	const handleForgotClick = () => {
 		navigate('/forgot-password');
 	};
-
 
 	return (
 		<div className='container-signup'>
@@ -74,9 +73,22 @@ const LogIn = () => {
 						<div className='justify__space_between'>
 							<div className='container-radio'>
 								<RadioButton name='group1' />
-								<Typography className='remember_me' label='Remember me' fontWeightstest={500} lineHeight='16.8px' fontSize='fontSize14' />
+								<Typography
+									className='remember_me'
+									label='Remember me'
+									fontWeightstest={500}
+									lineHeight='lineHeight22'
+									fontSize='fontSize14'
+								/>
 							</div>
-							<Typography className='forgot__password' label='Forgot Password?' onClick={handleForgotClick} fontWeightstest={500} lineHeight='16.8px' fontSize='fontSize14' />
+							<Typography
+								className='forgot__password'
+								label='Forgot Password?'
+								onClick={handleForgotClick}
+								fontWeightstest={500}
+								lineHeight='lineHeight22'
+								fontSize='fontSize14'
+							/>
 						</div>
 						<div>
 							<Button className='signup-signup' label='Sign In' />

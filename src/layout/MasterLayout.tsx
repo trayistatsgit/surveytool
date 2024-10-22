@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 import useStickyNavbar from '../customHooks/useStickyNavbar';
 import NavbarHome from '../components/navbar/NavbarHome';
-import SurveyBreadCrumb from '../atoms/surveybreadcrumb/SurveyBreadCrumb';
 
-const MasterLayout = () => {
+const MasterLayout: React.FC = () => {
 	const { scrollContainerRef, isScrolled } = useStickyNavbar(10);
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: 'white' }}>

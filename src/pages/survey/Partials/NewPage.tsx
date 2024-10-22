@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './NewPage.scss';
-import CreateSurvey from '../CreateSurvey';
 
 interface SurveyResponse {
-	[key: string]: any;
+	[key: string]: unknown;
 }
 
 const NewPage: React.FC<SurveyResponse> = () => {
@@ -11,13 +10,11 @@ const NewPage: React.FC<SurveyResponse> = () => {
 
 	const addClone = () => {
 		setClones([...clones, clones.length]);
-
-		console.log(...clones);
 	};
 
-	const handleSubmit = (responses: SurveyResponse) => {
-		console.log(responses);
-	};
+	// const handleSubmit = (responses: SurveyResponse) => {
+	// 	console.log(responses);
+	// };
 
 	return (
 		<div>
@@ -28,9 +25,9 @@ const NewPage: React.FC<SurveyResponse> = () => {
 				<p className='newPage-text'>NEW PAGE</p>
 			</div>
 			<div className=''>
-				{clones.map((_, index) => (
-					<CreateSurvey key={index} onSubmit={handleSubmit} />
-				))}
+				{/* {clones.map((_, index) => (
+					<CreateSurvey />
+				))} */}
 			</div>
 		</div>
 	);

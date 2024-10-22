@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import CardAtom from '../../atoms/cardAtom/CardAtom';
 import './StartingPage.scss';
 import { createSurveyId } from '../../redux/slice/survey/createSurvey';

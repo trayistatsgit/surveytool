@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../CreateSurvey.scss';
-import { minus, plus } from '../../../assets/common-img';
-import NewPage from '../Partials/NewPage';
-import { Button, Div } from '../../../blocks';
-import LogoCreateSurvey from '../Partials/LogoCreateSurvey';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import NewTextEditor from '../../../components/textEditorForm/NewTextEditor';
-import { createQuestionType } from '../../../redux/slice/questionType/questionType';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
-import { upsertSurveyQuestionThunk } from '../../../redux/slice/survey/upsertSurveyQuestion';
-import { updateSurveyThunk } from '../../../redux/slice/survey/updateSurvey';
+import { Div } from '../../../blocks';
+import { useParams } from 'react-router-dom';
 import { getSurveyByIdThunk } from '../../../redux/slice/survey/getSurveyById';
-//import { useSelector } from 'react-redux';
 
 export interface Question {
 	questionId: number | null;
@@ -23,18 +15,8 @@ interface IQuestionName {
 	id?: string | number;
 	optionText?: string;
 }
-interface CreateSurveyFormProps {
-	onSubmit?: (responses: Question[]) => void;
-}
-interface QuestionType {
-	id: number;
-	name: string;
-}
 
-// Define the structure for the response of the getQuestionTypesApi function
-
-const NewPreview: React.FC<CreateSurveyFormProps> = () => {
-	const navigate = useNavigate();
+const PreviewSurvey: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const { surveyId } = useParams();
 	const surveyInitialData = {
@@ -62,34 +44,8 @@ const NewPreview: React.FC<CreateSurveyFormProps> = () => {
 	const { data } = useAppSelector((state) => state.getSurveyByIdSlice);
 	const handlePreviewSurvey = () => {
 		window.open(`/survey-preview/${surveyId}`, '_blank');
-		// navigate('/survey-preview', { state: { questions, uploadedLogo } });
 	};
-	// const handleSubmit = async (e: React.FormEvent) => {
-	// 	e.preventDefault();
-	// 	if (!questionName) {
-	// 		return;
-	// 	}
-	// 	const filteredOptions = options.filter((option) => option.trim() !== '').map((option) => ({ optionId: '', optionText: option }));
-	// 	const newQuestion: Question = {
-	// 		questionId: null,
-	// 		questionName,
-	// 		questionType,
-	// 		options: questionType === 2 || questionType === 3 || questionType === 5 || questionType === 6 ? filteredOptions : [],
-	// 	};
-	// 	dispatch(upsertSurveyQuestionThunk({ surveyId: '29f9d348-3f91-4188-a61d-86b3b58e98c0', ...newQuestion }));
-	// 	setSurveyForm((prev: any) => ({
-	// 		...prev,
-	// 		surveyQuestions: [...prev.surveyQuestions, newQuestion],
-	// 	}));
-	// 	setOptions([]);
-	// 	setQuestions([]);
-	// 	setQuestionText('');
-	// 	setQuestionType(1);
-	// 	setNewQuestions([]);
-	// 	setIsFormVisible(false);
-	// 	// resetForm();
-	// 	// setAreButtonsVisible(false);
-	// };
+
 	useEffect(() => {
 		dispatch(getSurveyByIdThunk(surveyId || ''));
 	}, []);
@@ -107,7 +63,9 @@ const NewPreview: React.FC<CreateSurveyFormProps> = () => {
 						<section className='mainContainer'>
 							<section className='containerCreateSurvey'>
 								{/* Logo Popup Section */}
-								<div>{/* <LogoCreateSurvey onLogoUpload={setUploadedLogo} /> */}</div>
+								<div>
+									<img src={surveyForm.logo} alt='Survey Logo' className='surveyLog' />
+								</div>
 
 								<section className='surveyPage'>
 									<div className='surveyTitle'>
@@ -185,14 +143,7 @@ const NewPreview: React.FC<CreateSurveyFormProps> = () => {
 										))}
 									</div>
 								</section>
-								{/* prievw div closed  */}
 								<section className='surveyPage'>
-									{/* <div className='createDoneContainer'>
-										<span>
-											<button className='createEditButton'>EDIT</button>
-										</span>
-									</div> */}
-
 									<div className='createFooterContainer'>
 										<div className='createFooterDivOne'>
 											<p className='createFooterParaOne'>Powered by</p>
@@ -201,9 +152,6 @@ const NewPreview: React.FC<CreateSurveyFormProps> = () => {
 												See how easy it is to <a href=''>create survey and forms</a>
 											</p>
 										</div>
-										{/* <div>
-											<button className='createFooterDivTwo'>Hide Footer</button>
-										</div> */}
 									</div>
 
 									<div className='createPreviewContainer'>
@@ -221,4 +169,4 @@ const NewPreview: React.FC<CreateSurveyFormProps> = () => {
 	);
 };
 
-export default NewPreview;
+export default PreviewSurvey;

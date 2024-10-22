@@ -4,61 +4,33 @@ import { minus, plus } from '../../assets/common-img';
 import NewPage from './Partials/NewPage';
 import { Button, Div } from '../../blocks';
 import LogoCreateSurvey from './Partials/LogoCreateSurvey';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import NewTextEditor from '../../components/textEditorForm/NewTextEditor';
 import { createQuestionType } from '../../redux/slice/questionType/questionType';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { upsertSurveyQuestionThunk } from '../../redux/slice/survey/upsertSurveyQuestion';
 import { updateSurveyThunk } from '../../redux/slice/survey/updateSurvey';
 import { getSurveyByIdThunk } from '../../redux/slice/survey/getSurveyById';
-//import { useSelector } from 'react-redux';
+import { Question, QuestionTypesResponse, SurveyInitialData } from './type';
 
-export interface Question {
-	questionId: number | null;
-	questionName: string;
-	questionType: number;
-	options?: IQuestionName[];
-}
-interface IQuestionName {
-	id?: string | number;
-	optionText?: string;
-}
-interface CreateSurveyFormProps {
-	onSubmit?: (responses: Question[]) => void;
-}
-interface QuestionType {
-	id: number;
-	name: string;
-}
-
-// Define the structure for the response of the getQuestionTypesApi function
-
-const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
-	const navigate = useNavigate();
+const CreateSurvey: React.FC = () => {
 	const dispatch = useAppDispatch();
-	const [questions, setQuestions] = useState<Question[]>([]);
-	const [newQuestions, setNewQuestions] = useState<Question[]>([]);
 	const [questionType, setQuestionType] = useState<Question['questionType']>(1);
 	const [questionName, setQuestionText] = useState<string>('');
 	const [options, setOptions] = useState<string[]>(['']);
 	const [isFormVisible, setIsFormVisible] = useState<boolean>(true);
 	const [areButtonsVisible, setAreButtonsVisible] = useState(true);
-	const [uploadedLogo, setUploadedLogo] = useState<string | null>();
+	const [uploadedLogo, setUploadedLogo] = useState<File | null>(null);
 	const [isTitle, setIsTitle] = useState<boolean>(false);
 	const [isSurveyDescription, setIsSurveyDescription] = useState<boolean>(false);
 	const [questionTypes, setQuestionTypes] = useState<QuestionTypesResponse[]>([]);
-	const [searchParams] = useSearchParams();
 	const { surveyId } = useParams();
-	console.log('>>>>>>si', surveyId);
-	interface QuestionTypesResponse {
-		questionTypes: QuestionType[];
-	}
 	const surveyInitialData = {
 		surveyName: 'Untitle',
 		surveyDescription: 'Untitle',
-		logo: '',
+		logo: null,
 		pageNo: 1,
-		surveyId: surveyId,
+		surveyId: surveyId ?? '',
 		surveyQuestions: [
 			{
 				questionType: 4,
@@ -73,23 +45,21 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 			},
 		],
 	};
-	const [surveyForm, setSurveyForm] = useState(surveyInitialData);
+	const [surveyForm, setSurveyForm] = useState<SurveyInitialData>(surveyInitialData);
+	const [logoData, setLogoData] = useState<string | null>(null);
 	const handleQuestionTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const newType = parseInt(e.target.value, 10);
 		setQuestionType(newType);
 		setAreButtonsVisible(true);
 		setOptions(newType === 2 || newType === 3 || newType === 5 || newType === 6 ? ['', '', ''] : []);
 	};
-	// Question text input change handler
 	const handleQuestionTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		setQuestionText(e.target.value);
 	};
 	const { data } = useAppSelector((state) => state.getSurveyByIdSlice);
 	const handlePreviewSurvey = () => {
 		window.open(`/survey-preview/${surveyId}`, '_blank');
-		// navigate('/survey-preview', { state: { questions, uploadedLogo } });
 	};
-
 	// Option input change handler
 	const handleOptionTextChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
 		const newOptions = [...options];
@@ -118,7 +88,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		if (!questionName) {
 			return;
 		}
-		const filteredOptions = options.filter((option) => option.trim() !== '').map((option) => ({ optionId: '', optionText: option }));
+		const filteredOptions = options.filter((option) => option.trim() !== '').map((option) => ({ optionId: null, optionText: option }));
 		const newQuestion: Question = {
 			questionId: null,
 			questionName,
@@ -128,22 +98,28 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		if (surveyId) {
 			dispatch(upsertSurveyQuestionThunk({ surveyId: surveyId, ...newQuestion }));
 		}
-		setSurveyForm((prev: any) => ({
+		setSurveyForm((prev: SurveyInitialData) => ({
 			...prev,
 			surveyQuestions: [...prev.surveyQuestions, newQuestion],
 		}));
 		setOptions([]);
-		setQuestions([]);
 		setQuestionText('');
 		setQuestionType(1);
-		setNewQuestions([]);
 		setIsFormVisible(false);
-		// resetForm();
-		// setAreButtonsVisible(false);
 	};
-
+	useEffect(() => {
+		if (uploadedLogo && surveyId) {
+			dispatch(
+				updateSurveyThunk({
+					surveyId: surveyId || '',
+					logo: uploadedLogo,
+					surveyName: '',
+					surveyDescription: '',
+				})
+			);
+		}
+	}, [uploadedLogo]);
 	const handleAddNewQuestion = () => {
-		setQuestions([]);
 		setIsFormVisible(true);
 		setAreButtonsVisible(true);
 	};
@@ -199,9 +175,9 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		const surveyData = data?.data?.[0];
 		const cloneData = JSON.stringify(surveyData);
 		const parseData = JSON.parse(cloneData);
+		setLogoData(parseData?.logo);
 		setSurveyForm(parseData);
 	}, [data]);
-	const handleQuestionSave = (): void => {};
 	return (
 		<Div>
 			<div className='newContaner'>
@@ -211,7 +187,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 							<section className='containerCreateSurvey'>
 								{/* Logo Popup Section */}
 								<div>
-									<LogoCreateSurvey onLogoUpload={setUploadedLogo} />
+									<LogoCreateSurvey onLogoUpload={setUploadedLogo} surveyLogo={logoData} />
 								</div>
 
 								<section className='surveyPage'>
@@ -242,12 +218,9 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 											</div>
 										)}
 									</div>
-
-									{/*  priview question div add a new routes i am not created a routes  */}
-
 									<div>
 										<h3>Questions Preview:</h3>
-										{surveyForm.surveyQuestions.map((q) => (
+										{surveyForm.surveyQuestions.map((q: Question) => (
 											<div key={q.questionId} className='question-preview'>
 												<strong>Question: {q.questionId}</strong> {q.questionName || 'No question text provided'}
 												<div className='options-preview'>
@@ -399,7 +372,7 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 
 											{areButtonsVisible && (
 												<div className='form-buttons-container'>
-													<button type='submit' className='save-question-button' onClick={handleQuestionSave}>
+													<button type='submit' className='save-question-button'>
 														Save Question
 													</button>
 													<button type='button' className='cancel-question-button' onClick={handleCancel}>
@@ -410,20 +383,12 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 										</form>
 									)}
 								</section>
-								{/* prievw div closed  */}
 								<section className='surveyPage'>
 									<div className='addNewQuesContainer'>
-										{/* Add New Question button shown only if there are saved questions */}
-										{/* {questions.length > 0 && ( */}
 										<button onClick={handleAddNewQuestion} className='add-new-question-button'>
 											Add New Question
 										</button>
-										{/* )} */}
-										<a className='demoText' href=''>
-											Copy and paste questions
-										</a>
 									</div>
-
 									<div className='createDoneContainer'>
 										<span>
 											<button className='createDoneButton'>Done</button>
@@ -431,18 +396,6 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 										<span>
 											<button className='createEditButton'>EDIT</button>
 										</span>
-									</div>
-									<div className='createFooterContainer'>
-										<div className='createFooterDivOne'>
-											<p className='createFooterParaOne'>Powered by</p>
-											<b className='createFooterBold'>Survey Programming Tool</b>
-											<p className='createFooterParaTwo'>
-												See how easy it is to <a href=''>create survey and forms</a>
-											</p>
-										</div>
-										<div>
-											<button className='createFooterDivTwo'>Hide Footer</button>
-										</div>
 									</div>
 
 									<div className='createPreviewContainer'>
@@ -462,5 +415,4 @@ const CreateSurvey: React.FC<CreateSurveyFormProps> = () => {
 		</Div>
 	);
 };
-
 export default CreateSurvey;
