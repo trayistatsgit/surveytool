@@ -4,15 +4,16 @@ import MasterLayout from '../layout/MasterLayout';
 import SignUp from '../pages/auth/SignUp';
 import LogIn from '../pages/auth/Login';
 import ForgotPassword from '../pages/auth/ForgotPassword/ForgotPassword';
-import CreateSurvey from '../pages/createSurvey/CreateSurvey';
+import CreateSurvey from '../pages/survey/CreateSurvey';
 import StartingPage from '../pages/startingPage/StartingPage';
-import SurveyPreview from '../pages/createSurvey/Partials/SurveyPreview';
-import EditSurvey from '../pages/editSurvey/EditSurvey';
 import Summary from '../pages/summery/Summery';
 import DesignSurvey from '../pages/designsurvey/DesignSurvey';
 import CollectResponse from '../pages/collectresponse/CollectResponse';
 import AnalyzeResults from '../pages/analyzeresults/AnalyzerResult';
 import PresentResult from '../pages/presentresult/PresentResult';
+import AttemptSurvey from '../pages/survey/Partials/AttemptSurvey';
+import PreviewSurvey from '../pages/survey/Partials/PreviewSurvey';
+import Surveys from '../pages/survey/Surveys';
 
 const router = createBrowserRouter([
 	{
@@ -24,16 +25,12 @@ const router = createBrowserRouter([
 				element: <StartingPage />,
 			},
 			{
-				path: '/create-survey',
+				path: '/create-survey/:surveyId',
 				element: <CreateSurvey />,
 			},
 			{
-				path: '/survey-preview',
-				element: <SurveyPreview />,
-			},
-			{
 				path: '/my-surveys',
-				element: <EditSurvey />,
+				element: <Surveys />,
 			},
 			{
 				path: '/summary',
@@ -57,6 +54,14 @@ const router = createBrowserRouter([
 				element: <PresentResult />,
 			},
 		],
+	},
+	{
+		path: '/survey-preview/:surveyId',
+		element: <PreviewSurvey />,
+	},
+	{
+		path: '/survey-attempt/:surveyId',
+		element: <AttemptSurvey />,
 	},
 	{
 		path: '/sign-up',

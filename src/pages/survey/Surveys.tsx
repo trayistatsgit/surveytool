@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import './EditSurvey.scss';
+import './Surveys.scss';
 import EditSurveyCard from '../../atoms/editSurveyCards/EditSurveyCard';
-import { surveyDetail } from '../../redux/slice/survey/surveyDetail';
-import { useAppDispatch } from '../../redux/store';
+import { surveyDetailThunk } from '../../redux/slice/survey/surveyDetail';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
 import Pagination from '../pagination/Pagination';
+import { useNavigate } from 'react-router-dom';
 
 export interface Detail {
 	id: number;
@@ -16,32 +15,26 @@ export interface Detail {
 	surveyStatus: string;
 }
 
-interface SurveyResponse {
-	data: {
-		surveys: Detail[];
-		totalCount: number;
-	};
-}
-
-const EditSurvey: React.FC = () => {
+const Surveys: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const [surveyData, setSurveyData] = useState<Detail[]>([]);
 	const [totalCount, setTotalCount] = useState<number>(0);
 	const [currentPage, setCurrentpage] = useState<number>(1);
-
+	const navigate = useNavigate();
+	const { data } = useAppSelector((state) => state.surveyDetailSlice);
 	useEffect(() => {
-		const fetchSurveyDetails = async () => {
-			const queryData = { currentPage };
-
-			const Result = (await dispatch(surveyDetail(queryData))) as any;
-			const response: SurveyResponse = Result.payload;
-			setSurveyData(response.data.surveys);
-			setTotalCount(response.data.totalCount);
-		};
-
-		fetchSurveyDetails();
+		const queryData = { currentPage };
+		dispatch(surveyDetailThunk(queryData));
 	}, [currentPage, dispatch]);
-
+	useEffect(() => {
+		if (data) {
+			setSurveyData(data?.data?.surveys);
+			setTotalCount(data?.data?.totalCount);
+		}
+	}, [data]);
+	const redirectSurvey = (surveyId: string) => {
+		navigate(`/create-survey/${surveyId}`);
+	};
 	return (
 		<>
 			<div className='edit-container'>
@@ -54,6 +47,7 @@ const EditSurvey: React.FC = () => {
 						surveyName={survey.surveyName}
 						updatedDate={survey.createdAt.toLocaleString()}
 						issue={'Add Questions'}
+						redirectSurvey={() => redirectSurvey(survey?.surveyId)}
 					/>
 				))}
 			</div>
@@ -64,4 +58,4 @@ const EditSurvey: React.FC = () => {
 	);
 };
 
-export default EditSurvey;
+export default Surveys;

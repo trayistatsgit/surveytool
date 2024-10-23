@@ -41,7 +41,7 @@ module.exports = {
 				insertPragma: false,
 				printWidth: 150,
 				requirePragma: false,
-				tabWidth: 2,
+				tabWidth: 4,
 				useTabs: true,
 				embeddedLanguageFormatting: 'auto',
 				endOfLine: 'crlf',

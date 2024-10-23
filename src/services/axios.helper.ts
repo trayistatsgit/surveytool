@@ -1,7 +1,8 @@
 import axios, { AxiosInstance, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import configData from '../config/config';
+import { getOrCreateCookieId } from '../utils/cookies';
 // Create an Axios instance
-const baseURL = 'http://localhost:4002/api/v1';
-const clientTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const baseURL = configData.baseURL;
 const axiosInstance: AxiosInstance = axios.create({
 	baseURL: baseURL,
 	headers: {
@@ -12,10 +13,10 @@ const axiosInstance: AxiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
 	(config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
 		// Retrieve the token from sessionStorage or localStorage
+		const cookieId = getOrCreateCookieId();
 		const token = localStorage.getItem('access');
 		config.headers['Authorization'] = `Bearer ${token}`;
-		config.headers['partner-id'] = '2';
-		config.headers['client-time-zone'] = clientTimeZone;
+		config.headers['Cookie-Id'] = cookieId;
 		return config;
 	},
 	(error: AxiosError): Promise<AxiosError> => {

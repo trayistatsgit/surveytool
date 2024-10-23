@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 
 // Define the props interface
 interface NewTextEditorProps {
-	label?: string; // Optional initial label text
-	onSave: (label: string) => void; // Function to handle save action
-	onCancel: () => void; // Function to handle cancel action
+	label?: string;
+	// eslint-disable-next-line no-unused-vars
+	onSave: (label: string) => void;
+	onCancel: () => void;
 }
 
 const NewTextEditor: React.FC<NewTextEditorProps> = ({ label = 'Untitled', onSave, onCancel }) => {

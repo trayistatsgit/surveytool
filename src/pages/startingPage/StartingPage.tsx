@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import CardAtom from '../../atoms/cardAtom/CardAtom';
 import './StartingPage.scss';
 import { createSurveyId } from '../../redux/slice/survey/createSurvey';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { useAppDispatch } from '../../redux/store';
 import { useNavigate } from 'react-router-dom';
 
 const StartingPage: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const apiCall = async () => {
-		const res = await dispatch(createSurveyId());
+		const res: any = await dispatch(createSurveyId());
 		const { error, data, status } = res?.payload;
 		if (status === 200 && !error) {
-			navigate(`/create-survey?si=${data.surveyId}`);
+			navigate(`/create-survey/${data.surveyId}`);
 		}
 	};
 	return (
