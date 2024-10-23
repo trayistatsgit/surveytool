@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import configData from '../config/config';
+import { getOrCreateCookieId } from '../utils/cookies';
 // Create an Axios instance
 const baseURL = configData.baseURL;
 const axiosInstance: AxiosInstance = axios.create({
@@ -12,8 +13,10 @@ const axiosInstance: AxiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
 	(config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
 		// Retrieve the token from sessionStorage or localStorage
+		const cookieId = getOrCreateCookieId();
 		const token = localStorage.getItem('access');
 		config.headers['Authorization'] = `Bearer ${token}`;
+		config.headers['Cookie-Id'] = cookieId;
 		return config;
 	},
 	(error: AxiosError): Promise<AxiosError> => {
