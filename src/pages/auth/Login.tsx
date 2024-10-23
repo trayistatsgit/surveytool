@@ -19,6 +19,7 @@ import { useAppDispatch } from '../../redux/store';
 import RadioButton from '../../atoms/RadioButton/RadioButton';
 
 const LogIn: React.FC = () => {
+const LogIn: React.FC = () => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const [formData, setFormData] = useState({ email: '', password: '' });

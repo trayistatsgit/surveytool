@@ -13,7 +13,7 @@ import { Slide2, Slide3 } from '../../assets/signup-img';
 import { Link, useNavigate } from 'react-router-dom';
 import RadioButton from '../../atoms/RadioButton/RadioButton';
 
-const SignUp = () => {
+const SignUp: React.FC = () => {
 	const [tncBox, setTncBox] = useState<boolean>(false);
 
 	const handleTncChange = (checked: boolean) => {
@@ -47,11 +47,11 @@ const SignUp = () => {
 			I have read and agree to&nbsp;
 			<span>
 				<Link to='/terms-conditions' className='terms-conditions'>
-				Terms of Service
+					Terms of Service
 				</Link>
 				&nbsp;and&nbsp;
 				<Link to='/privacy-policy' className='terms-conditions'>
-				Privacy Policy
+					Privacy Policy
 				</Link>
 			</span>
 		</>
@@ -85,7 +85,13 @@ const SignUp = () => {
 						<div className='checkbox-signup'>
 							<div className='container-radio-signup'>
 								<RadioButton name='termsConditions' className='checkbox-label-signup' checked={tncBox} onChange={handleTncChange} />
-								<Typography className='checkbox-label-signup' label={conditionText} fontWeightstest={500} lineHeight='16.8px' fontSize='fontSize14' />
+								<Typography
+									className='checkbox-label-signup'
+									label={conditionText}
+									fontWeightstest={500}
+									lineHeight='16.8px'
+									fontSize='fontSize14'
+								/>
 							</div>
 						</div>
 						<div>

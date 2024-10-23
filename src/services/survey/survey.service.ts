@@ -20,9 +20,21 @@ export interface IUpdateSurvey {
 	surveyId: string;
 	surveyName: string;
 	surveyDescription: string;
+	logo?: File;
 }
 export const updateSurveyApi = async <T>(bodyData: IUpdateSurvey): Promise<T> => {
-	const response = await axiosInstance.patch(`survey/update-survey`, { ...bodyData, surveyId: '29f9d348-3f91-4188-a61d-86b3b58e98c0' });
+	const formData = new FormData();
+
+	Object.entries(bodyData).forEach(([key, value]) => {
+		formData.append(key, value);
+	});
+
+	// Send the FormData in a PATCH request
+	const response = await axiosInstance.post(`survey/update-survey`, formData, {
+		headers: {
+			'Content-Type': 'multipart/form-data',
+		},
+	});
 	return response.data as T;
 };
 export interface IUpsertSurveyQuestion {
@@ -33,5 +45,26 @@ export interface IUpsertSurveyQuestion {
 }
 export const upsertSurveyQuestionApi = async <T>(bodyData: IUpsertSurveyQuestion): Promise<T> => {
 	const response = await axiosInstance.post(`survey/upsert-survey-question`, { ...bodyData });
+	return response.data as T;
+};
+export const getSurveyByIdApi = async <T>(surveyId: string): Promise<T> => {
+	const response = await axiosInstance.get(`survey/get-survey/${surveyId}`);
+	return response.data as T;
+};
+type Option = string | number | number[];
+
+export interface Question {
+	questionId: number;
+	questionType: number;
+	options: Option;
+}
+
+export interface IAttemptSurveyBody {
+	surveyId: string;
+	participantUrl: string;
+	questions: Question[];
+}
+export const attemptSurveyApi = async <T>(surveyData: IAttemptSurveyBody): Promise<T> => {
+	const response = await axiosInstance.post(`survey/survey-attempt`, { ...surveyData });
 	return response.data as T;
 };

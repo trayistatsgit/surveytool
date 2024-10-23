@@ -24,6 +24,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	grid?: string;
 	width?: string;
 	height?: string;
+	// eslint-disable-next-line no-unused-vars
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	value?: string;
 	type?: 'text' | 'password' | 'email' | 'date' | 'number' | 'checkbox' | 'radio';
@@ -48,7 +49,7 @@ export const InputAtom: React.FC<InputProps> = ({
 	height = '',
 	onChange,
 	value,
-	type,
+	type = 'text', // Set default type to 'text'
 	disable = false,
 	typoColor = 'primary',
 	typoSize = 'fontSize12',
@@ -62,7 +63,7 @@ export const InputAtom: React.FC<InputProps> = ({
 	const dateInputRef = useRef<HTMLInputElement>(null);
 
 	const togglePasswordVisibility = () => {
-		setIsPasswordVisible(!isPasswordVisible);
+		setIsPasswordVisible((prev) => !prev);
 	};
 
 	const handleClick = () => {
@@ -71,13 +72,8 @@ export const InputAtom: React.FC<InputProps> = ({
 		}
 	};
 
-	const borderSCSS: string = '';
-	const determineInputType = () => {
-		if (type === 'password') {
-			return isPasswordVisible ? 'text' : 'password';
-		}
-		return type;
-	};
+	const borderSCSS: string = ''; // Define your border styles here if needed
+	const determineInputType = () => (type === 'password' ? (isPasswordVisible ? 'text' : 'password') : type);
 
 	const handleInvalid = (event: React.InvalidEvent<HTMLInputElement>) => {
 		event.preventDefault();
@@ -86,57 +82,55 @@ export const InputAtom: React.FC<InputProps> = ({
 
 	return (
 		<Div className={grid}>
-			<>
-				<Typography
-					className={clsx('input-Typography')}
-					isSpan={true}
-					label={label}
-					fontSize={typoSize}
-					fontWeight={typoWeight}
-					textColor={typoColor}
+			<Typography
+				className={clsx('input-Typography')}
+				isSpan={true}
+				label={label}
+				fontSize={typoSize}
+				fontWeight={typoWeight}
+				textColor={typoColor}
+			/>
+			{datepicker ? (
+				<input
+					type='date'
+					placeholder={placeholder}
+					className={clsx('input-field', 'custom-date-input', borderSCSS, className)}
+					onChange={onChange}
+					value={value}
+					disabled={disable}
+					style={{ width, height }}
+					name={name}
+					ref={dateInputRef}
+					onClick={handleClick}
 				/>
-				{datepicker ? (
-					<input
-						type='date'
-						placeholder={placeholder}
-						className={clsx('input-field', 'custom-date-input', borderSCSS, className)}
-						onChange={onChange}
-						value={value}
-						disabled={disable}
-						style={{ width, height }}
-						name={name}
-						ref={dateInputRef}
-						onClick={handleClick}
-					/>
-				) : (
-					<input
-						placeholder={placeholder}
-						className={clsx('input-field', borderSCSS, className)}
-						onChange={onChange}
-						value={value}
-						type={determineInputType()}
-						disabled={disable}
-						style={{ width, height }}
-						name={name}
-						onInvalid={handleInvalid}
-					/>
-				)}
-				{imageUrlInput ? (
-					<div className='image-container-input'>
-						<img src={imageUrlInput} alt='Input Image' className='search-image' />
+			) : (
+				<input
+					placeholder={placeholder}
+					className={clsx('input-field', borderSCSS, className)}
+					onChange={onChange}
+					value={value}
+					type={determineInputType()}
+					disabled={disable}
+					style={{ width, height }}
+					name={name}
+					onInvalid={handleInvalid}
+				/>
+			)}
+			{imageUrlInput ? (
+				<div className='image-container-input'>
+					<img src={imageUrlInput} alt='Input Image' className='search-image' />
+				</div>
+			) : (
+				type === 'password' && (
+					<div className='toggle-password' onClick={togglePasswordVisibility}>
+						<img
+							src={isPasswordVisible ? eyebutton : ShowPassWordEye}
+							alt='Toggle Password Visibility'
+							className={signup ? 'eye-icon-signup' : 'eye-icon'}
+						/>
 					</div>
-				) : (
-					type === 'password' && (
-						<div className='toggle-password' onClick={togglePasswordVisibility}>
-							<img
-								src={isPasswordVisible ? eyebutton : ShowPassWordEye}
-								alt='Toggle Password Visibility'
-								className={signup ? 'eye-icon-signup' : 'eye-icon'}
-							/>
-						</div>
-					)
-				)}
-			</>
+				)
+			)}
 		</Div>
 	);
 };

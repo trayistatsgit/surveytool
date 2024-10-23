@@ -46,7 +46,10 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-	({ className, reverse = false, variant = '', size = 'md', color = 'white', label, img = '', onClick, isLoading, isDisable, ...props }, ref) => {
+	(
+		{ className, reverse = false, variant = 'primary', size = 'md', color = 'white', label, img = '', onClick, isLoading, isDisable, ...props },
+		ref
+	) => {
 		return (
 			<button
 				ref={ref}
