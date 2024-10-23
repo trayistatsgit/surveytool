@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import './SignUp.scss';
-// import { loginPage } from '../../redux/slice/auth/loginPage';
+import { loginPage } from '../../redux/slice/auth/loginPage';
 import { InputAtom } from '../../blocks/input/Input';
 import Apple from '../../assets/signup-img/Apple.svg';
 import Google from '../../assets/signup-img/Google.svg';
@@ -13,10 +11,11 @@ import Image82 from '../../assets/signup-img/Image82.svg';
 import { Typography } from '../../blocks';
 import { Button } from '../../blocks/button/ButtonAtom';
 import Slider from '../../blocks/slider/Slider';
-import logo from '../../assets/signup-img/logo.svg'; // Ensure this path is correct
+import logo from '../../assets/signup-img/logo.svg';
 import { useNavigate } from 'react-router-dom';
-// import { useAppDispatch } from '../../redux/store';
+import { useAppDispatch } from '../../redux/store';
 import RadioButton from '../../atoms/RadioButton/RadioButton';
+
 interface FormDataType {
 	email: string;
 	password: string;
@@ -57,8 +56,8 @@ const LogIn: React.FC = () => {
 		e.preventDefault();
 		const queryData = { formData };
 
-		const Result = dispatch(loginPage(queryData)) as any;
-		console.log('Resultd:', Result);
+		const result = dispatch(loginPage(queryData)) as any;
+		console.log('Result:', result);
 	};
 
 	const handleSignInClick = () => navigate('/sign-up');
@@ -78,7 +77,7 @@ const LogIn: React.FC = () => {
 						</div>
 					</div>
 
-					<form>
+					<form onSubmit={handleSubmit}>
 						<div className='inputForm'>
 							<div>
 								<Typography label='Email' className='label-login' fontWeightstest={500} fontSize='fontSize14' />
@@ -125,7 +124,7 @@ const LogIn: React.FC = () => {
 								/>
 							</div>
 
-							<Button className='signup-signup' label='Sign In' />
+							<Button className='signup-signup' label='Sign In' type='submit' />
 						</div>
 					</form>
 

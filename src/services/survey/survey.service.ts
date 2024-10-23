@@ -29,7 +29,6 @@ export const updateSurveyApi = async <T>(bodyData: IUpdateSurvey): Promise<T> =>
 		formData.append(key, value);
 	});
 
-	// Send the FormData in a PATCH request
 	const response = await axiosInstance.post(`survey/update-survey`, formData, {
 		headers: {
 			'Content-Type': 'multipart/form-data',
