@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import './EditSurvey.scss';
@@ -5,13 +6,21 @@ import EditSurveyCard from '../../atoms/editSurveyCards/EditSurveyCard';
 import { surveyDetail } from '../../redux/slice/survey/surveyDetail';
 import { useAppDispatch } from '../../redux/store';
 import Pagination from '../pagination/Pagination';
+
 export interface Detail {
 	id: number;
 	createdAt: Date;
 	surveyName: string;
 	isActive: boolean;
-	surveyId: string; // Make sure surveyId is present as well
+	surveyId: string;
 	surveyStatus: string;
+}
+
+interface SurveyResponse {
+	data: {
+		surveys: Detail[];
+		totalCount: number;
+	};
 }
 
 const EditSurvey: React.FC = () => {
@@ -19,18 +28,19 @@ const EditSurvey: React.FC = () => {
 	const [surveyData, setSurveyData] = useState<Detail[]>([]);
 	const [totalCount, setTotalCount] = useState<number>(0);
 	const [currentPage, setCurrentpage] = useState<number>(1);
+
 	useEffect(() => {
 		const fetchSurveyDetails = async () => {
 			const queryData = { currentPage };
-			const response = await dispatch(surveyDetail(queryData));
 
-			const Count = response.payload.data.totalCount;
-
-			setSurveyData(response.payload.data.surveys);
-			setTotalCount(response.payload.data.totalCount);
+			const Result = (await dispatch(surveyDetail(queryData))) as any;
+			const response: SurveyResponse = Result.payload;
+			setSurveyData(response.data.surveys);
+			setTotalCount(response.data.totalCount);
 		};
+
 		fetchSurveyDetails();
-	}, [currentPage]);
+	}, [currentPage, dispatch]);
 
 	return (
 		<>

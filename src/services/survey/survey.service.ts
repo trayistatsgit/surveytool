@@ -11,7 +11,7 @@ export interface ISurveyDetail {
 export const surveyDetailApi = async <T>(details: ISurveyDetail): Promise<T> => {
 	const { currentPage } = details;
 	const response = await axiosInstance.get(`survey/survey-detail`, {
-		params: { currentPage }, // Pass it correctly as query params
+		params: { currentPage },
 	});
 
 	return response.data as T;

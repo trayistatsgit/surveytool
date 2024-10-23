@@ -13,7 +13,7 @@ interface SurveyProps {
 	surveyName: string;
 }
 
-const EditSurveyCard: React.FC<SurveyProps> = ({ status, updatedDate, issue, id, active, surveyName }) => {
+const EditSurveyCard: React.FC<SurveyProps> = ({ status, updatedDate, issue, id, surveyName }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 	const dropdownRef = useRef<HTMLDivElement>(null);
 
