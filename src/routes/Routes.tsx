@@ -6,7 +6,6 @@ import LogIn from '../pages/auth/Login';
 import ForgotPassword from '../pages/auth/ForgotPassword/ForgotPassword';
 import CreateSurvey from '../pages/survey/CreateSurvey';
 import StartingPage from '../pages/startingPage/StartingPage';
-import EditSurvey from '../pages/editSurvey/EditSurvey';
 import Summary from '../pages/summery/Summery';
 import DesignSurvey from '../pages/designsurvey/DesignSurvey';
 import CollectResponse from '../pages/collectresponse/CollectResponse';
@@ -14,6 +13,7 @@ import AnalyzeResults from '../pages/analyzeresults/AnalyzerResult';
 import PresentResult from '../pages/presentresult/PresentResult';
 import AttemptSurvey from '../pages/survey/Partials/AttemptSurvey';
 import PreviewSurvey from '../pages/survey/Partials/PreviewSurvey';
+import Surveys from '../pages/survey/Surveys';
 
 const router = createBrowserRouter([
 	{
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/my-surveys',
-				element: <EditSurvey />,
+				element: <Surveys />,
 			},
 			{
 				path: '/summary',

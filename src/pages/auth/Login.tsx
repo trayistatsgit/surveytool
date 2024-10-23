@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import './SignUp.scss';
-import { loginPage } from '../../redux/slice/auth/loginPage';
+// import { loginPage } from '../../redux/slice/auth/loginPage';
 import { InputAtom } from '../../blocks/input/Input';
 import Apple from '../../assets/signup-img/Apple.svg';
 import Google from '../../assets/signup-img/Google.svg';
@@ -15,13 +12,11 @@ import { Button } from '../../blocks/button/ButtonAtom';
 import Slider from '../../blocks/slider/Slider';
 import logo from '../../assets/signup-img/logo.svg'; // Ensure this path is correct
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../redux/store';
+// import { useAppDispatch } from '../../redux/store';
 import RadioButton from '../../atoms/RadioButton/RadioButton';
-
-const LogIn: React.FC = () => {
 const LogIn: React.FC = () => {
 	const navigate = useNavigate();
-	const dispatch = useAppDispatch();
+	// const dispatch = useAppDispatch();
 	const [formData, setFormData] = useState({ email: '', password: '' });
 
 	const images = [
@@ -47,19 +42,19 @@ const LogIn: React.FC = () => {
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		console.log('Form submitted:', formData);
-	};
-	useEffect(() => {
-		const loginform = async () => {
-			const queryData = { formData };
+	// const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+	// 	e.preventDefault();
+	// 	console.log('Form submitted:', formData);
+	// };
+	// useEffect(() => {
+	// 	const loginform = async () => {
+	// 		const queryData = { formData };
 
-			const Result = (await dispatch(loginPage(queryData))) as any;
-		};
+	// 		const Result = (await dispatch(loginPage(queryData))) as any;
+	// 	};
 
-		loginform();
-	}, [formData, dispatch]);
+	// 	loginform();
+	// }, [formData, dispatch]);
 	const handleSignInClick = () => navigate('/sign-up');
 	const handleForgotClick = () => navigate('/forgot-password');
 
@@ -77,7 +72,7 @@ const LogIn: React.FC = () => {
 						</div>
 					</div>
 
-					<form onSubmit={handleSubmit}>
+					<form>
 						<div className='inputForm'>
 							<div>
 								<Typography label='Email' className='label-login' fontWeightstest={500} fontSize='fontSize14' />
@@ -106,7 +101,13 @@ const LogIn: React.FC = () => {
 							<div className='justify__space_between'>
 								<div className='container-radio'>
 									<RadioButton name='rememberMe' />
-									<Typography className='remember_me' label='Remember me' fontWeightstest={500} lineHeight='16.8px' fontSize='fontSize14' />
+									<Typography
+										className='remember_me'
+										label='Remember me'
+										fontWeightstest={500}
+										lineHeight='16.8px'
+										fontSize='fontSize14'
+									/>
 								</div>
 								<Typography
 									className='forgot__password'
@@ -118,7 +119,7 @@ const LogIn: React.FC = () => {
 								/>
 							</div>
 
-							<Button className='signup-signup' label='Sign In' onClick={handleSubmit} />
+							<Button className='signup-signup' label='Sign In' />
 						</div>
 					</form>
 

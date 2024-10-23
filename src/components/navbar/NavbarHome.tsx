@@ -16,15 +16,6 @@ const NavbarHome: React.FC<NavTestProps> = ({ isScrolled }) => {
 	const handleLogoRedirect = () => {
 		navigate('/');
 	};
-
-	const handleClick = () => {
-		navigate('/sign-up');
-	};
-
-	const handleLogin = () => {
-		navigate('/login');
-	};
-
 	const handleStartPage = () => {
 		navigate('/start');
 	};
@@ -32,11 +23,11 @@ const NavbarHome: React.FC<NavTestProps> = ({ isScrolled }) => {
 		// navigate('/edit-survey')
 		navigate('/my-surveys');
 	};
-	const handleNavigation = () => {
-		localStorage.setItem('showBreadcrumb', JSON.stringify(false));
-		window.dispatchEvent(new Event('storage'));
-		navigate('/');
-	};
+	// const handleNavigation = () => {
+	// 	localStorage.setItem('showBreadcrumb', JSON.stringify(false));
+	// 	window.dispatchEvent(new Event('storage'));
+	// 	navigate('/');
+	// };
 	const handleNavigationSurvey = () => {
 		localStorage.setItem('showBreadcrumb', JSON.stringify(false));
 		window.dispatchEvent(new Event('storage'));
@@ -56,22 +47,12 @@ const NavbarHome: React.FC<NavTestProps> = ({ isScrolled }) => {
 										handleSurveyEditCard();
 										handleNavigationSurvey();
 									}}>
-									Mysurveys
-								</li>
-
-								<li className='nav-item' onClick={handleNavigation}>
-									Company
-								</li>
-								<li className='nav-item' onClick={handleNavigation}>
-									Contact Us
+									Surveys
 								</li>
 							</ul>
 						</div>
 						<div className='nav-actions'>
-							<li className='nav-item' onClick={handleLogin}>
-								Login
-							</li>
-							<Button label='Get Started' className='button' reverse={true} onClick={handleClick} />
+							{/* <Button label='Get Started' className='button' reverse={true} onClick={handleClick} /> */}
 							<Button label='Create survey' className='button' reverse={true} onClick={handleStartPage} />
 						</div>
 					</div>
