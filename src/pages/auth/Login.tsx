@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
 import './SignUp.scss';
 import { loginPage } from '../../redux/slice/auth/loginPage';
 import { InputAtom } from '../../blocks/input/Input';
@@ -17,11 +17,18 @@ import logo from '../../assets/signup-img/logo.svg'; // Ensure this path is corr
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/store';
 import RadioButton from '../../atoms/RadioButton/RadioButton';
+interface FormDataType {
+	email: string;
+	password: string;
+}
 
 const LogIn: React.FC = () => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-	const [formData, setFormData] = useState({ email: '', password: '' });
+	const [formData, setFormData] = useState<FormDataType>({
+		email: '',
+		password: '',
+	});
 
 	const images = [
 		{
@@ -48,17 +55,12 @@ const LogIn: React.FC = () => {
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log('Form submitted:', formData);
+		const queryData = { formData };
+
+		const Result = dispatch(loginPage(queryData)) as any;
+		console.log('Resultd:', Result);
 	};
-	useEffect(() => {
-		const loginform = async () => {
-			const queryData = { formData };
 
-			const Result = (await dispatch(loginPage(queryData))) as any;
-		};
-
-		loginform();
-	}, [formData, dispatch]);
 	const handleSignInClick = () => navigate('/sign-up');
 	const handleForgotClick = () => navigate('/forgot-password');
 
