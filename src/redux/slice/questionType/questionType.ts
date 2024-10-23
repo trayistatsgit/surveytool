@@ -9,12 +9,6 @@ export interface QuestionType {
 	name: string;
 }
 
-// export interface questionTypeData {
-// 	questionTypes: QuestionType;
-// }
-
-// Define the async thunk
-
 export const createQuestionType = createAsyncThunk('create-questionType', async (_, { rejectWithValue }) => {
 	try {
 		const response = await getQuestionTypesApi();
@@ -24,5 +18,4 @@ export const createQuestionType = createAsyncThunk('create-questionType', async 
 	}
 });
 
-// Create a slice using the createSliceHook
 export default createSliceHook('questionType', createQuestionType, {});

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import './SignUp.scss';
+// import { loginPage } from '../../redux/slice/auth/loginPage';
 import { InputAtom } from '../../blocks/input/Input';
-import '../../assets/signup-img';
 import Apple from '../../assets/signup-img/Apple.svg';
 import Google from '../../assets/signup-img/Google.svg';
 import Mail from '../../assets/signup-img/Mail.svg';
@@ -10,12 +10,14 @@ import Image82 from '../../assets/signup-img/Image82.svg';
 import { Typography } from '../../blocks';
 import { Button } from '../../blocks/button/ButtonAtom';
 import Slider from '../../blocks/slider/Slider';
-import { logo } from '../../assets/signup-img';
+import logo from '../../assets/signup-img/logo.svg'; // Ensure this path is correct
 import { useNavigate } from 'react-router-dom';
+// import { useAppDispatch } from '../../redux/store';
 import RadioButton from '../../atoms/RadioButton/RadioButton';
-
 const LogIn: React.FC = () => {
 	const navigate = useNavigate();
+	// const dispatch = useAppDispatch();
+	const [formData, setFormData] = useState({ email: '', password: '' });
 
 	const images = [
 		{
@@ -35,13 +37,26 @@ const LogIn: React.FC = () => {
 		},
 	];
 
-	const handleSignInClick = () => {
-		navigate('/sign-up');
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleForgotClick = () => {
-		navigate('/forgot-password');
-	};
+	// const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+	// 	e.preventDefault();
+	// 	console.log('Form submitted:', formData);
+	// };
+	// useEffect(() => {
+	// 	const loginform = async () => {
+	// 		const queryData = { formData };
+
+	// 		const Result = (await dispatch(loginPage(queryData))) as any;
+	// 	};
+
+	// 	loginform();
+	// }, [formData, dispatch]);
+	const handleSignInClick = () => navigate('/sign-up');
+	const handleForgotClick = () => navigate('/forgot-password');
 
 	return (
 		<div className='container-signup'>
@@ -50,50 +65,63 @@ const LogIn: React.FC = () => {
 					<div className='headText'>
 						<div className='head-login'>
 							<Typography className='head-login' label='Welcome Survey Tools' fontSize='fontSize36' />
-							<img src={logo} className='logo-login' alt='' />
+							<img src={logo} className='logo-login' alt='Logo' />
 						</div>
 						<div className='text-signup'>
 							<Typography label='Market Research Operations Experts' className='text-signup' />
 						</div>
 					</div>
 
-					<div className='inputForm'>
-						<div>
-							<Typography label='Email' className='label-login' fontWeightstest={500} fontSize='fontSize14' />
-						</div>
-						<InputAtom className='input-signup' imageUrlInput={Mail} placeholder='Email Address' />
+					<form>
+						<div className='inputForm'>
+							<div>
+								<Typography label='Email' className='label-login' fontWeightstest={500} fontSize='fontSize14' />
+							</div>
+							<InputAtom
+								className='input-signup'
+								imageUrlInput={Mail}
+								placeholder='Email Address'
+								name='email'
+								onChange={handleChange}
+								value={formData.email}
+							/>
 
-						<div>
-							<Typography label='Password' fontWeightstest={500} className='label-login' fontSize='fontSize14' />
-						</div>
-						<div className='input-signup'>
-							<InputAtom placeholder='Password' type='password' />
-						</div>
+							<div>
+								<Typography label='Password' fontWeightstest={500} className='label-login' fontSize='fontSize14' />
+							</div>
+							<InputAtom
+								className='input-signup'
+								placeholder='Password'
+								type='password'
+								name='password'
+								onChange={handleChange}
+								value={formData.password}
+							/>
 
-						<div className='justify__space_between'>
-							<div className='container-radio'>
-								<RadioButton name='group1' />
+							<div className='justify__space_between'>
+								<div className='container-radio'>
+									<RadioButton name='rememberMe' />
+									<Typography
+										className='remember_me'
+										label='Remember me'
+										fontWeightstest={500}
+										lineHeight='16.8px'
+										fontSize='fontSize14'
+									/>
+								</div>
 								<Typography
-									className='remember_me'
-									label='Remember me'
+									className='forgot__password'
+									label='Forgot Password?'
+									onClick={handleForgotClick}
 									fontWeightstest={500}
-									lineHeight='lineHeight22'
+									lineHeight='16.8px'
 									fontSize='fontSize14'
 								/>
 							</div>
-							<Typography
-								className='forgot__password'
-								label='Forgot Password?'
-								onClick={handleForgotClick}
-								fontWeightstest={500}
-								lineHeight='lineHeight22'
-								fontSize='fontSize14'
-							/>
-						</div>
-						<div>
+
 							<Button className='signup-signup' label='Sign In' />
 						</div>
-					</div>
+					</form>
 
 					<div className='line-signup'>
 						<hr className='linehalf' />
@@ -107,11 +135,12 @@ const LogIn: React.FC = () => {
 					</div>
 
 					<div className='bottom'>
-						<Typography className='bottomtext' label='Don’t have a account?' />
-						<Typography className='highlight-check' label='Sign In' onClick={handleSignInClick} />
+						<Typography className='bottomtext' label='Don’t have an account?' />
+						<Typography className='highlight-check' label='Sign Up' onClick={handleSignInClick} />
 					</div>
 				</div>
 			</div>
+
 			<div className='split-signup right-signup'>
 				<div className='centre-signup'>
 					<div className='vectorimg'>

@@ -2,6 +2,7 @@ import { getQuestionTypesApi } from '../../services/questionType/questionType.se
 import clearStoreReducer from './common/clearStore.slice';
 import createSurveyIdSlice from './survey/createSurvey';
 import getSurveyByIdSlice from './survey/getSurveyById';
+import surveyDetailSlice from './survey/surveyDetail';
 import upsertSurveyQuestionSlice from './survey/upsertSurveyQuestion';
 
 const reducer = {
@@ -10,6 +11,7 @@ const reducer = {
 	createSurveyIdSlice,
 	upsertSurveyQuestionSlice,
 	getSurveyByIdSlice,
+	surveyDetailSlice,
 };
 
 export default reducer;
