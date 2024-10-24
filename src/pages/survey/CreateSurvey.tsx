@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './CreateSurvey.scss';
 import { minus, plus } from '../../assets/common-img';
-import NewPage from './Partials/NewPage';
+// import NewPage from './Partials/NewPage';
 import { Button, Div } from '../../blocks';
 import LogoCreateSurvey from './Partials/LogoCreateSurvey';
 import { useParams } from 'react-router-dom';
 import NewTextEditor from '../../components/textEditorForm/NewTextEditor';
-import { createQuestionType } from '../../redux/slice/questionType/questionType';
+import { questionTypeThunk } from '../../redux/slice/questionType/questionType';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { upsertSurveyQuestionThunk } from '../../redux/slice/survey/upsertSurveyQuestion';
 import { updateSurveyThunk } from '../../redux/slice/survey/updateSurvey';
 import { getSurveyByIdThunk } from '../../redux/slice/survey/getSurveyById';
-import { Question, QuestionTypesResponse, SurveyInitialData } from './type';
+import { IQuestionType, Question, QuestionTypesResponse, SurveyInitialData } from './type';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { ApiResponse } from '../../types/common';
 
 const CreateSurvey: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -34,7 +36,7 @@ const CreateSurvey: React.FC = () => {
 		surveyQuestions: [
 			{
 				questionType: 4,
-				questionId: 1,
+				questionId: null,
 				questionName: '',
 				options: [
 					{
@@ -59,6 +61,9 @@ const CreateSurvey: React.FC = () => {
 	const { data } = useAppSelector((state) => state.getSurveyByIdSlice);
 	const handlePreviewSurvey = () => {
 		window.open(`/survey-preview/${surveyId}`, '_blank');
+	};
+	const attemptSurvey = () => {
+		window.open(`/survey-attempt/${surveyId}`, '_blank');
 	};
 	// Option input change handler
 	const handleOptionTextChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
@@ -153,15 +158,14 @@ const CreateSurvey: React.FC = () => {
 		if (surveyId) {
 			dispatch(updateSurveyThunk({ surveyId: surveyId || '', surveyName: surveyForm.surveyName, surveyDescription: lavel }));
 		}
-
 		setIsSurveyDescription((prev) => !prev);
 	};
 	const onCanclePageTitle = () => {
 		setIsSurveyDescription((prev) => !prev);
 	};
 	const getQuestions = async () => {
-		const res = await dispatch(createQuestionType());
-		setQuestionTypes(res.payload.data);
+		const res = unwrapResult(await dispatch(questionTypeThunk())) as ApiResponse<IQuestionType[]>;
+		setQuestionTypes(res?.data);
 	};
 	useEffect(() => {
 		getQuestions();
@@ -185,7 +189,6 @@ const CreateSurvey: React.FC = () => {
 					<div className='containernew'>
 						<section className='mainContainer'>
 							<section className='containerCreateSurvey'>
-								{/* Logo Popup Section */}
 								<div>
 									<LogoCreateSurvey onLogoUpload={setUploadedLogo} surveyLogo={logoData} />
 								</div>
@@ -235,7 +238,6 @@ const CreateSurvey: React.FC = () => {
 																))}
 														</select>
 													)}
-
 													{q.questionType === 3 &&
 														q.options &&
 														q.options
@@ -246,7 +248,6 @@ const CreateSurvey: React.FC = () => {
 																	<label htmlFor={`mc-${q.questionId}-${idx}`}>{option.optionText}</label>
 																</div>
 															))}
-
 													{q.questionType === 5 &&
 														q.options &&
 														q.options
@@ -272,7 +273,6 @@ const CreateSurvey: React.FC = () => {
 																	<label htmlFor={`cb-${q.questionId}-${idx}`}>{option.optionText}</label>
 																</div>
 															))}
-
 													{q.questionType === 1 && <input type='text' placeholder='Text input preview' />}
 													{q.questionType === 4 && <textarea placeholder='Textarea input preview'></textarea>}
 												</div>
@@ -399,6 +399,11 @@ const CreateSurvey: React.FC = () => {
 									</div>
 
 									<div className='createPreviewContainer'>
+										<button className='createPreviewButton' onClick={attemptSurvey}>
+											Attempt Survey
+										</button>
+									</div>
+									<div className='createPreviewContainer'>
 										<button className='createPreviewButton' onClick={handlePreviewSurvey}>
 											Preview Survey
 										</button>
@@ -408,9 +413,6 @@ const CreateSurvey: React.FC = () => {
 						</section>
 					</div>
 				</>
-			</div>
-			<div className='newpage-container-copy'>
-				<NewPage />
 			</div>
 		</Div>
 	);

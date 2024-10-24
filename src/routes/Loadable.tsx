@@ -1,6 +1,6 @@
 import React, { Suspense, ComponentType } from 'react';
 
-export const Loadable = (Component: ComponentType<any>): React.FC => {
+export const Loadable = (Component: ComponentType<unknown>): React.FC => {
 	const LoadableComponent: React.FC = (props) => {
 		return (
 			<Suspense>

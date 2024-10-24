@@ -21,3 +21,8 @@ export interface QuestionTypesResponse {
 	id: number;
 	name: string;
 }
+
+export interface IQuestionType {
+	id: number;
+	name: string;
+}

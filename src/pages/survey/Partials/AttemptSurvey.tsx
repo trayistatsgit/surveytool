@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import '../CreateSurvey.scss';
 import { Div } from '../../../blocks';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { getSurveyByIdThunk } from '../../../redux/slice/survey/getSurveyById';
 import QuestionPreview from './QuestionPreview';
 import { attemptSurveyThunk } from '../../../redux/slice/survey/attemptSurvey';
-
 interface Question {
 	questionId: number;
 	questionName: string;
 	questionType: number;
 	options: Option[];
 }
-
 interface Option {
 	optionId: number;
 	optionText: string;
 }
-
 interface SurveyData {
 	surveyName: string;
 	surveyDescription: string;
@@ -27,15 +24,14 @@ interface SurveyData {
 	surveyId: string;
 	surveyQuestions: Question[];
 }
-
 interface AggregateData {
 	questionId: number;
 	questionType: number;
 	options: string | number | number[];
 }
-
 const AttemptSurvey: React.FC = () => {
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	const { surveyId = '' } = useParams();
 	const currentUrl = window.location.href;
 	const surveyInitialData: SurveyData = {
@@ -58,34 +54,28 @@ const AttemptSurvey: React.FC = () => {
 			},
 		],
 	};
-
 	const [surveyForm, setSurveyForm] = useState<SurveyData>(surveyInitialData);
 	const [aggrigateData, setAggrigateData] = useState<AggregateData[]>([]);
-	console.log('aggrigateData', aggrigateData);
-	// Select survey data from the store
 	const { data } = useAppSelector((state) => state.getSurveyByIdSlice);
-
 	const handlePreviewSurvey = () => {
 		window.open(`/survey-preview/${surveyId}`, '_blank');
 	};
-
-	// Fetch survey data when component mounts
 	useEffect(() => {
 		if (surveyId) {
 			dispatch(getSurveyByIdThunk(surveyId));
 		}
 	}, [dispatch, surveyId]);
-
-	// Update the survey form with fetched data
 	useEffect(() => {
 		if (data?.data?.[0]) {
 			const surveyData = data.data[0];
 			setSurveyForm(surveyData);
 		}
 	}, [data]);
-
-	const handleAttemptSurvey = () => {
-		dispatch(attemptSurveyThunk({ questions: aggrigateData, participantUrl: currentUrl, surveyId }));
+	const handleAttemptSurvey = async () => {
+		const { payload } = (await dispatch(attemptSurveyThunk({ questions: aggrigateData, participantUrl: currentUrl, surveyId }))) as any;
+		if (payload && payload?.status === 200) {
+			navigate(`/survey-result/${surveyId}`);
+		}
 	};
 
 	return (

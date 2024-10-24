@@ -14,6 +14,7 @@ import PresentResult from '../pages/presentresult/PresentResult';
 import AttemptSurvey from '../pages/survey/Partials/AttemptSurvey';
 import PreviewSurvey from '../pages/survey/Partials/PreviewSurvey';
 import Surveys from '../pages/survey/Surveys';
+import SurveyResult from '../pages/survey/Partials/SurveyResult';
 
 const router = createBrowserRouter([
 	{
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
 	{
 		path: '/survey-preview/:surveyId',
 		element: <PreviewSurvey />,
+	},
+	{
+		path: '/survey-result/:surveyId',
+		element: <SurveyResult />,
 	},
 	{
 		path: '/survey-attempt/:surveyId',

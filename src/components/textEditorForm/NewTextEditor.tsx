@@ -14,7 +14,6 @@ const NewTextEditor: React.FC<NewTextEditorProps> = ({ label = 'Untitled', onSav
 
 	const handleSave = () => {
 		onSave(labelText); // Call onSave with the current labelText
-		console.log('Saved:', labelText);
 	};
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

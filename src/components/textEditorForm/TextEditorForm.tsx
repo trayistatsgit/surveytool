@@ -5,16 +5,13 @@ import './TextEditorForm.scss';
 const TextEditorForm: React.FC = () => {
 	const editorRef = useRef<HTMLDivElement>(null);
 
-	// State to store the title and formatted description
 	const [pageTitle, setPageTitle] = useState<string>('');
 	const [pageDescription, setPageDescription] = useState<string>('Start typing here...');
 
-	// Function to apply text formatting commands
 	const formatText = (command: string, value: any | null = null) => {
 		document.execCommand(command, false, value);
 	};
 
-	// Update the state for the preview in real-time
 	const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPageTitle(event.target.value);
 	};
@@ -27,8 +24,6 @@ const TextEditorForm: React.FC = () => {
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
-		console.log('Title:', pageTitle);
-		console.log('Description:', pageDescription);
 	};
 
 	return (

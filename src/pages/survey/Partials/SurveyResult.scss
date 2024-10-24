@@ -1,0 +1,65 @@
+  
+  .surveyResultCont {
+    position: relative;
+    margin: 0 12.5% 0 12.5%;
+    width: 75%;
+    height: auto;
+  }
+  .surveyResult {
+    display: flex;
+    justify-content: space-around;
+  }
+  .poll-option {
+    margin-bottom: 25px;
+  }
+  
+  span.poll-option__label {
+    font-weight: normal;
+  }
+  
+  table.poll-option__result {
+    width: 100%;
+    
+    tr, td {
+      padding: 0;
+    }
+    
+    td:nth-child(odd) {
+      width: 40px;
+    }
+    
+    td:nth-child(even) {
+      border: 0;
+      height: 100%;
+      position: relative;
+      vertical-align: center;
+      width: 100%;
+    }
+    
+    td:first-child {
+      padding-right: 20px;
+    }
+    
+    td:last-child {
+      padding-left: 20px;
+    }
+    
+    span {
+      border-radius: 3px;
+      display: block;
+      height: 6px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    span:first-child {
+      background: rgba(0, 0, 0, 0.1);
+      width: 100%;
+    }
+    
+    span:last-child {
+      background: aliceblue;
+      background-image: linear-gradient(to right, #886CC0, #886CC0);
+    }
+  }

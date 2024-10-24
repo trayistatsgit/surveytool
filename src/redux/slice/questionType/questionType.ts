@@ -1,15 +1,12 @@
-// src/store/questionType/questionTypeSlice.ts
 import { createSliceHook } from '../../../customHooks/createSliceHook';
 import { getQuestionTypesApi } from '../../../services/questionType/questionType.service';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-// src/types/questionType.ts
 export interface QuestionType {
-	id: number; // or string, depending on your data structure
+	id: number;
 	name: string;
 }
 
-export const createQuestionType = createAsyncThunk('create-questionType', async (_, { rejectWithValue }) => {
+export const questionTypeThunk = createAsyncThunk('questionType', async (_, { rejectWithValue }) => {
 	try {
 		const response = await getQuestionTypesApi();
 		return response;
@@ -18,4 +15,4 @@ export const createQuestionType = createAsyncThunk('create-questionType', async 
 	}
 });
 
-export default createSliceHook('questionType', createQuestionType, {});
+export default createSliceHook('questionType', questionTypeThunk, {});

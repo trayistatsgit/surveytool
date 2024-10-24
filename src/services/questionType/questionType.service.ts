@@ -1,14 +1,9 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-// import axios from 'axios';
-
 import axiosInstance from '../axios.helper';
-
-// With query parameters
 export interface QuestionType {
 	id: number; // or string, depending on your data structure
 	name: string;
 }
-export const getQuestionTypesApi = async () => {
+export const getQuestionTypesApi = async <T>(): Promise<T> => {
 	const response = await axiosInstance.get('question/question-type');
 	return response.data;
 };

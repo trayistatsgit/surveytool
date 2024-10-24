@@ -68,3 +68,7 @@ export const attemptSurveyApi = async <T>(surveyData: IAttemptSurveyBody): Promi
 	const response = await axiosInstance.post(`survey/survey-attempt`, { ...surveyData });
 	return response.data as T;
 };
+export const surveyResultApi = async <T>(surveyData: string): Promise<T> => {
+	const response = await axiosInstance.get(`survey/survey-result/${surveyData}`);
+	return response.data as T;
+};

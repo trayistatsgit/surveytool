@@ -43,7 +43,7 @@ const PreviewSurvey: React.FC = () => {
 	// Question text input change handle
 	const { data } = useAppSelector((state) => state.getSurveyByIdSlice);
 	const handlePreviewSurvey = () => {
-		window.open(`/survey-preview/${surveyId}`, '_blank');
+		window.open(`/create-survey/${surveyId}`, '_blank');
 	};
 
 	useEffect(() => {
@@ -63,10 +63,11 @@ const PreviewSurvey: React.FC = () => {
 						<section className='mainContainer'>
 							<section className='containerCreateSurvey'>
 								{/* Logo Popup Section */}
-								<div>
-									<img src={surveyForm.logo} alt='Survey Logo' className='surveyLog' />
-								</div>
-
+								{surveyForm.logo && (
+									<div>
+										<img src={surveyForm.logo} alt='Survey Logo' className='surveyLog' />
+									</div>
+								)}
 								<section className='surveyPage'>
 									<div className='surveyTitle'>
 										<h1>

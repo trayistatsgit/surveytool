@@ -1,4 +1,3 @@
-
 type CSSModuleClasses = { readonly [key: string]: string };
 
 declare module '*.module.css' {
@@ -137,7 +136,6 @@ declare module '*.vtt' {
 	export default src;
 }
 
-
 declare module '*.woff' {
 	const src: string;
 	export default src;
@@ -159,7 +157,6 @@ declare module '*.otf' {
 	export default src;
 }
 
-
 declare module '*.webmanifest' {
 	const src: string;
 	export default src;
@@ -172,7 +169,6 @@ declare module '*.txt' {
 	const src: string;
 	export default src;
 }
-
 
 declare module '*.wasm?init' {
 	const initWasm: (options?: WebAssembly.Imports) => Promise<WebAssembly.Instance>;
