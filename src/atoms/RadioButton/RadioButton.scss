@@ -1,28 +1,27 @@
 .custom-radio-group {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .custom-radio {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid #B02E7A;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    background-color: #fff;
-  }
-  
-  .custom-radio.checked {
-    background: #B02E7A;
+  display: flex;
+  gap: 10px;
 }
-  
-  .radio-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #fff;
-  }
-  
+
+.custom-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #b02e7a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.custom-radio.checked {
+  background: #b02e7a;
+}
+
+.radio-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+}

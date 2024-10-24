@@ -1,587 +1,572 @@
-@import '../../mixins.scss';
+@use '../../mixins.scss';
 
 .container-signup {
-	display: flex;
+  display: flex;
 }
 
 .split-signup {
-	height: 100%;
-	width: 50%;
-	position: absolute;
-	z-index: 1;
-	top: 0;
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
 }
 
 .left-signup {
-	left: 0;
-	background-color: #ffffff;
+  left: 0;
+  background-color: #ffffff;
 }
 
-
 .right-signup {
-	right: 0;
-	background:
-		url('../../assets/signup-img/Vector.svg') no-repeat center,
-		linear-gradient(111.38deg, #68956f -1.52%, #20da5e 49.51%, #0928b0 88.53%);
-	background-position: 50% 9%; 
-	background-size: auto; 
+  right: 0;
+  background:
+    url('../../assets/signup-img/Vector.svg') no-repeat center,
+    linear-gradient(111.38deg, #68956f -1.52%, #20da5e 49.51%, #0928b0 88.53%);
+  background-position: 50% 9%;
+  background-size: auto;
 
-	@include bp('desktop') {
-		background: 
-    
-			linear-gradient(111.38deg, #1f057d -1.52%, #822cb0 49.51%, #b02e7a 88.53%);
-		
-	}
-	@include bp('tablet') {
-		background: 
-			linear-gradient(111.38deg, #1f057d -1.52%, #822cb0 49.51%, #b02e7a 88.53%);
-	}
+  @include mixins.bp('desktop') {
+    background: linear-gradient(111.38deg, #1f057d -1.52%, #822cb0 49.51%, #b02e7a 88.53%);
+  }
+  @include mixins.bp('tablet') {
+    background: linear-gradient(111.38deg, #1f057d -1.52%, #822cb0 49.51%, #b02e7a 88.53%);
+  }
 }
 
 .centre-signup {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	text-align: left;
-	transform: translate(-50%, -50%);
-	@include bp('desktop') {
-		width: 390px;
-	}
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: left;
+  transform: translate(-50%, -50%);
+  @include mixins.bp('desktop') {
+    width: 390px;
+  }
 
-	@include bp('tablet') {
-		top: 45%;
-		width: 300px;
-	}
+  @include mixins.bp('tablet') {
+    top: 45%;
+    width: 300px;
+  }
 }
 
 .head-signup {
-	height: 31px;
-	font-weight: 600;
-	font-size: 28px;
-	line-height: 42px;
-	color: rgba(4, 26, 47, 1);
-	justify-content: start;
-	padding: 0;
-	margin-bottom: 10px;
+  height: 31px;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 42px;
+  color: rgba(4, 26, 47, 1);
+  justify-content: start;
+  padding: 0;
+  margin-bottom: 10px;
 }
 
 .text-signup {
-	height: 31px;
-	width: auto;
-	font-weight: 300;
-	font-size: 14px;
-	line-height: 21px;
-	padding: 0;
-	margin: 0;
-	@include bp('tablet') {
-margin-bottom: 10px;
-	}
+  height: 31px;
+  width: auto;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  padding: 0;
+  margin: 0;
+  @include mixins.bp('tablet') {
+    margin-bottom: 10px;
+  }
 }
 
 .label-login {
-	margin-top: 13px;
+  margin-top: 13px;
 }
 
 .inputForm {
-	.email-input .pass {
-		font-weight: 500;
-	}
-	.input-signup {
-		gap: 6px;
-	}
+  .email-input .pass {
+    font-weight: 500;
+  }
+  .input-signup {
+    gap: 6px;
+  }
 }
 
 .checkbox-signup {
-	text-align: left;
-	align-items: center;
-	display: flex;
-	align-items: center;
-	text-align: center;
-	justify-content: start;
-	line-height: 24px;
-	margin-top: 15px;
-	margin-bottom: 15px;
-	gap: 4px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: start;
+  line-height: 24px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  gap: 4px;
 
-	@include bp('desktop') {
-		width: 420px;
-		text-align: left;
-		display: inline-block;
-		align-items: center;
-		line-height: 24px;
-		margin-top: 10px;
-		margin-bottom: 10px;
-	}
+  @include mixins.bp('desktop') {
+    width: 420px;
+    text-align: left;
+    display: inline-block;
+    align-items: center;
+    line-height: 24px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 
-	@include bp('tablet') {
-		width: 400px;
-		text-align: left;
-		display: inline-block;
-		align-items: center;
-		display: flex;
-		align-items: center;
-		text-align: center;
-		justify-content: start;
-		line-height: 24px;
-		margin-top: 10px;
-		margin-bottom: 10px;
-	}
+  @include mixins.bp('tablet') {
+    width: 400px;
+    text-align: left;
+    display: inline-block;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: start;
+    line-height: 24px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 
-	.check-signup {
-		width: 20px;
-		height: 20px;
-		border-radius: 10px;
-		border: 1px;
-		margin-right: 5px;
-		margin-bottom: 3px;
+  .check-signup {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px;
+    margin-right: 5px;
+    margin-bottom: 3px;
 
-		@include bp('desktop') {
-			display: inline-block;
-			width: 15px;
-			height: 15px;
-			margin-right: 5px;
-			margin-bottom: -3px;
-		}
+    @include mixins.bp('desktop') {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+      margin-bottom: -3px;
+    }
 
-		@include bp('tablet') {
-			display: inline-block;
-			// width: 15px;
-			height: 12px;
-			margin-right: -2px;
-			margin-bottom: 3px;
-		}
-	}
-	.checkname {
-		// width: 433px;
-		height: 24px;
-		margin: 0;
-		font-weight: 500;
-		font-size: 14px;
-		display: inline-block;
-		align-items: center;
-		@include bp('desktop') {
-			height: 24px;
-			display: inline-block;
-			margin: 0;
-			font-weight: 500;
-			font-size: 13px;
-			display: inline-block;
-			align-items: center;
-		}
+    @include mixins.bp('tablet') {
+      display: inline-block;
+      // width: 15px;
+      height: 12px;
+      margin-right: -2px;
+      margin-bottom: 3px;
+    }
+  }
+  .checkname {
+    // width: 433px;
+    height: 24px;
+    margin: 0;
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-block;
+    align-items: center;
+    @include mixins.bp('desktop') {
+      height: 24px;
+      display: inline-block;
+      margin: 0;
+      font-weight: 500;
+      font-size: 13px;
+      display: inline-block;
+      align-items: center;
+    }
 
-		@include bp('tablet') {
-			// height: 24px;
-			display: inline-block;
-			margin: 0;
-			font-weight: 500;
-			font-size: 10px;
-			display: inline-block;
-			align-items: center;
-		}
-	}
-	.highlight-check {
-		color: rgba(176, 46, 122, 1) !important;
-		display: inline-block;
-		margin-right: 4px;
-		margin-left: 4px;
-		@include bp('desktop') {
-			height: 24px;
-			color: rgba(176, 46, 122, 1) !important;
-			display: inline-block;
-			margin-right: 2px;
-			margin-left: 2px;
-			font-size: 13px;
-		}
+    @include mixins.bp('tablet') {
+      // height: 24px;
+      display: inline-block;
+      margin: 0;
+      font-weight: 500;
+      font-size: 10px;
+      display: inline-block;
+      align-items: center;
+    }
+  }
+  .highlight-check {
+    color: rgba(176, 46, 122, 1) !important;
+    display: inline-block;
+    margin-right: 4px;
+    margin-left: 4px;
+    @include mixins.bp('desktop') {
+      height: 24px;
+      color: rgba(176, 46, 122, 1) !important;
+      display: inline-block;
+      margin-right: 2px;
+      margin-left: 2px;
+      font-size: 13px;
+    }
 
-		@include bp('tablet') {
-			// width: 300px;
-			color: rgba(176, 46, 122, 1) !important;
-			display: inline-block;
-			margin: 0;
-			padding: 0;
-			margin-right: 2px;
-			margin-left: 2px;
-			font-size: 10px;
-		}
-	}
+    @include mixins.bp('tablet') {
+      // width: 300px;
+      color: rgba(176, 46, 122, 1) !important;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      margin-right: 2px;
+      margin-left: 2px;
+      font-size: 10px;
+    }
+  }
 }
 
 .signup-signup {
-	height: 44px;
-	width: 497px;
-	border: none;
-	border-radius: 38px solid rgba(176, 46, 122, 1);
-	padding: 16px, 28px, 16px, 28px;
-	gap: 8px;
-	border-radius: 50px;
-	background: rgba(176, 46, 122, 1);
-	color: #fff;
-	font-weight: 600;
-	font-size: 16px;
-	line-height: 28px;
-	cursor: pointer;
-	margin-top: 5px;
-	margin-bottom: 10px;
+  height: 44px;
+  width: 497px;
+  border: none;
+  border-radius: 38px solid rgba(176, 46, 122, 1);
+  padding: 16px, 28px, 16px, 28px;
+  gap: 8px;
+  border-radius: 50px;
+  background: rgba(176, 46, 122, 1);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 10px;
 
-	@include bp('desktop') {
-		height: 40px;
-		width: 390px;
-	}
+  @include mixins.bp('desktop') {
+    height: 40px;
+    width: 390px;
+  }
 
-	@include bp('tablet') {
-		width: 300px;
-		height: 38px;
-		line-height: 22px;
-		margin-top: 0px;
-		margin-bottom: 3px;
-	}
+  @include mixins.bp('tablet') {
+    width: 300px;
+    height: 38px;
+    line-height: 22px;
+    margin-top: 0px;
+    margin-bottom: 3px;
+  }
 }
 
 .line-signup {
-	margin-top: 15px;
-	font-weight: 400;
-	font-size: 14px;
-	display: flex;
-	flex-direction: row;
-	margin: 0;
-	padding: 0;
-	margin-top: 8px;
-	display: flex;
-	justify-content: space-around;
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-around;
 
-	.linehalf {
-		width: 180px;
-		margin: 0;
-		padding: 0;
-		height: 0.00001px;
-		margin-top: 8px;
+  .linehalf {
+    width: 180px;
+    margin: 0;
+    padding: 0;
+    height: 0.00001px;
+    margin-top: 8px;
 
-		@include bp('desktop') {
-			width: 130px;
-		}
+    @include mixins.bp('desktop') {
+      width: 130px;
+    }
 
-		@include bp('tablet') {
-			width: 90px;
-		}
-	}
+    @include mixins.bp('tablet') {
+      width: 90px;
+    }
+  }
 }
 .linename {
-	margin-right: 10px;
-	margin-left: 10px;
-	font-size: 14px;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 14px;
 
-	@include bp('tablet') {
-		font-size: 12px;
-	}
+  @include mixins.bp('tablet') {
+    font-size: 12px;
+  }
 }
 
 .auto-signup {
-	display: flex;
-	justify-content: center;
-	gap: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
 
-	@include bp('desktop') {
-		width: 390px;
-		gap: 18px;
-	}
+  @include mixins.bp('desktop') {
+    width: 390px;
+    gap: 18px;
+  }
 
-	@include bp('tablet') {
-		width: 300px;
-		gap: 15px;
-	}
+  @include mixins.bp('tablet') {
+    width: 300px;
+    gap: 15px;
+  }
 }
 .autobutton {
-	width: 215px;
-	height: 52px;
-	border-radius: 8px;
-	padding: 12px 20px 12px 20px;
-	gap: 0px;
-	border: 1px solid rgba(206, 211, 216, 1);
-	display: flex;
-	align-items: center;
-	text-align: center;
-	justify-content: center;
-	cursor: pointer;
-	margin-top: 18px;
-	color: rgba(4, 26, 47, 1) !important;
+  width: 215px;
+  height: 52px;
+  border-radius: 8px;
+  padding: 12px 20px 12px 20px;
+  gap: 0px;
+  border: 1px solid rgba(206, 211, 216, 1);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 18px;
+  color: rgba(4, 26, 47, 1) !important;
 
-	@include bp('desktop') {
-		width: 170px;
-		height: 40px;
-		font-size: 13px;
-	}
+  @include mixins.bp('desktop') {
+    width: 170px;
+    height: 40px;
+    font-size: 13px;
+  }
 
-	@include bp('tablet') {
-		width: 150px;
-		height: 35px;
-		font-size: 10px;
-	}
+  @include mixins.bp('tablet') {
+    width: 150px;
+    height: 35px;
+    font-size: 10px;
+  }
 }
 
 .bottom {
-	width: 497px;
-	height: 16px;
-	gap: 0px;
-	opacity: 0px;
-	font-family: Poppins;
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 21px;
-	color: rgba(16, 24, 40, 1);
-	line-height: 21px;
-	text-align: center;
-	margin-top: 22px;
-	display: flex;
-	justify-content: center;
+  width: 497px;
+  height: 16px;
+  gap: 0px;
+  opacity: 0px;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: rgba(16, 24, 40, 1);
+  line-height: 21px;
+  text-align: center;
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
 
-	@include bp('desktop') {
-		width: 390px;
-		height: 16px;
-	}
+  @include mixins.bp('desktop') {
+    width: 390px;
+    height: 16px;
+  }
 
-	@include bp('tablet') {
-		width: 300px;
-		height: 14px;
-	}
+  @include mixins.bp('tablet') {
+    width: 300px;
+    height: 14px;
+  }
 }
 .highlight-check {
-	color: rgba(176, 46, 122, 1) !important;
-	cursor: pointer;
-	margin-right: 4px;
-	margin-left: 4px;
-	font-weight: 400;
-	font-size: 14px;
-	text-decoration: underline;
-	font-weight: bold;
+  color: rgba(176, 46, 122, 1) !important;
+  cursor: pointer;
+  margin-right: 4px;
+  margin-left: 4px;
+  font-weight: 400;
+  font-size: 14px;
+  text-decoration: underline;
+  font-weight: bold;
 
-	@include bp('desktop') {
-	}
+  @include mixins.bp('desktop') {
+  }
 
-	@include bp('tablet') {
-		font-size: 12px;
-	}
+  @include mixins.bp('tablet') {
+    font-size: 12px;
+  }
 }
 .bottomtext {
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 21px;
-	text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  text-align: center;
 
-	@include bp('desktop') {
-	}
+  @include mixins.bp('desktop') {
+  }
 
-	@include bp('tablet') {
-		height: 14px;
-		font-size: 12px;
-	}
+  @include mixins.bp('tablet') {
+    height: 14px;
+    font-size: 12px;
+  }
 }
 
-
 .head-login {
-	display: flex;
-	flex-direction: row;
-	height: 31px;
-	font-weight: 600;
-	font-size: 28px;
-	line-height: 42px;
-	color: rgba(4, 26, 47, 1);
-	justify-content: start;
-	padding: 0;
-	margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  height: 31px;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 42px;
+  color: rgba(4, 26, 47, 1);
+  justify-content: start;
+  padding: 0;
+  margin-bottom: 10px;
 
-	@include bp('tablet') {
-		height: 14px;
-		font-size: 18px;
-		margin-bottom: 20px;
-	}
+  @include mixins.bp('tablet') {
+    height: 14px;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
 
-	@include bp('desktop') {
-		height: 14px;
-		font-size: 24px;
-		margin-bottom: 20px;
-	}
+  @include mixins.bp('desktop') {
+    height: 14px;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 }
 
 .logo-login {
-	width: 45.57px;
-	height: 30px;
-	margin-left: 10px;
-	@include bp('tablet') {
-		width: 35px;
-		height: 25px;
-		margin-top: 5px;
-	}
+  width: 45.57px;
+  height: 30px;
+  margin-left: 10px;
+  @include mixins.bp('tablet') {
+    width: 35px;
+    height: 25px;
+    margin-top: 5px;
+  }
 }
 
 .justify__space_between {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin: 30px 0 26px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0 26px 0;
 }
 
 .forgot__password {
-	color: rgba(176, 46, 122, 1);
-	text-align: left;
-	outline-color: #b595d4;
-	text-decoration: underline;
-	cursor: pointer;
+  color: rgba(176, 46, 122, 1);
+  text-align: left;
+  outline-color: #b595d4;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .container-radio-signup {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	width: 100%;
-	text-align: left;
-	@include bp('tablet') {
-		width: 80%;
-		gap: 6px;
-	}
-	@include bp('desktop') {
-		width: 100%;
-		gap: 6px;
-	}
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  @include mixins.bp('tablet') {
+    width: 80%;
+    gap: 6px;
+  }
+  @include mixins.bp('desktop') {
+    width: 100%;
+    gap: 6px;
+  }
 }
 
 .checkbox-label-signup {
-	@include bp('desktop') {
-		font-size: 12px;
-	}
+  @include mixins.bp('desktop') {
+    font-size: 12px;
+  }
 }
 
 .container-radio {
-	display: flex;
-	align-items: center;
-	gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .terms-conditions {
-	text-decoration: none;
-	color: #b02e7a !important;
-	font-weight: 500;
-	text-decoration: underline;
-	text-decoration-color: #b02e7a;
+  text-decoration: none;
+  color: #b02e7a !important;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: #b02e7a;
 }
-
-
 
 .text-forgot {
-	height: 31px;
-	width: auto;
-	font-weight: 300;
-	font-size: 14px;
-	line-height: 21px;
-	padding: 0;
-	margin: 0;
+  height: 31px;
+  width: auto;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  padding: 0;
+  margin: 0;
 }
-
 
 .head-forgot {
-	display: flex;
-	flex-direction: row;
-	height: 31px;
-	font-weight: 600;
-	font-size: 28px;
-	line-height: 42px;
-	color: rgba(4, 26, 47, 1);
-	justify-content: start;
-	padding: 0;
+  display: flex;
+  flex-direction: row;
+  height: 31px;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 42px;
+  color: rgba(4, 26, 47, 1);
+  justify-content: start;
+  padding: 0;
 
-	@include bp('tablet') {
-		height: 14px;
-		font-size: 18px;
-		margin-bottom: 20px;
-	}
+  @include mixins.bp('tablet') {
+    height: 14px;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
 
-	@include bp('desktop') {
-		height: 14px;
-		font-size: 24px;
-		margin-bottom: 20px;
-	}
+  @include mixins.bp('desktop') {
+    height: 14px;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 }
 
-.btn-back{
-	display: inline-block;
-	cursor: pointer;
-	i{
-	  padding: 1px;
-	  height: 16px;
-	  width: 16px;
-	  border-radius: 100%;
-	  background-color: black;
-	  color: white;
-	  font-size: 16px;
-	}
+.btn-back {
+  display: inline-block;
+  cursor: pointer;
+  i {
+    padding: 1px;
+    height: 16px;
+    width: 16px;
+    border-radius: 100%;
+    background-color: black;
+    color: white;
+    font-size: 16px;
   }
+}
 
-
-  .back-button {
-	display: flex;
-	justify-content: left; 
-	align-items: center;   
-	height: 30%;          
-	font-size: 18px;
-	margin-left: 16%;  
-	cursor: pointer; 
-	color: #c2185b; 
-	background: none;
-	border: none;
-	@include bp('tablet') {
-		margin-left: 12%;  
-
-	}
-	@include bp('desktop') {
-		margin-left: 8%;  
-
-	}
+.back-button {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 30%;
+  font-size: 18px;
+  margin-left: 16%;
+  cursor: pointer;
+  color: #c2185b;
+  background: none;
+  border: none;
+  @include mixins.bp('tablet') {
+    margin-left: 12%;
   }
-
-
-  .back-arrow {
-	font-size: 30px; 
-	margin-right: 8px;
-	margin-top: -5px;
+  @include mixins.bp('desktop') {
+    margin-left: 8%;
   }
-  
-  .back-button:hover {
-	color: #a0134b;
-  }
+}
 
+.back-arrow {
+  font-size: 30px;
+  margin-right: 8px;
+  margin-top: -5px;
+}
+
+.back-button:hover {
+  color: #a0134b;
+}
 
 .forgot-button {
-	height: 44px;
-	width: 497px;
-	border: none;
-	border-radius: 50px;
-	background: rgba(176, 46, 122, 1);
-	font-weight: 600;
-	font-size: 16px;
-	line-height: 28px;
-	cursor: pointer;
-	margin-top: 2rem;
+  height: 44px;
+  width: 497px;
+  border: none;
+  border-radius: 50px;
+  background: rgba(176, 46, 122, 1);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  cursor: pointer;
+  margin-top: 2rem;
 
-	@include bp('desktop') {
-		height: 40px;
-		width: 390px;
-	}
+  @include mixins.bp('desktop') {
+    height: 40px;
+    width: 390px;
+  }
 
-	@include bp('tablet') {
-		width: 300px;
-		height: 38px;
-		line-height: 22px;
-		margin-top: 20px;
-		margin-bottom: 3px;
-	}
+  @include mixins.bp('tablet') {
+    width: 300px;
+    height: 38px;
+    line-height: 22px;
+    margin-top: 20px;
+    margin-bottom: 3px;
+  }
 }
 
-
-.label-forgot{
-	margin-top: 13px;
-	@include bp('tablet') {
-		margin-top: 25px;
-	}
-	@include bp('desktop') {
-		margin-top: 25px;
-	}
+.label-forgot {
+  margin-top: 13px;
+  @include mixins.bp('tablet') {
+    margin-top: 25px;
+  }
+  @include mixins.bp('desktop') {
+    margin-top: 25px;
+  }
 }

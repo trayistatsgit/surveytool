@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import './RadioButton.scss';
 
@@ -22,10 +21,8 @@ const RadioButton: React.FC<RadioButtonProps> = ({ className, checked = false, o
 
   return (
     <div className={`custom-radio-group ${className}`} onClick={handleClick}>
-      <div
-        className={`custom-radio ${isChecked ? 'checked' : ''}`}
-      >
-        <div className="radio-dot"></div>
+      <div className={`custom-radio ${isChecked ? 'checked' : ''}`}>
+        <div className='radio-dot'></div>
       </div>
     </div>
   );

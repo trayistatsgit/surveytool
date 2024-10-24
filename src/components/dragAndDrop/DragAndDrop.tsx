@@ -1,15 +1,17 @@
-// DragAndDrop.tsx
 import React, { useState } from 'react';
 import './DragAndDrop.scss';
 
 interface DragAndDropProps {
+  // eslint-disable-next-line no-unused-vars
   onFileUpload: (fileURL: string) => void;
+  setFileData: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
-const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload }) => {
+const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload, setFileData }) => {
   const [dragOver, setDragOver] = useState(false);
-  const [fileURL, setFileURL] = useState<string | null>(null); 
+  const [fileURL, setFileURL] = useState<string | null>(null);
   const [error, setError] = useState('');
+  const [fileInputKey, setFileInputKey] = useState(Date.now()); // Added for resetting input
 
   const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
 
@@ -39,14 +41,18 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload }) => {
       const fileReader = new FileReader();
       fileReader.onload = () => {
         const uploadedFileURL = fileReader.result as string;
+        setFileData(selectedFile);
         setFileURL(uploadedFileURL);
         onFileUpload(uploadedFileURL);
         setError('');
+        setFileInputKey(Date.now());
       };
       fileReader.readAsDataURL(selectedFile);
     } else {
       setFileURL(null);
       setError('Unsupported file format. Please upload a JPG, GIF, or PNG file.');
+      setFileData(null);
+      setFileInputKey(Date.now());
     }
   };
 
@@ -61,14 +67,11 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload }) => {
             className={`bodyContainer ${dragOver ? 'dragOver' : ''}`}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-          >
+            onDrop={handleDrop}>
             {fileURL ? (
-              <img src={fileURL} alt="Uploaded File" className="uploadedImage" />
+              <img src={fileURL} alt='Uploaded File' className='uploadedImage' />
             ) : (
-              <p className='bodyPopPara1'>
-                Drag and drop a file here
-              </p>
+              <p className='bodyPopPara1'>Drag and drop a file here</p>
             )}
             <div className='buttonContainerPopUp'>
               <span className='spanPopupButton'>JPG</span>
@@ -85,18 +88,13 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload }) => {
                 id='fileUpload'
                 style={{ display: 'none' }}
                 onChange={handleFileUpload}
+                key={fileInputKey} // Use the key to force re-render of input
               />
             </p>
 
             {error && (
               <div className='errorMessage'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  viewBox='0 0 24 24'
-                  fill='red'
-                  width='24px'
-                  height='24px'
-                >
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='red' width='24px' height='24px'>
                   <path d='M0 0h24v24H0z' fill='none' />
                   <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z' />
                 </svg>

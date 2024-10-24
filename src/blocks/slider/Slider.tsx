@@ -26,19 +26,15 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images, autoPlay = false, int
   }, [autoPlay, interval, images.length]);
 
   return (
-    <div className="image-slider-signup">
-      <img src={images[currentIndex].src} alt={`Slide ${currentIndex}`} className="slider-image-signup" />
-      <div className="slide-content-signup">
+    <div className='image-slider-signup'>
+      <img src={images[currentIndex].src} alt={`Slide ${currentIndex}`} className='slider-image-signup' />
+      <div className='slide-content-signup'>
         <h2>{images[currentIndex].heading}</h2>
         <p>{images[currentIndex].text}</p>
       </div>
-      <div className="dots-signup">
+      <div className='dots-signup'>
         {images.map((_, index) => (
-          <span
-            key={index}
-            className={`dot-signup ${index === currentIndex ? 'active-signup' : ''}`}
-            onClick={() => goToImage(index)}
-          ></span>
+          <span key={index} className={`dot-signup ${index === currentIndex ? 'active-signup' : ''}`} onClick={() => goToImage(index)}></span>
         ))}
       </div>
     </div>

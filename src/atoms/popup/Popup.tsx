@@ -41,17 +41,8 @@ const PopupComponent: React.FC<PopupProps> = ({
 
   return (
     <div className={`${cokiee ? 'popup-overlay' : 'popup-overlay'}`}>
-      <div
-        ref={popupRef}
-        className={`${cokiee ? 'popup-content-cokiee' : 'popup-content'}`}
-        style={{ width: `${width}px`, height: `${height}px` }}
-      >
-        <img
-          src={cancel}
-          onClick={onClose}
-          className={`${cokiee ? 'cancel-img-cokiee' : 'cancel-img'}`}
-          alt='Cancel'
-        />
+      <div ref={popupRef} className={`${cokiee ? 'popup-content-cokiee' : 'popup-content'}`} style={{ width: `${width}px`, height: `${height}px` }}>
+        <img src={cancel} onClick={onClose} className={`${cokiee ? 'cancel-img-cokiee' : 'cancel-img'}`} alt='Cancel' />
         {children}
 
         {/* Bottom Cancel Button */}

@@ -13,28 +13,24 @@ export const fontSizes = {
   fontSize32: 'fontSize32',
   fontSize36: 'fontSize36',
   fontSize40: 'fontSize40',
-  fontSize45: 'fontSize45', 
+  fontSize45: 'fontSize45',
   fontSize58: 'fontSize58',
   fontSize68: 'fontSize68',
-};
-
+} as const;
 
 export const fontWeights = {
   regular: 'regular',
   medium: 'medium',
   semiBold: 'semiBold',
   bold: 'bold',
-  dimmer: 'dimmer',
-};
-
+} as const;
 
 export const fontWeightstext = {
   regular: 'font-weight-400',
   medium: 'font-weight-500',
   semiBold: 'font-weight-600',
   bold: 'font-weight-700',
-};
-
+} as const;
 
 export const lineHeights = {
   base: 'line-height-base',
@@ -42,8 +38,7 @@ export const lineHeights = {
   large: 'line-height-large',
   lineHeight24: 'lineHeight24',
   lineHeight22: 'lineHeight22',
-};
-
+} as const;
 
 export const textColors = {
   primary: 'textColor-primary',
@@ -54,21 +49,19 @@ export const textColors = {
   redAlert: 'textColor-redAlert',
   lightBlack: 'textColor-lightBlack',
   black: 'textColor-black',
-};
-
+} as const;
 
 export type PropsType = React.HTMLAttributes<HTMLDivElement | HTMLSpanElement> & {
   label?: React.ReactNode;
   fontSize?: keyof typeof fontSizes;
   fontWeight?: keyof typeof fontWeights;
-  fontWeightstest?: number; 
-  lineHeight?: string | number; 
+  fontWeightstest?: number;
+  lineHeight?: keyof typeof lineHeights | string | number; // Allow string and number types as well
   textColor?: keyof typeof textColors;
   className?: string;
   isSpan?: boolean;
-  fontFamily?: string; 
+  fontFamily?: string;
 };
-
 
 export const Typography: React.FC<PropsType> = ({
   fontSize = 'fontSize12',
@@ -78,52 +71,32 @@ export const Typography: React.FC<PropsType> = ({
   textColor = 'primary',
   className,
   isSpan = false,
-  fontFamily = 'Poppins', 
+  fontFamily = 'Poppins',
   ...props
 }) => {
-  
-  const fontWeightClass = fontWeightstest
-    ? undefined 
-    : fontWeightstext[fontWeight] || '';
+  const fontWeightClass = fontWeightstest ? undefined : fontWeightstext[fontWeight] || '';
 
-  const lineHeightClass = typeof lineHeight === 'string' && lineHeights[lineHeight]
-    ? lineHeights[lineHeight]
-    : '';
+  // Ensure lineHeight is one of the defined keys or a string/number
+  const lineHeightClass = lineHeight in lineHeights ? lineHeights[lineHeight as keyof typeof lineHeights] : '';
 
-  const customLineHeight = typeof lineHeight === 'number' || (typeof lineHeight === 'string' && !lineHeightClass)
-    ? lineHeight
-    : undefined;
+  const customLineHeight = typeof lineHeight === 'number' || (typeof lineHeight === 'string' && !lineHeightClass) ? lineHeight : undefined;
 
   const fontSizeClass = fontSizes[fontSize] || '';
 
   return (
     <>
-      {isSpan === false ? (
+      {!isSpan ? (
         <div
-          className={clsx(
-            fontSizeClass,
-            fontWeightClass,
-            lineHeightClass,
-            textColors[textColor],
-            className
-          )}
+          className={clsx(fontSizeClass, fontWeightClass, lineHeightClass, textColors[textColor], className)}
           style={{ fontFamily, fontWeight: fontWeightstest, lineHeight: customLineHeight }}
-          {...props} 
-        >
+          {...props}>
           {props.label}
         </div>
       ) : (
         <span
-          className={clsx(
-            fontSizeClass,
-            fontWeightClass,
-            lineHeightClass,
-            textColors[textColor],
-            className
-          )}
+          className={clsx(fontSizeClass, fontWeightClass, lineHeightClass, textColors[textColor], className)}
           style={{ fontFamily, fontWeight: fontWeightstest, lineHeight: customLineHeight }}
-          {...props} 
-        >
+          {...props}>
           {props.label}
         </span>
       )}

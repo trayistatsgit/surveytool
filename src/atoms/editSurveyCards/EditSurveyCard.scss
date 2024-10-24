@@ -1,124 +1,116 @@
 .card-survey-edit {
-	background-color: white;
-	border: 1px solid #e0e0e0;
-	border-radius: 8px;
-	padding: 16px;
-	position: relative;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	display: flex;
-	flex-direction: column;
-	gap: 40px;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .survey-title {
-	display: flex;
-	width: 100%;
-	justify-content: space-between;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
-.survey-draf{
-	display: flex;
-	justify-content: space-between;
-	align-items:center ;
-position: relative;
+.survey-draf {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 .survey-draf span {
-	background-color: #f5f5f5;
-	color: black;
-	font-size: 14px;
-	font-weight: 500;
-	padding: 6px 8px;
-	border-radius: 4px;
-	width: fit-content;
+  background-color: #f5f5f5;
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 8px;
+  border-radius: 4px;
+  width: fit-content;
 }
 .dot-icon-container {
-	display: flex;
-	justify-content: center; 
-	align-items: center; 
-	background: none;
-		border: none;
-		font-size: 22px; 
-		position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 22px;
+  position: relative;
 }
-.dot-icon{
-	position: absolute;
-	border: none;
-	font-size: 35px;
-	background: none;
-	bottom: 50%;
-	right: 2px;
-	cursor: pointer;
+.dot-icon {
+  position: absolute;
+  border: none;
+  font-size: 35px;
+  background: none;
+  bottom: 50%;
+  right: 2px;
+  cursor: pointer;
 }
 .updated {
-	color: #6b6b6b;
-	font-size: 16px;
+  color: #6b6b6b;
+  font-size: 16px;
 }
-.survey-content{
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: 18px;
-	cursor:default
+.survey-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  cursor: default;
 }
-.survey-edit-container{
-	display: flex;
-	flex-direction: column;
-	margin-top: 3rem;
-	cursor: default;
+.survey-edit-container {
+  display: flex;
+  flex-direction: column;
+  cursor: default;
 }
 .survey-title {
-	color: black;
-	
+  color: black;
 }
-.survey-edit-button{
-	margin-top: 20px;
-	
-	
+.survey-edit-button {
+  margin-top: 20px;
 }
 
 .fix-btn {
-	width: 100%;
-	background-color: transparent;
-	border: 1px solid black;
-	padding: 8px 16px;
-	border-radius: 4px;
-	font-size: 14px;
-	color: black !important;
-	cursor: pointer;
-	transition: all 0.3s;
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid black;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: black !important;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-  .fix-btn:hover {
-    background-color: #ebeff3;
-    color: white;
-    border: none;
-  }
-
+.fix-btn:hover {
+  background-color: #ebeff3;
+  color: white;
+  border: none;
+}
 
 .dropdown li:first-child {
-	border-bottom: 1px solid #ccc; /* Adds bottom border to the first <li> */
+  border-bottom: 1px solid #ccc; /* Adds bottom border to the first <li> */
 }
 .issue {
-	display: flex;
-	margin-top: 56px;
-	align-items: center;
-	gap: 8px;
+  display: flex;
+  margin-top: 56px;
+  align-items: center;
+  gap: 8px;
 }
 
 .issue img {
-	width: 20px;
-	height: 15px;
-	display: flex;
-	
-	
+  width: 20px;
+  height: 15px;
+  display: flex;
 }
 
-
-.updated-date{
-	display: flex;
-	gap: 6px;
-	align-items: center;
+.updated-date {
+  display: flex;
+  gap: 6px;
+  align-items: center;
 }
-.updated-date img{
-	width: 20px;
-	height: 15px;
+.updated-date img {
+  width: 20px;
+  height: 15px;
 }

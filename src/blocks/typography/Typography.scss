@@ -1,114 +1,112 @@
 /* Font Families */
-@import url('../variables/Variable.scss');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-@import '../../mixins.scss';
+@use '../../mixins.scss';
+@use '../variables/Variable.scss';
 
 .font-family-Poppins {
-	font-family: 'Poppins';
+  font-family: 'Poppins';
 }
 
 .fontSize12 {
-	font-size: 12px;
+  font-size: 12px;
 }
 
 .fontSize14 {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 .fontSize16 {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .fontSize18 {
-	font-size: 18px;
+  font-size: 18px;
 }
 
 .fontSize20 {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 .fontSize24 {
-	font-size: 24px;
+  font-size: 24px;
 }
 
 .fontSize30 {
-	font-size: 30px;
+  font-size: 30px;
 }
 
 .fontSize32 {
-	font-size: 32px;
+  font-size: 32px;
 }
 
 .fontSize36 {
-	font-size: 36px;
+  font-size: 36px;
 }
 
-
 .regular {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 .medium {
-	font-weight: 500;
+  font-weight: 500;
 }
 
 .semiBold {
-	font-weight: 600;
+  font-weight: 600;
 }
 
 .bold {
-	font-weight: 700;
+  font-weight: 700;
 }
 
 .dimmer {
-	font-weight: 300;
+  font-weight: 300;
 }
 
 .textColor-primary {
-	color: var(--black-color);
+  color: var(--black-color);
 }
 
 .textColor-blue {
-	color: var(--button-info);
+  color: var(--button-info);
 }
 
 .textColor-white {
-	color: var(--white-color);
+  color: var(--white-color);
 }
 
 .textColor-black {
-	color: var(--card-head-text);
+  color: var(--card-head-text);
 }
 
 .lineHeight24 {
-	line-height: 24px;
+  line-height: 24px;
 }
 .lineHeight22 {
-	line-height: 22px;
+  line-height: 22px;
 }
 
 .fontSize58 {
-	font-size: 58px;
+  font-size: 58px;
 }
 
 .fontSize40 {
-	font-size: 40px;
+  font-size: 40px;
 }
 
 .textColor-blue {
-	color: var(--button-info);
+  color: var(--button-info);
 }
 
 .textColor-redAlert {
-	color: var(--button-danger);
+  color: var(--button-danger);
 }
 
 .textColor-success {
-	color: var(--Secondary-green-dark-color);
+  color: var(--Secondary-green-dark-color);
 }
 .textColor-orange {
-	color: var(--button-warning);
+  color: var(--button-warning);
 }
 .textColor-lightBlack {
-	color: var(--light-grey-black);
+  color: var(--light-grey-black);
 }

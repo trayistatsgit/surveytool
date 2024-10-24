@@ -1,0 +1,65 @@
+@use '../../../mixins.scss';
+.container-newPage {
+  height: 4rem;
+  border: 1px dashed #d0d2d3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin: auto;
+  background-color: white;
+
+  @include mixins.bp('xl') {
+    width: 56.9%;
+  }
+  @include mixins.bp('tablet') {
+    width: 60%;
+  }
+  @include mixins.bp('desktop') {
+    width: 59%;
+  }
+  @include mixins.bp('mobile') {
+    width: 65%;
+  }
+  @include mixins.bp('monitor') {
+    width: 57.6%;
+  }
+}
+.newPage-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #6b787f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+.logo-newPage {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #6b787f;
+  background-color: white;
+  text-align: center;
+}
+
+.logo-color {
+  color: #6b787f;
+  font-weight: 500;
+}
+
+.page-number {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  color: #333;
+  z-index: 10;
+}
+
+.survey-list {
+  display: flex;
+  flex-direction: column; // Stack items vertically
+  gap: 16px; // Optional: Add space between surveys
+}

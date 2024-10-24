@@ -1,192 +1,174 @@
-@import'../../mixins.scss';
-.main-collect-container{
-    display: grid;
-    grid-template-columns: repeat( 1fr); 
-   background-color:whitesmoke;
-    padding: 10px;
-    margin: 0px auto;
-    width: 65%;
-    height: 100%;
-    @include bp('tablet') {
-        width: 85%;
-    }
-    
-    @include bp('mobile') {
-        width: 100%;
-        padding: 5px;
-        margin: 0;
-    }
-}
-    
+@use '../../mixins.scss';
+.main-collect-container {
+  display: grid;
+  grid-template-columns: repeat(1fr);
+  background-color: whitesmoke;
+  padding: 10px;
+  margin: 0px auto;
+  width: 65%;
+  height: 100%;
+  @include mixins.bp('tablet') {
+    width: 85%;
+  }
 
-.collect-title{
-    width: 92%;
-    display: flex;
-   margin-left: 20px;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-
-    @include bp('mobile') {
-        width: 100%;
-        margin-left: 0;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-.response-button-main{
-    display: flex;
-    gap: 10px;
-   width: 530px;
-   @include bp('tablet') {
+  @include mixins.bp('mobile') {
     width: 100%;
+    padding: 5px;
+    margin: 0;
+  }
 }
 
-@include bp('mobile') {
+.collect-title {
+  width: 92%;
+  display: flex;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  @include mixins.bp('mobile') {
+    width: 100%;
+    margin-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.response-button-main {
+  display: flex;
+  gap: 10px;
+  width: 530px;
+  @include mixins.bp('tablet') {
+    width: 100%;
+  }
+
+  @include mixins.bp('mobile') {
     flex-direction: column;
     gap: 5px;
     width: 100%;
     align-items: stretch;
+  }
 }
+.target-response-btn {
+  color: black !important;
+  background-color: #f1c40f;
+  border: none;
+  // padding-left: 30px;
 }
-.target-response-btn{
-    color: black !important;
-    background-color: #f1c40f; 
-    border: none;
-    // padding-left: 30px;
-}
-.add-new-collector{
-background-color: rgb(49, 155, 49);
-border: none;
-width: 100%;
-@include bp('mobile') {
+.add-new-collector {
+  background-color: rgb(49, 155, 49);
+  border: none;
+  width: 100%;
+  @include mixins.bp('mobile') {
     font-size: 12px; // Adjust font size for mobile
+  }
 }
+.survey-total {
+  background-color: white;
+  width: 92%;
+  height: 155px;
+  margin-left: 20px;
+  margin-top: 20px;
+  position: relative;
+  @include mixins.bp('mobile') {
+    width: 80%;
+    margin-left: 0;
+  }
 }
-.survey-total{
- background-color:white;
-    width: 92%;
-    height: 155px;
-    margin-left: 20px;
-    margin-top: 20px;
-    position: relative;
-    @include bp('mobile') {
-        width: 80%;
-        margin-left: 0;
-    }
+.total-response-container {
+  display: flex;
+  width: 100%;
+  @include mixins.bp('mobile') {
+    flex-direction: column; // Stack items vertically on mobile
+  }
 }
-.total-response-container{
-    display: flex;
+.total-response {
+  width: 90%;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+.response-notification {
+  width: 90%;
+  display: inline-block;
+  border-left: 1px solid black;
+  height: 60px;
+  margin: 0 10px;
+  margin-top: 25px;
+  padding-left: 20px;
+  @include mixins.bp('mobile') {
     width: 100%;
-    @include bp('mobile') {
-        flex-direction: column; // Stack items vertically on mobile
-    }
-
-   
+    margin: 0;
+    padding-left: 10px;
+  }
 }
-.total-response{
-    width: 90%;
-    justify-content: space-between;
-    margin-top: 30px;
-    margin-left: 20px;
-   
-}
-.response-notification{
-    width: 90%;
-    display: inline-block;
-    border-left: 1px solid black;
-    height:60px;
-    margin: 0 10px;
-    margin-top:25px;
-    padding-left: 20px;
-    @include bp('mobile') {
-        width: 100%;
-        margin: 0;
-        padding-left: 10px;
-    }
+.sidecorner {
+  position: absolute;
+  top: 0;
+  right: 0;
 
-    
-}
-.sidecorner{
-    position: absolute;
-    top: 0;
-    right: 0;
-   
-    border-top: 60px solid #f1c40f; 
-    border-left: 65px solid transparent;
-    @include bp('mobile') {
-        border-top-width: 40px; // Adjust size for smaller screens
-        border-left-width: 45px;
-    }
-
+  border-top: 60px solid #f1c40f;
+  border-left: 65px solid transparent;
+  @include mixins.bp('mobile') {
+    border-top-width: 40px; // Adjust size for smaller screens
+    border-left-width: 45px;
+  }
 }
 
-
-.footer{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-top: 20px;
-    border-top: solid 1px rgb(158, 153, 153);
-    padding-top: 10px;
+.footer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+  border-top: solid 1px rgb(158, 153, 153);
+  padding-top: 10px;
 }
-.table-main-container{
-    // margin-top: 10px;
-    width: 92%;
-    margin-left: 20px;
-    @include bp('mobile') {
-        width: 100%;
-        margin-left: 0;
-    }
-}
-.table-footer{
+.table-main-container {
+  // margin-top: 10px;
+  width: 92%;
+  margin-left: 20px;
+  @include mixins.bp('mobile') {
     width: 100%;
-    height: 50px;
-    background-color:white;
-    border-bottom: solid 1px gray;
-    @include bp('mobile') {
-        height: 40px;
-    }
-
+    margin-left: 0;
+  }
 }
-.total-response-count{
-    margin-top: 8px;
-    @include bp('mobile') {
-        margin-top: 5px;
-    }
+.table-footer {
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  border-bottom: solid 1px gray;
+  @include mixins.bp('mobile') {
+    height: 40px;
+  }
 }
-.manage-notification{
-    padding-top: 10px;
-    color: rgb(164, 207, 248);
-    @include bp('mobile') {
-        padding-top: 5px;
-    }
-
+.total-response-count {
+  margin-top: 8px;
+  @include mixins.bp('mobile') {
+    margin-top: 5px;
+  }
 }
-.user-main-container{
-    
-    width:100%;
-    height: 45px;
-    display: flex;
-    background-color: #f1c40f; 
-    align-items: center;
-    justify-content: center;
-    // height: 30px
- 
+.manage-notification {
+  padding-top: 10px;
+  color: rgb(164, 207, 248);
+  @include mixins.bp('mobile') {
+    padding-top: 5px;
+  }
 }
-.lock-icon{
-    display: flex;
-    top: 10px;
-    right: 10px;
-    position: absolute;
-    @include bp('mobile') {
-        top: 5px;
-        right: 5px;
-    }
+.user-main-container {
+  width: 100%;
+  height: 45px;
+  display: flex;
+  background-color: #f1c40f;
+  align-items: center;
+  justify-content: center;
+  // height: 30px
 }
-
-  
-
-
-  
-  
+.lock-icon {
+  display: flex;
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  @include mixins.bp('mobile') {
+    top: 5px;
+    right: 5px;
+  }
+}
