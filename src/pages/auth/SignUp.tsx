@@ -12,14 +12,29 @@ import Slider from '../../blocks/slider/Slider';
 import { Slide2, Slide3 } from '../../assets/signup-img';
 import { Link, useNavigate } from 'react-router-dom';
 import RadioButton from '../../atoms/RadioButton/RadioButton';
+// import { signupApi } from '../../redux/slice/signup/signUp';
+import { useAppDispatch } from '../../redux/store';
+import { signUpThunk } from '../../redux/slice/signup/signUp';
 
 const SignUp: React.FC = () => {
 	const [tncBox, setTncBox] = useState<boolean>(false);
+	const dispatch = useAppDispatch();
+	const [formData, setFormData] = useState({
+		email: '',
+		password: '',
+	});
 
+	console.log(formData);
 	const handleTncChange = (checked: boolean) => {
 		setTncBox(checked);
 	};
-
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		setFormData({
+			...formData,
+			[name]: value, // Dynamically update email or password based on the input field
+		});
+	};
 	const navigate = useNavigate();
 	const images = [
 		{
@@ -38,7 +53,10 @@ const SignUp: React.FC = () => {
 			text: 'This is the text for Slide 3',
 		},
 	];
-
+	const handleSignup = async () => {
+		await dispatch(signUpThunk(formData));
+		navigate('/sign-up');
+	};
 	const handleLogInClick = () => {
 		navigate('/login');
 	};
@@ -74,13 +92,19 @@ const SignUp: React.FC = () => {
 						<div>
 							<Typography label='Email' className='label-login' fontWeightstest={500} fontSize='fontSize14' />
 						</div>
-						<InputAtom className='input-signup' imageUrlInput={Mail} placeholder='Email Address' />
+						<InputAtom
+							className='input-signup'
+							imageUrlInput={Mail}
+							placeholder='Email Address'
+							name='email'
+							onChange={handleInputChange}
+						/>
 
 						<div>
 							<Typography label='Enter Password' fontWeightstest={500} className='label-login' fontSize='fontSize14' />
 						</div>
 						<div className='input-signup'>
-							<InputAtom placeholder='Password' type='password' />
+							<InputAtom placeholder='Password' type='password' name='password' onChange={handleInputChange} />
 						</div>
 						<div className='checkbox-signup'>
 							<div className='container-radio-signup'>
@@ -95,7 +119,7 @@ const SignUp: React.FC = () => {
 							</div>
 						</div>
 						<div>
-							<Button className='signup-signup' label='Signup' />
+							<Button className='signup-signup' label='Signup' onClick={handleSignup} />
 						</div>
 					</div>
 

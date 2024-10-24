@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import useStickyNavbar from '../customHooks/useStickyNavbar';
 import NavbarHome from '../components/navbar/NavbarHome';
+import SignUp from '../pages/auth/SignUp';
 
 const MasterLayout: React.FC = () => {
 	const { scrollContainerRef, isScrolled } = useStickyNavbar(10);
@@ -15,6 +16,7 @@ const MasterLayout: React.FC = () => {
 					overflowX: 'hidden',
 				}}>
 				<NavbarHome isScrolled={isScrolled} />
+				<SignUp />
 				<main>
 					<Outlet />
 				</main>

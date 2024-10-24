@@ -1,4 +1,9 @@
-import React, { useEffect, useState } from 'react';
+{
+/* eslint-disable */
+
+}
+
+import React, { ReactNode, useEffect, useState } from 'react';
 import './CreateSurvey.scss';
 import { minus, plus } from '../../assets/common-img';
 import NewPage from './Partials/NewPage';
@@ -181,7 +186,7 @@ const CreateSurvey: React.FC = () => {
 	return (
 		<Div>
 			<div className='newContaner'>
-				<>
+				
 					<div className='containernew'>
 						<section className='mainContainer'>
 							<section className='containerCreateSurvey'>
@@ -407,7 +412,7 @@ const CreateSurvey: React.FC = () => {
 							</section>
 						</section>
 					</div>
-				</>
+				
 			</div>
 			<div className='newpage-container-copy'>
 				<NewPage />
