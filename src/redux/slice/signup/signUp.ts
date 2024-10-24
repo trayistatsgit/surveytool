@@ -1,19 +1,29 @@
-// src/redux/slice/signup/signUp.ts
+interface SignupInput {
+	email: string;
+	password: string;
+}
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { postSignupApi } from '../../../services/signup/signup.service';
+import { SignupResponse, signupApi } from '../../../services/signup/signup.service';
 import { createSliceHook } from '../../../customHooks/createSliceHook';
-export const signupApi = createAsyncThunk('signup/postSignup', async (data: { email: string; password: string }, { rejectWithValue }) => {
+
+export const signUpThunk = createAsyncThunk('signup/postSignup', async (data: SignupInput, { rejectWithValue }) => {
 	try {
-		const response = await postSignupApi(data);
-		if (response.data && response.data.sessionToken) {
-			localStorage.setItem('access', response.data.sessionToken);
-		}
+		const response: SignupResponse = await signupApi(data);
 		return response;
 	} catch (error: any) {
-		return rejectWithValue(error.response.data);
+		return rejectWithValue(error.response?.data);
 	}
 });
-export default createSliceHook('signup', signupApi, {
+
+export default createSliceHook('signup', signUpThunk, {
+	success: false,
 	message: '',
-	data: Response,
+	data: {
+		sessionToken: '',
+		user: {
+			id: '',
+			email: '',
+		},
+	},
 });

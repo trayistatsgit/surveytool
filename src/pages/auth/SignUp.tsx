@@ -12,8 +12,9 @@ import Slider from '../../blocks/slider/Slider';
 import { Slide2, Slide3 } from '../../assets/signup-img';
 import { Link, useNavigate } from 'react-router-dom';
 import RadioButton from '../../atoms/RadioButton/RadioButton';
-import { signupApi } from '../../redux/slice/signup/signUp';
+// import { signupApi } from '../../redux/slice/signup/signUp';
 import { useAppDispatch } from '../../redux/store';
+import { signUpThunk } from '../../redux/slice/signup/signUp';
 
 const SignUp: React.FC = () => {
 	const [tncBox, setTncBox] = useState<boolean>(false);
@@ -53,7 +54,8 @@ const SignUp: React.FC = () => {
 		},
 	];
 	const handleSignup = async () => {
-		await dispatch(signupApi(formData));
+		await dispatch(signUpThunk(formData));
+		navigate('/sign-up');
 	};
 	const handleLogInClick = () => {
 		navigate('/login');

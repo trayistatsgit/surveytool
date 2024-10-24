@@ -4,30 +4,20 @@ import './DragAndDrop.scss';
 interface DragAndDropProps {
 	// eslint-disable-next-line no-unused-vars
 	onFileUpload: (fileURL: string) => void;
-	setFileData: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
-const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload, setFileData }) => {
+const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload }) => {
 	const [dragOver, setDragOver] = useState(false);
 	const [fileURL, setFileURL] = useState<string | null>(null);
 	const [error, setError] = useState('');
-	const [fileInputKey, setFileInputKey] = useState(Date.now()); // Added for resetting input
 
-	const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
 	const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault();
 		setDragOver(true);
 	};
-	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault();
-		setDragOver(true);
-	};
 
-	const handleDragLeave = () => {
-		setDragOver(false);
-	};
 	const handleDragLeave = () => {
 		setDragOver(false);
 	};
@@ -38,17 +28,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload, setFileData }) 
 		const droppedFile = e.dataTransfer.files[0] as File;
 		validateFile(droppedFile);
 	};
-	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault();
-		setDragOver(false);
-		const droppedFile = e.dataTransfer.files[0] as File;
-		validateFile(droppedFile);
-	};
 
-	const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const uploadedFile = e.target.files?.[0] as File;
-		validateFile(uploadedFile);
-	};
 	const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const uploadedFile = e.target.files?.[0] as File;
 		validateFile(uploadedFile);
@@ -59,18 +39,14 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload, setFileData }) 
 			const fileReader = new FileReader();
 			fileReader.onload = () => {
 				const uploadedFileURL = fileReader.result as string;
-				setFileData(selectedFile);
 				setFileURL(uploadedFileURL);
 				onFileUpload(uploadedFileURL);
 				setError('');
-				setFileInputKey(Date.now());
 			};
 			fileReader.readAsDataURL(selectedFile);
 		} else {
 			setFileURL(null);
 			setError('Unsupported file format. Please upload a JPG, GIF, or PNG file.');
-			setFileData(null);
-			setFileInputKey(Date.now());
 		}
 	};
 
@@ -101,13 +77,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload, setFileData }) 
 							<label htmlFor='fileUpload' className='fileUploadLabel'>
 								upload a file from your computer
 							</label>
-							<input
-								type='file'
-								id='fileUpload'
-								style={{ display: 'none' }}
-								onChange={handleFileUpload}
-								key={fileInputKey} // Use the key to force re-render of input
-							/>
+							<input type='file' id='fileUpload' style={{ display: 'none' }} onChange={handleFileUpload} />
 						</p>
 
 						{error && (
