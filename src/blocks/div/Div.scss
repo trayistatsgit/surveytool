@@ -1,41 +1,41 @@
 @use '../../mixins.scss' as mixins;
 
 @mixin grid($columns) {
-	column-gap: 1rem;
-	display: grid;
-	grid-template-columns: repeat(#{$columns}, 1fr);
+  column-gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(#{$columns}, 1fr);
 
-	@include mixins.bp('monitor') {
-		grid-template-columns: repeat(#{$columns}, 1fr);
-	}
+  @include mixins.bp('monitor') {
+    grid-template-columns: repeat(#{$columns}, 1fr);
+  }
 
-	@include mixins.bp('desktop') {
-		grid-template-columns: repeat(#{$columns}, 1fr);
-	}
+  @include mixins.bp('desktop') {
+    grid-template-columns: repeat(#{$columns}, 1fr);
+  }
 
-	@include mixins.bp('tablet') {
-		grid-template-columns: repeat(#{$columns}, 1fr);
-	}
+  @include mixins.bp('tablet') {
+    grid-template-columns: repeat(#{$columns}, 1fr);
+  }
 
-	@include mixins.bp('mobile') {
-		grid-template-columns: repeat(#{$columns}, 1fr);
-	}
+  @include mixins.bp('mobile') {
+    grid-template-columns: repeat(#{$columns}, 1fr);
+  }
 }
 
 @for $i from 1 through 12 {
-	.grid-#{$i} {
-		@include grid($i);
-	}
+  .grid-#{$i} {
+    @include grid($i);
+  }
 }
 
 .grid-container {
-	grid-template-columns: auto auto;
+  grid-template-columns: auto auto;
 }
 
 .grid-7 {
-	flex: 7;
+  flex: 7;
 }
 
 .grid-3 {
-	flex: 3;
+  flex: 3;
 }

@@ -5,13 +5,13 @@ import reducer from './slice/reducer';
 
 // Root persist configuration
 const rootPersistConfig = {
-	key: 'root',
-	storage,
-	keyPrefix: 'redux-',
+  key: 'root',
+  storage,
+  keyPrefix: 'redux-',
 };
 // Combining reducers
 const rootReducer = combineReducers({
-	...reducer,
+  ...reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

@@ -6,15 +6,15 @@ import router from './routes/Routes';
 import { persistor, store } from './redux/store';
 
 const App: React.FC = () => {
-	return (
-		<>
-			<Provider store={store}>
-				<PersistGate loading={null} persistor={persistor}>
-					<RouterProvider router={router} />
-				</PersistGate>
-			</Provider>
-		</>
-	);
+  return (
+    <>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <RouterProvider router={router} />
+        </PersistGate>
+      </Provider>
+    </>
+  );
 };
 
 export default App;

@@ -5,7 +5,6 @@
 // import HeroSection  from '../../components/heroSection/HeroSection';
 // import WhySurveySherpa from '../../components/WhySurveySherpa/WhySurveySherpa';
 
-
 // const Home: React.FC = () => {
 // 	return (
 // 		<div>

@@ -8,14 +8,14 @@ import surveyResultSlice from './survey/surveyResult';
 import upsertSurveyQuestionSlice from './survey/upsertSurveyQuestion';
 
 const reducer = {
-	clearStoreReducer,
-	createSurveyIdSlice,
-	questionTypeSlice,
-	upsertSurveyQuestionSlice,
-	getSurveyByIdSlice,
-	surveyDetailSlice,
-	surveyResultSlice,
-	attemptSurveySlice,
+  clearStoreReducer,
+  createSurveyIdSlice,
+  questionTypeSlice,
+  upsertSurveyQuestionSlice,
+  getSurveyByIdSlice,
+  surveyDetailSlice,
+  surveyResultSlice,
+  attemptSurveySlice,
 };
 
 export default reducer;

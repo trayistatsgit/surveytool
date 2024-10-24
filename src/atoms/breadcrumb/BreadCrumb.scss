@@ -1,21 +1,20 @@
 .breadcrumb-container {
-	display: flex;
-	align-items: center;
-	font-size: 14px;
-	width: 65%;
-	margin: 0 auto;
-  
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  width: 65%;
+  margin: 0 auto;
 }
 
 .breadcrumb-tab-item {
-	cursor: pointer;
-	padding: 8px 12px;
-	color: rgba(17, 2, 2, 0.763);
-	transition: color 0.3s ease;
-} 
+  cursor: pointer;
+  padding: 8px 12px;
+  color: rgba(17, 2, 2, 0.763);
+  transition: color 0.3s ease;
+}
 .breadcrumb-active {
-	font-weight: bold;
-	color:green;
+  font-weight: bold;
+  color: green;
   text-decoration: underline;
 }
 
@@ -24,6 +23,6 @@
 // 	color: #da1731;
 // }
 .breadcrumb-arrow {
-	margin: 0 8px;
-	color: rgb(17, 2, 2);
+  margin: 0 8px;
+  color: rgb(17, 2, 2);
 }

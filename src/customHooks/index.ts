@@ -1,6 +1,6 @@
 import useStickyNavbar from './useStickyNavbar';
 
 const customHooks = {
-	useStickyNavbar,
+  useStickyNavbar,
 };
 export default customHooks;

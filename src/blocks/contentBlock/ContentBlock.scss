@@ -4,27 +4,24 @@
   position: relative;
   z-index: 100;
   margin-top: -100px;
-    .team-heading {
-      font-size: 45px;
+  .team-heading {
+    font-size: 45px;
+  }
+
+  .team-description {
+    font-size: 16px;
+    color: #333333;
+    width: 52%;
+    margin: 0 auto;
+    @include mixins.bp('mobile') {
+      width: 100%;
     }
-  
-    .team-description {
-      font-size: 16px;
-      color: #333333;
-      width: 52%;
-      margin: 0 auto;
-      @include mixins.bp('mobile') {
-        width: 100%;
+    @include mixins.bp('tablet') {
+      width: 90%;
+    }
 
-      }
-      @include mixins.bp('tablet') {
-        width: 90%;
-      }
-      
-      @include mixins.bp('desktop') {
-        width: 60%;
-
-      }
+    @include mixins.bp('desktop') {
+      width: 60%;
     }
   }
-  
+}

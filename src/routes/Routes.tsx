@@ -17,69 +17,69 @@ import Surveys from '../pages/survey/Surveys';
 import SurveyResult from '../pages/survey/Partials/SurveyResult';
 
 const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <MasterLayout />,
-		children: [
-			{
-				path: '/start',
-				element: <StartingPage />,
-			},
-			{
-				path: '/create-survey/:surveyId',
-				element: <CreateSurvey />,
-			},
-			{
-				path: '/my-surveys',
-				element: <Surveys />,
-			},
-			{
-				path: '/summary',
-				element: <Summary />,
-			},
-			{
-				path: '/design-survey',
-				element: <DesignSurvey />,
-			},
-			{},
-			{
-				path: '/collect-responses',
-				element: <CollectResponse />,
-			},
-			{
-				path: '/analyze-results',
-				element: <AnalyzeResults />,
-			},
-			{
-				path: '/present-results',
-				element: <PresentResult />,
-			},
-		],
-	},
-	{
-		path: '/survey-preview/:surveyId',
-		element: <PreviewSurvey />,
-	},
-	{
-		path: '/survey-result/:surveyId',
-		element: <SurveyResult />,
-	},
-	{
-		path: '/survey-attempt/:surveyId',
-		element: <AttemptSurvey />,
-	},
-	{
-		path: '/sign-up',
-		element: <SignUp />,
-	},
-	{
-		path: '/login',
-		element: <LogIn />,
-	},
-	{
-		path: '/forgot-password',
-		element: <ForgotPassword />,
-	},
+  {
+    path: '/',
+    element: <MasterLayout />,
+    children: [
+      {
+        path: '/start',
+        element: <StartingPage />,
+      },
+      {
+        path: '/create-survey/:surveyId',
+        element: <CreateSurvey />,
+      },
+      {
+        path: '/my-surveys',
+        element: <Surveys />,
+      },
+      {
+        path: '/summary',
+        element: <Summary />,
+      },
+      {
+        path: '/design-survey',
+        element: <DesignSurvey />,
+      },
+      {},
+      {
+        path: '/collect-responses',
+        element: <CollectResponse />,
+      },
+      {
+        path: '/analyze-results',
+        element: <AnalyzeResults />,
+      },
+      {
+        path: '/present-results',
+        element: <PresentResult />,
+      },
+    ],
+  },
+  {
+    path: '/survey-preview/:surveyId',
+    element: <PreviewSurvey />,
+  },
+  {
+    path: '/survey-result/:surveyId',
+    element: <SurveyResult />,
+  },
+  {
+    path: '/survey-attempt/:surveyId',
+    element: <AttemptSurvey />,
+  },
+  {
+    path: '/sign-up',
+    element: <SignUp />,
+  },
+  {
+    path: '/login',
+    element: <LogIn />,
+  },
+  {
+    path: '/forgot-password',
+    element: <ForgotPassword />,
+  },
 ]);
 
 export default router;

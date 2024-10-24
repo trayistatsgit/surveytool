@@ -2,32 +2,31 @@
 @use '../variables/Variable.scss';
 
 .chebox-label {
-	color: var(--chebox-label-grey);
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 1.2;
-	font-family: Poppins;
-	@include mixins.bp('mobile') {
-		font-size: 11px;
-		text-align: start;
-		width: 84%;
-	}
+  color: var(--chebox-label-grey);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  font-family: Poppins;
+  @include mixins.bp('mobile') {
+    font-size: 11px;
+    text-align: start;
+    width: 84%;
+  }
 
-	@include mixins.bp('tablet') {
-		width: 81%;
-	}
+  @include mixins.bp('tablet') {
+    width: 81%;
+  }
 }
 
 .label-check {
-	display: flex;
-	gap: 7px;
-	margin-top: 1rem;
-	align-items: center;
-	justify-content: center;
-	@include mixins.bp('tablet') {
-		padding-left: 0px;
-		width: 120%;
-		margin-left: -2rem;
-	}
-	
+  display: flex;
+  gap: 7px;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  @include mixins.bp('tablet') {
+    padding-left: 0px;
+    width: 120%;
+    margin-left: -2rem;
+  }
 }
