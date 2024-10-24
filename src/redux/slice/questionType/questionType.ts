@@ -4,10 +4,10 @@ import { getQuestionTypesApi } from '../../../services/questionType/questionType
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // src/types/questionType.ts
-export interface QuestionType {
-	id: number; // or string, depending on your data structure
-	name: string;
-}
+// export interface QuestionType {
+// 	id: number; // or string, depending on your data structure
+// 	name: string;
+// }
 
 export const createQuestionType = createAsyncThunk('create-questionType', async (_, { rejectWithValue }) => {
 	try {

@@ -14,12 +14,20 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload, setFileData }) 
 	const [fileInputKey, setFileInputKey] = useState(Date.now()); // Added for resetting input
 
 	const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
+	const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault();
 		setDragOver(true);
 	};
+	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		setDragOver(true);
+	};
 
+	const handleDragLeave = () => {
+		setDragOver(false);
+	};
 	const handleDragLeave = () => {
 		setDragOver(false);
 	};
@@ -30,7 +38,17 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ onFileUpload, setFileData }) 
 		const droppedFile = e.dataTransfer.files[0] as File;
 		validateFile(droppedFile);
 	};
+	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		setDragOver(false);
+		const droppedFile = e.dataTransfer.files[0] as File;
+		validateFile(droppedFile);
+	};
 
+	const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const uploadedFile = e.target.files?.[0] as File;
+		validateFile(uploadedFile);
+	};
 	const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const uploadedFile = e.target.files?.[0] as File;
 		validateFile(uploadedFile);
